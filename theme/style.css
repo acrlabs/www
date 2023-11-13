@@ -93,14 +93,25 @@ nav li a:hover {
     display: inline-block;
 }
 
-.error {
-    display: block;
+#result {
+    display: none;
     text-align: center;
-    background: darkorange;
-    padding: 5px;
     margin: 20px 0;
     border: 1px black solid;
     color: black;
+}
+
+.error, .success {
+    padding: 5px;
+    display: block;
+}
+
+.error {
+    background: darkorange;
+}
+
+.success {
+    background: lightgreen;
 }
 
 .vegetable {

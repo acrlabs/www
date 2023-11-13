@@ -37,7 +37,7 @@ Have a question?  Need help with your Kubernetes install?  Want to schedule some
           dataType: "json",
           success: function(response) {
             if(response.success) {
-              $('#result').html("Message successfully sent.  We'll be in touch soon!").hide().fadeIn(1500);
+              $('#result').html("<span class='success'>Message successfully sent.  We'll be in touch soon!</span>").hide().fadeIn(1500);
               $('button[name=submitform]').attr("disabled", true);
             } else {
               $('#result').html("<span class='error'>Error sending the message: " + response.message + "</span>").hide().fadeIn(1500);

@@ -1,4 +1,7 @@
-.PHONY: build publish
+.PHONY: build publish serve
+
+serve:
+	mkdocs serve --watch-theme
 
 build:
 	mkdocs build
