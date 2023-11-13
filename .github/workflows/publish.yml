@@ -1,0 +1,21 @@
+name: publish website
+on: 
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo and build scripts
+        uses: actions/checkout@v3
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.WWWKEY }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+      - name: Install Mkdocs
+        run: pip install mkdocs==1.5.3
+      - name: Publish
+        run: make publish

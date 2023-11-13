@@ -11,6 +11,8 @@ h1, h2, h3 {
     margin-bottom: 5px;
 }
 
+/* Nav bar, header */
+
 header a {
     text-decoration: none;
     color: #444;
@@ -21,9 +23,42 @@ header img {
     max-width: 650px;
 }
 
+nav {
+    background: #222;
+}
+
+nav ul {
+    display: flex;
+    padding: 10px 0 10px 10px;
+}
+
+nav li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 40px;
+}
+
+nav li a {
+    text-decoration: none;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: white;
+    padding: 10px;
+}
+
+nav li a:hover {
+    color: #444;
+    background: white;
+}
+
+.tagline {
+    text-align: right;
+}
+
 .tagline, .copyright {
     font-style: italic;
 }
+
+/* Employee list */
 
 .whoami {
     list-style: none;
@@ -44,18 +79,26 @@ header img {
     margin: 0;
 }
 
+/* Contact Form */
+
 .formelement, .formelement label {
     display: block;
 }
 
 .formelement {
-    padding-bottom: 15px;
+    padding: 0 10px 15px 0;
+}
+
+.forminline {
+    display: inline-block;
 }
 
 .error {
+    display: block;
+    text-align: center;
     background: darkorange;
     padding: 5px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     border: 1px black solid;
     color: black;
 }

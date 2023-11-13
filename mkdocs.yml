@@ -3,5 +3,3 @@ site_url: https://appliedcomputing.io
 theme: 
   name: null
   custom_dir: theme
-extra:
-  foo: bar

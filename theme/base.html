@@ -17,6 +17,14 @@
         <a href="https://appliedcomputing.io"><img src="/img/title.png" alt="Applied Computing Research Labs Logo" /></a>
         <div class="tagline">Open source research and development in distributed systems</div>
       </header>
+      <nav>
+        <ul>
+          <li><a href="https://blog.appliedcomputing.io/">Blog</a></li>
+          <li><a href="/docs">Documentation</a></li>
+          <li><a href="https://github.com/acrlabs/">GitHub</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </nav>
 
       {% block content %}
       {{ page.content }}
@@ -24,7 +32,7 @@
 
       <footer>
         <h3>Black Lives Matter</h3>
-        <div class="copyright">Copyright (c) Applied Computing Research Labs, LLC</div>
+        <div class="copyright">Copyright (c) <script>document.write(new Date().getFullYear())</script> Applied Computing Research Labs, LLC</div>
       </footer>
     </main>
   </body>

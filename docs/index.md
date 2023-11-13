@@ -24,9 +24,3 @@ and will always be, available and open to all!
   </li>
 </ul>
 <div class="clear"></div>
-
-# Learn More
-
-- [Subscribe to our blog](https://blog.appliedcomputing.io/)
-- [Read our source code](https://github.com/acrlabs)
-- [Contact us](https://appliedcomputing.io/contact)
