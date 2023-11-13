@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/style.css" rel="stylesheet" />
+    <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    {%- for path in config.extra_css %}
+      <link href="{{ path | url }}" rel="stylesheet">
+    {%- endfor %}
+  </head>
+  <body>
+    <main>
+      <header>
+        <a href="https://appliedcomputing.io"><img src="/img/title.png" alt="Applied Computing Research Labs Logo" /></a>
+        <div class="tagline">Open source research and development in distributed systems</div>
+      </header>
+
+      {% block content %}
+      {{ page.content }}
+      {% endblock %}
+
+      <footer>
+        <h3>Black Lives Matter</h3>
+        <div class="copyright">Copyright (c) Applied Computing Research Labs, LLC</div>
+      </footer>
+    </main>
+  </body>
+</html>
