@@ -21,7 +21,7 @@ Have a question?  Need help with your Kubernetes install?  Want to schedule some
   </label>
   <div class="h-captcha formelement" data-sitekey="13f25422-b1d6-450a-8b6f-9238c7535ee9"></div>
   <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-  <button type="submit">Submit</button>
+  <button type="submit" name="submitform">Submit</button>
   <div id="result"></div>
 </form>
 
@@ -38,7 +38,7 @@ Have a question?  Need help with your Kubernetes install?  Want to schedule some
           success: function(response) {
             if(response.success) {
               $('#result').html("Message successfully sent.  We'll be in touch soon!").hide().fadeIn(1500);
-              $('#contactform button').disable();
+              $('button[name=submitform]').attr("disabled", true);
             } else {
               $('#result').html("<span class='error'>Error sending the message: " + response.message + "</span>").hide().fadeIn(1500);
             }
