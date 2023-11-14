@@ -1,0 +1,20 @@
+/* Employee list */
+
+.whoami {
+    list-style: none;
+    padding: 0;
+}
+
+.whoami li {
+    clear: both;
+}
+
+.whoami img {
+    float: left;
+    margin-right: 10px;
+    max-width: 100px;
+}
+
+.whoami p {
+    margin: 0;
+}

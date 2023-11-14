@@ -4,36 +4,50 @@
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="/style.css" rel="stylesheet" />
-    <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    {%- for path in config.extra_css %}
+    {% block css_overrides %}
+    {% endblock %}
+
+    {%- for path in page.meta.extra_css %}
       <link href="{{ path | url }}" rel="stylesheet">
     {%- endfor %}
   </head>
   <body>
-    <main>
-      <header>
-        <a href="https://appliedcomputing.io"><img src="/img/title.png" alt="Applied Computing Research Labs Logo" /></a>
-        <div class="tagline">Open source research and development in distributed systems</div>
-      </header>
-      <nav>
-        <ul>
-          <li><a href="https://blog.appliedcomputing.io/">Blog</a></li>
-          <li><a href="/docs">Documentation</a></li>
-          <li><a href="https://github.com/acrlabs/">GitHub</a></li>
-          <li><a href="/contact">Contact Us</a></li>
-        </ul>
-      </nav>
+      <aside>
+        <div class="sidebar">
+          {% block sidebar %}
+          {% endblock %}
+        </div>
+      </aside>
 
-      {% block content %}
-      {{ page.content }}
-      {% endblock %}
+      <main>
+        <header>
+          <a href="/"><img src="/img/title.png" alt="Applied Computing Research Labs Logo" /></a>
+          <div class="tagline">Open source research and development in distributed systems</div>
+        </header>
 
-      <footer>
-        <h3>Black Lives Matter</h3>
-        <div class="copyright">Copyright (c) <script>document.write(new Date().getFullYear())</script> Applied Computing Research Labs, LLC</div>
-      </footer>
-    </main>
+        <nav>
+          <ul>
+            <li><a href="https://blog.appliedcomputing.io/">Blog</a></li>
+            <li><a href="/docs.html">Documentation</a></li>
+            <li><a href="https://github.com/acrlabs/">GitHub</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="content">
+        {% block content %}
+        {{ page.content }}
+        {% endblock %}
+        <hr/>
+        </div>
+
+        <footer>
+          <h3>Black Lives Matter</h3>
+          <div class="copyright">Copyright (c) {{ build_date_utc.strftime('%Y') }}  Applied Computing Research Labs, LLC</div>
+        </footer>
+      </main>
   </body>
 </html>

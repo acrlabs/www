@@ -1,0 +1,20 @@
+{% macro insert(nav_item, depth) %}
+{%- if nav_item.children | length > 0 -%}
+<ul>
+  {%- for child in nav_item.children -%}
+    {%- set new_depth = depth + 1 -%}
+    {%- set hop = '<h' ~ new_depth ~ '>' -%}
+    {%- set hcl = '</h' ~ new_depth ~ '>' -%}
+
+    {%- if child.is_section -%}
+      <li>{{ hop }}{{ child.title }}{{ hcl }}</li>
+      {%- if depth < 2 -%}
+        <li>{{ insert(child, depth + 1) }}</li>
+      {%- endif -%}
+    {%- else -%}
+      <li>{{ hop }}<a href="{{ child.url | url }}">{{ child.title }}</a>{{ hcl }}</li>
+    {%- endif -%}
+  {%- endfor -%}
+</ul>
+{%- endif -%}
+{% endmacro %}

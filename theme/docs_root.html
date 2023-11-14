@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Project Documentation</h1>
+<ul>
+    {% for section in nav %}
+    <li><a href="{{ section.title | lower }}/index.html">{{ section.title }}</a>: {{ section.children[0].meta.description }} </li>
+    {% endfor %}
+</ul>
+{{ page.content }}
+{% endblock %}

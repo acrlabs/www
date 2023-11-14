@@ -1,0 +1,82 @@
+:root {
+    --black: #111;
+    --font-grey: #444;
+    line-height: 1.6;
+    color: var(--font-grey);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    overflow-y: scroll;
+    margin: 0;
+}
+
+main {
+    grid-column-start: 2;
+}
+
+aside {
+    grid-column-start: 1;
+}
+
+h1, h2, h3 {
+    line-height: 1.2;
+    margin-bottom: 5px;
+}
+
+/* Nav bar, header */
+
+header {
+    margin: 40px 20px 0 20px;
+}
+
+header a {
+    text-decoration: none;
+}
+
+nav {
+    background: var(--black);
+    position: sticky;
+    top: 0;
+}
+
+nav ul {
+    display: flex;
+    padding: 10px 0 10px 10px;
+}
+
+nav li {
+    list-style: none;
+    padding-right: 40px;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav li a {
+    text-decoration: none;
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: white;
+    padding: 10px;
+}
+
+nav li a:hover {
+    color: var(--font-grey);
+    background: white;
+}
+
+.tagline {
+    text-align: right;
+}
+
+.tagline, .copyright {
+    font-style: italic;
+}

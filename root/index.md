@@ -1,3 +1,7 @@
+---
+extra_css:
+  - /css/main.css
+---
 
 # About Us
 

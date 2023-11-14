@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import 'nav-sub.html' as navsub with context %}
+
+{% block css_overrides %}
+<link href="/css/docs.css" rel="stylesheet" />
+{% endblock %}
+
+{% block sidebar %}
+{%- for n in nav -%}
+  {%- if n.title == page.meta.project -%}
+    {%- if n.children | length > 0 -%}
+    <ul>
+    {%- for nav_item in n.children -%}
+      {%- if nav_item.is_section -%}
+        <li><h1>{{ nav_item.title }}</h1></li>
+        <li>{{ navsub.insert(nav_item, 1) }}</li>
+      {%- else -%}
+        <li><h1><a href="{{ nav_item.url | url }}">{{ nav_item.title }}</a></h1></li>
+      {%- endif -%}
+    {%- endfor -%}
+    </ul>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{% endblock %}

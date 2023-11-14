@@ -1,5 +1,12 @@
 site_name: Applied Computing Research Labs
 site_url: https://appliedcomputing.io
+docs_dir: root
+use_directory_urls: false
 theme: 
   name: null
   custom_dir: theme
+plugins:
+  - multirepo:
+      keep_docs_dir: true
+nav:
+  - SimKube: '!import https://github.com/acrlabs/simkube?branch=drmorr/mkdocs&extra_imports=["README.md"]&config=docs/mkdocs.yml'

@@ -10,12 +10,18 @@ jobs:
     steps:
       - name: Check out repo and build scripts
         uses: actions/checkout@v3
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.WWWKEY }}
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
-      - name: Install Mkdocs
-        run: pip install mkdocs==1.5.3
+      - name: Install poetry
+        uses: abatilo/actions-poetry@v2
+      - name: Install deps
+        run: poetry install
       - name: Publish
         run: make publish
