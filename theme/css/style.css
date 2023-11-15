@@ -20,6 +20,7 @@ body {
 
 main {
     grid-column-start: 2;
+    overflow: auto;
 }
 
 aside {
@@ -79,4 +80,43 @@ nav li a:hover {
 
 .tagline, .copyright {
     font-style: italic;
+}
+
+/* Admonitions */
+
+.admonition {
+    border: 1px solid black;
+}
+
+.admonition p, .admonition-title {
+    margin: 0;
+    padding: 5px;
+}
+
+.admonition-title {
+    font-weight: bold;
+}
+
+.admonition.note .admonition-title::before {
+    content: '++ ';
+}
+
+.admonition.note .admonition-title {
+    background: lightblue;
+}
+
+.admonition.note {
+    background: aliceblue;
+}
+
+.admonition.warning .admonition-title::before {
+    content: '!! ';
+}
+
+.admonition.warning .admonition-title {
+    background: goldenrod;
+}
+
+.admonition.warning {
+    background: gold;
 }

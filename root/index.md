@@ -1,6 +1,6 @@
 ---
 extra_css:
-  - /css/main.css
+  - /css/whoami.css
 ---
 
 # About Us
