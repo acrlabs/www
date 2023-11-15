@@ -1,7 +1,7 @@
 :root {
     --black: #111;
     --font-grey: #444;
-    --max-width: 1200px;
+    --max-width: 1000px;
     line-height: 1.6;
     color: var(--font-grey);
     max-width: var(--max-width);;
@@ -14,14 +14,13 @@ img {
 
 body {
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 150px minmax(200px, 1fr);
     overflow-y: scroll;
     margin: 0;
 }
 
 main {
     grid-column-start: 2;
-    max-width: calc(var(--max-width) * 2 / 3);
 }
 
 aside {
@@ -33,7 +32,7 @@ h1, h2, h3 {
     margin-bottom: 5px;
 }
 
-/* Nav bar, header */
+/* Nav bar, header, footer */
 
 header {
     margin: 40px 20px 0 20px;
@@ -50,16 +49,12 @@ nav {
 }
 
 nav ul {
-    display: flex;
     padding: 10px 0 10px 10px;
 }
 
 nav li {
     list-style: none;
     padding-right: 40px;
-}
-
-nav li {
     display: inline-block;
 }
 
@@ -81,6 +76,10 @@ nav li a:hover {
 
 .tagline, .copyright {
     font-style: italic;
+}
+
+footer {
+    padding-bottom: 60px;
 }
 
 /* Admonitions */
