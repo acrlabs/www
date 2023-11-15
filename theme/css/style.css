@@ -1,9 +1,10 @@
 :root {
     --black: #111;
     --font-grey: #444;
+    --max-width: 1200px;
     line-height: 1.6;
     color: var(--font-grey);
-    max-width: 1200px;
+    max-width: var(--max-width);;
     margin: 0 auto;
 }
 
@@ -20,7 +21,7 @@ body {
 
 main {
     grid-column-start: 2;
-    overflow: auto;
+    max-width: calc(var(--max-width) * 2 / 3);
 }
 
 aside {
