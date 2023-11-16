@@ -9,6 +9,8 @@ theme:
 plugins:
   - multirepo:
       keep_docs_dir: true
+hooks:
+  - hooks/jinja_regex.py
 markdown_extensions:
   - admonition
   - codehilite:

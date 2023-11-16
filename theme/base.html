@@ -24,14 +24,14 @@
   <body>
       <aside>
         <div class="sidebar menu">
-          {% block sidebar %}
-          {% endblock %}
+          {%- block sidebar -%}
+          {%- endblock -%}
         </div>
       </aside>
 
       <main>
-        {% block pre %}
-        {% endblock %}
+        {%- block pre -%}
+        {%- endblock -%}
         <header>
           <a href="/"><img src="/img/title.png" alt="Applied Computing Research Labs Logo" /></a>
           <div class="tagline">Open source research and development in distributed systems</div>
@@ -41,15 +41,17 @@
           <ul>
             <li><a href="https://blog.appliedcomputing.io/">Blog</a></li>
             <li><a href="/docs.html">Documentation</a></li>
+            {%- block github_url -%}
             <li><a href="https://github.com/acrlabs/">GitHub</a></li>
+            {%- endblock -%}
             <li><a href="/contact.html">Contact</a></li>
           </ul>
         </nav>
 
         <div class="content">
-        {% block content %}
+        {%- block content -%}
         {{ page.content }}
-        {% endblock %}
+        {%- endblock -%}
         <hr/>
         </div>
 

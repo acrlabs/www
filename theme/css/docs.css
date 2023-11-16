@@ -69,6 +69,18 @@ aside h3 {
     background: white;
 }
 
+.edit {
+  margin-top: 75px;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+.edit img {
+  display: block;
+  width: 15%;
+  margin: 5px auto;
+}
+
 /* controls */
 
 .control a {

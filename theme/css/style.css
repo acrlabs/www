@@ -101,7 +101,7 @@ footer {
     list-style: none;
 }
 
-.menu li a {
+.menu a {
     text-decoration: none;
     color: var(--menu-font-color);
 }

@@ -6,6 +6,10 @@
 <link href="/css/highlight.css" rel="stylesheet" />
 {% endblock %}
 
+{% block github_url %}
+<li><a href="{{ page.edit_url | regex_replace('edit/master/.*', '') }}">GitHub</a></li>
+{% endblock %}
+
 {% block pre %}
 <div id="hamburger" class="control"><a href="#">☰</a></div>
 {% endblock %}
@@ -28,4 +32,12 @@
     {%- endif -%}
   {%- endif -%}
 {%- endfor -%}
+
+<div class="edit">
+  <a href="{{ page.edit_url | url }}">
+    Find a mistake? Edit this page on GitHub!
+    <img src="/img/github-mark-white.png" />
+  </a>
+</div>
+
 {% endblock %}
