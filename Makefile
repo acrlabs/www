@@ -7,4 +7,4 @@ build:
 	poetry run mkdocs build
 
 publish: build
-	rsync -a --delete -e "ssh -v" site/* github@evokewonder.com:/var/www/acrl/.
+	rsync -a --delete -e "ssh" site/* github@evokewonder.com:/var/www/acrl/.
