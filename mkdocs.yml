@@ -11,6 +11,7 @@ plugins:
       keep_docs_dir: true
 hooks:
   - hooks/jinja_regex.py
+  - hooks/header_meta.py
 markdown_extensions:
   - admonition
   - codehilite:

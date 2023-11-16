@@ -4,6 +4,7 @@
 <h1>Project Documentation</h1>
 <ul>
     {% for section in nav %}
+    {# The first child of each section _MUST_ contain a description tag in its meta #}
     <li><a href="{{ section.title | lower }}/index.html">{{ section.title }}</a>: {{ section.children[0].meta.description }} </li>
     {% endfor %}
 </ul>
