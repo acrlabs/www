@@ -14,17 +14,17 @@ aside h1, aside h2, aside h3 {
 
 aside h1 {
     font-size: 1.2rem;
-    padding-left: 5px;
+    padding-left: 10px;
 }
 
 aside h2 {
     font-size: 1.10rem;
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
 aside h3 {
     font-size: 0.9rem;
-    padding-left: 15px;
+    padding-left: 30px;
 }
 
 @media (max-width: 450px) {
