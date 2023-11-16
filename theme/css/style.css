@@ -2,6 +2,7 @@
     --black: #111;
     --font-grey: #444;
     --max-width: 1000px;
+    --min-body-width: 300px;
     --sidebar-width-mobile: 200px;
     --menu-font-color: white;
     line-height: 1.6;
@@ -40,6 +41,10 @@ header a {
     font-style: italic;
 }
 
+.content, footer {
+    margin: 0 15px;
+}
+
 footer {
     padding-bottom: 60px;
 }
@@ -49,15 +54,15 @@ footer {
 @media (min-width: 450px) {
     body {
         display: grid;
-        grid-template-columns: 175px minmax(200px, 1fr);
-    }
-
-    main {
-        grid-column-start: 2;
+        grid-template-columns: 175px minmax(var(--min-body-width), 1fr);
     }
 
     aside {
         grid-column-start: 1;
+    }
+
+    main {
+        grid-column-start: 2;
     }
 
     .control {
@@ -67,7 +72,7 @@ footer {
 
 @media (max-width: 450px) {
     body {
-        min-width: 200px;
+        min-width: var(--min-body-width);
     }
 
     aside {
@@ -78,12 +83,15 @@ footer {
     .control {
         display: block;
     }
+
 }
 
 /* Menus (nav bar, sidebar) */
+
 /* common definitions between sidebar and nav bar first */
 
 .menu {
+    position: sticky;
     font-family: "Lucida Console", "Courier New", monospace;
     color: var(--menu-font-color);
     top: 0;
@@ -103,8 +111,11 @@ nav {
     background: var(--black);
 }
 
+nav ul {
+    padding: 10px 0 10px 10px;
+}
+
 nav li {
-    padding-right: 40px;
     display: inline-block;
 }
 
@@ -115,10 +126,6 @@ nav li a {
 nav li a:hover {
     color: var(--font-grey);
     background: var(--menu-font-color);
-}
-
-nav ul {
-    padding: 10px 0 10px 10px;
 }
 
 /* Admonitions */

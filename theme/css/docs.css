@@ -27,12 +27,6 @@ aside h3 {
     padding-left: 15px;
 }
 
-@media (min-width: 450px) {
-    aside {
-        position: sticky;
-    }
-}
-
 @media (max-width: 450px) {
     .control {
         display: block;
@@ -66,16 +60,13 @@ aside h3 {
     color: var(--font-grey);
 }
 
+/* override the grey background for clickable links in the sidebar */
 .sidebar h1:has(a), .sidebar h2:has(a), .sidebar h3:has(a) {
     background: var(--black);
 }
 
 .sidebar h1:has(a:hover), .sidebar h2:has(a:hover), .sidebar h3:has(a:hover) {
     background: white;
-}
-
-.content, footer {
-    margin: 0 20px;
 }
 
 /* controls */
