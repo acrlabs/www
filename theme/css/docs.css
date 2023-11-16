@@ -73,6 +73,8 @@ aside h3 {
   margin-top: 75px;
   text-align: center;
   font-size: 0.75rem;
+  position: sticky;
+  top: calc(100% - 100px);
 }
 
 .edit img {
