@@ -2,6 +2,8 @@
     --black: #111;
     --font-grey: #444;
     --max-width: 1000px;
+    --sidebar-width-mobile: 200px;
+    --menu-font-color: white;
     line-height: 1.6;
     color: var(--font-grey);
     max-width: var(--max-width);;
@@ -13,18 +15,8 @@ img {
 }
 
 body {
-    display: grid;
-    grid-template-columns: 150px minmax(200px, 1fr);
     overflow-y: scroll;
     margin: 0;
-}
-
-main {
-    grid-column-start: 2;
-}
-
-aside {
-    grid-column-start: 1;
 }
 
 h1, h2, h3 {
@@ -32,42 +24,12 @@ h1, h2, h3 {
     margin-bottom: 5px;
 }
 
-/* Nav bar, header, footer */
-
 header {
     margin: 40px 20px 0 20px;
 }
 
 header a {
     text-decoration: none;
-}
-
-nav {
-    background: var(--black);
-    position: sticky;
-    top: 0;
-}
-
-nav ul {
-    padding: 10px 0 10px 10px;
-}
-
-nav li {
-    list-style: none;
-    padding-right: 40px;
-    display: inline-block;
-}
-
-nav li a {
-    text-decoration: none;
-    font-family: "Lucida Console", "Courier New", monospace;
-    color: white;
-    padding: 10px;
-}
-
-nav li a:hover {
-    color: var(--font-grey);
-    background: white;
 }
 
 .tagline {
@@ -80,6 +42,83 @@ nav li a:hover {
 
 footer {
     padding-bottom: 60px;
+}
+
+/* layout for mobile versus non-mobile */
+
+@media (min-width: 450px) {
+    body {
+        display: grid;
+        grid-template-columns: 175px minmax(200px, 1fr);
+    }
+
+    main {
+        grid-column-start: 2;
+    }
+
+    aside {
+        grid-column-start: 1;
+    }
+
+    .control {
+        display: none;
+    }
+}
+
+@media (max-width: 450px) {
+    body {
+        min-width: 200px;
+    }
+
+    aside {
+        width: var(--sidebar-width-mobile);
+        left: calc(-1 * var(--sidebar-width-mobile));
+    }
+
+    .control {
+        display: block;
+    }
+}
+
+/* Menus (nav bar, sidebar) */
+/* common definitions between sidebar and nav bar first */
+
+.menu {
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: var(--menu-font-color);
+    top: 0;
+}
+
+.menu li {
+    list-style: none;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: var(--menu-font-color);
+}
+
+nav {
+    /* We always have a nav bar but not always a sidebar */
+    background: var(--black);
+}
+
+nav li {
+    padding-right: 40px;
+    display: inline-block;
+}
+
+nav li a {
+    padding: 10px;
+}
+
+nav li a:hover {
+    color: var(--font-grey);
+    background: var(--menu-font-color);
+}
+
+nav ul {
+    padding: 10px 0 10px 10px;
 }
 
 /* Admonitions */

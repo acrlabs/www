@@ -30,28 +30,4 @@ Have a question?  Need help with your Kubernetes install?  Want to schedule some
   <div id="result"></div>
 </form>
 
-<script type="text/javascript" async defer>
-   $(document).ready(function(){
-    $("#contactform").submit(function(ev){
-        ev.preventDefault();
-
-        $.ajax({
-          type: "post",
-          url: "/send.php",
-          data: $('#contactform').serialize(),
-          dataType: "json",
-          success: function(response) {
-            if(response.success) {
-              $('#result').html("<span class='success'>Message successfully sent.  We'll be in touch soon!</span>").hide().fadeIn(1500);
-              $('button[name=submitform]').attr("disabled", true);
-            } else {
-              $('#result').html("<span class='error'>Error sending the message: " + response.message + "</span>").hide().fadeIn(1500);
-            }
-          },
-          error: function(xhr, ajaxOptions, thrownError) {
-              $('#result').html("<span class='error'>Unknown error sending the message" + "</span>").hide().fadeIn(1500);
-          }
-        });
-    });
-    });
-</script>
+<script type="text/javascript" defer>$(document).ready(handle_submit_form); </script>

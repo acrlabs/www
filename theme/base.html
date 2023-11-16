@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/css/style.css" rel="stylesheet" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="/js/util.js"></script>
+
+    <script type="text/javascript" defer>
+        $(document).ready(handle_hamburger);
+        $(document).ready(handle_sidebar_close);
+    </script>
 
     {% block css_overrides %}
     {% endblock %}
@@ -14,8 +20,9 @@
       <link href="{{ path | url }}" rel="stylesheet">
     {%- endfor %}
   </head>
+
   <body>
-      <aside>
+      <aside class="menu">
         <div class="sidebar">
           {% block sidebar %}
           {% endblock %}
@@ -23,12 +30,14 @@
       </aside>
 
       <main>
+        {% block pre %}
+        {% endblock %}
         <header>
           <a href="/"><img src="/img/title.png" alt="Applied Computing Research Labs Logo" /></a>
           <div class="tagline">Open source research and development in distributed systems</div>
         </header>
 
-        <nav>
+        <nav class="menu">
           <ul>
             <li><a href="https://blog.appliedcomputing.io/">Blog</a></li>
             <li><a href="/docs.html">Documentation</a></li>

@@ -6,7 +6,12 @@
 <link href="/css/highlight.css" rel="stylesheet" />
 {% endblock %}
 
+{% block pre %}
+<div id="hamburger" class="control"><a href="#">☰</a></div>
+{% endblock %}
+
 {% block sidebar %}
+<div id="sidebar-close" class="control"><a href="#">X</a></div>
 {%- for n in nav -%}
   {%- if n.title == page.meta.project -%}
     {%- if n.children | length > 0 -%}
