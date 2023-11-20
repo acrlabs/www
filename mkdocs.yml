@@ -9,6 +9,8 @@ theme:
 plugins:
   - multirepo:
       keep_docs_dir: true
+  - rss:
+      match_path: "posts/.*"
 hooks:
   - hooks/jinja_regex.py
   - hooks/preprocess.py

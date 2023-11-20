@@ -37,12 +37,16 @@ header a {
     text-align: right;
 }
 
-.tagline, .copyright {
+.tagline, .copyright, .timestamp {
     font-style: italic;
 }
 
 .content, footer {
     margin: 0 15px;
+}
+
+.clear {
+    clear: both;
 }
 
 footer {
