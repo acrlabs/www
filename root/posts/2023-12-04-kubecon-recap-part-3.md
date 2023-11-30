@@ -21,7 +21,7 @@ if I can say this without bragging, that I'm pretty good at both of them.  But i
 _very difficult process_.
 
 So, next, the offer.  If you have some bit of communication you want help with: a blog post, a journal article, a
-conference talk or proposal, a PhD dissertation, _whatever_, on _whatever topic you want_--[get in touch with
+conference talk or proposal, a PhD dissertation, _whatever_, on _whatever topic you want_---[get in touch with
 me](https://appliedcomputing.io/contact) and I will offer you a review and editing session _for free_.  I really believe
 that we need more people out there writing, speaking, sharing about what they're doing, and I will happily donate my
 time to help you if you're struggling[^3].
@@ -41,11 +41,11 @@ sleep, definitely with extra adrenaline, doing a thing that most humans find at 
 demos fail all the time[^5]!  I know some companies or teams have a "no live demos" policy because of the risk that live
 demos carry.
 
-So if live demos are so risky, why do people--or, actually, let's make this more personal--why did _I_ decide to do a
+So if live demos are so risky, why do people---or, actually, let's make this more personal---why did _I_ decide to do a
 live demo on stage at KubeCon?  Wouldn't it be better to just record something ahead of time and hit play?  Everyone
 will have a different answer to this question, but for me, at least, watching a video of someone typing commands into a
 terminal just doesn't have the same punch, the same impact.  I'm not even going to consider the possibility of doctoring
-videos, let's assume that we're all honest here, but it just doesn't feel _alive_.  For me--if I'm going to listen to
+videos, let's assume that we're all honest here, but it just doesn't feel _alive_.  For me---if I'm going to listen to
 someone talk live, I don't want them to hit play on a YouTube video that I could have watched at home.  I'm there to see
 the person, to interact with them, to see them interact with the cool stuff they're showing off!  So there wasn't any
 question in my mind: I built [SimKube](https://github.com/acrlabs/simkube) and I wanted to show it live.
@@ -60,7 +60,7 @@ all kinds of confounding factors into my presentation.  And then I just drilled 
 possibly practiced this talk more times than any talk I've given since my thesis defense.  I made sure I knew every step
 and that every step worked.
 
-And--as you've seen if you watched the video--when the critical moment arrived, it still failed.  So let's look into
+And---as you've seen if you watched the video---when the critical moment arrived, it still failed.  So let's look into
 why.
 
 ## A Post-Incident Review
@@ -77,13 +77,13 @@ came to actually see the demo results, there was nothing to see.  Ok, but why di
 
 Well, remember how I said that I'd isolated everything from the Internet?  It turns out that I did that successfully,
 but in all of my practice runs, I _never actually disconnected my laptop from the Internet_.  So in the first command I
-ran, it spit out an error saying "Hey, I can't connect to the Internet" -- which was fine, it didn't _need_ to.  But I
+ran, it spit out an error saying "Hey, I can't connect to the Internet"---which was fine, it didn't _need_ to.  But I
 was confused and flustered because I'd never seen the error during my practices.  So I spent 30 seconds trying to parse
 the error message, and in that 30 seconds I lost the second command.
 
 Ok, but _why_ was I confused and flustered?  I just gave you the primary reason, but there's another reason that nobody
 in the audience would know about.  When I had gotten into the conference room for my talk, I hooked my laptop up to the
-projector, all ready for my talk, and--nothing.  The projector didn't recognize my laptop.  Ok, I thought, maybe I'll
+projector, all ready for my talk, and---nothing.  The projector didn't recognize my laptop.  Ok, I thought, maybe I'll
 try a different port.  No dice.  At this point I was really starting to panic.  I'd gotten there a good thirty minutes
 early to try to set things up, because I know that this process isn't always smooth, and after trying a bunch of things,
 I was maybe ten minutes out from my presentation with nothing showing up on the screen[^7].  I had a lot of panicked
@@ -94,7 +94,7 @@ routines.  So even going into the talk, I was already primed to make mistakes du
 
 There's a bunch of other "why" questions we can ask.  Here's a few, I'm sure you can come up with more: Why didn't I
 ever test my demo with my laptop disconnected from the Internet?  Why did my demo start require two steps instead of
-one--i.e., why didn't I automate more?  Why didn't I _know_ during the presentation that the demo wasn't running?  I'm
+one---i.e., why didn't I automate more?  Why didn't I _know_ during the presentation that the demo wasn't running?  I'm
 not going to bore you with answers to these questions, but suffice to say that you can keep asking "why?" for quite a
 long time before running out interesting things to say.
 
@@ -167,7 +167,7 @@ Thanks for reading,
 
 [^2]: Foreshadowing, anybody?
 
-[^3]: Not-legal disclaimers: 1) I do not do editing or review professionally, and there are people who _do_--so if your
+[^3]: Not-legal disclaimers: 1) I do not do editing or review professionally, and there are people who _do_---so if your
     thing is _REALLY_ important, I will still review it but you may also want to hire a professional editor or reviewer.
     2) Because this is not my day job, my turnaround time is going to be slower; I will _try_ to get it back to you
     within a couple weeks, depending on the length of the content, but I can't promise anything.  If you have a deadline
@@ -201,7 +201,7 @@ Thanks for reading,
     in this configuration, but that gets into subjects of masochism that I don't feel comfortable discussing on this
     blog.
 
-[^10]: You'd be shocked--or maybe you wouldn't be--at how many incident re-occur because nobody ever bothered to
+[^10]: You'd be shocked---or maybe you wouldn't be---at how many incident re-occur because nobody ever bothered to
     prioritize the corrective action that would have prevented reoccurrence.
 
 [^11]: By the way, this isn't something that really gets covered in most technical postmortem reviews, and I kinda think
