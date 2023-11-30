@@ -202,7 +202,7 @@ Thanks for reading,
     blog.
 
 [^10]: You'd be shocked---or maybe you wouldn't be---at how many incident re-occur because nobody ever bothered to
-    prioritize the corrective action that would have prevented reoccurrence.
+    prioritize the corrective action that would have prevented recurrence.
 
 [^11]: By the way, this isn't something that really gets covered in most technical postmortem reviews, and I kinda think
     it _should_ be, because incidents _suck_.  Especially if you're the person who "caused" the incident, the emotional
