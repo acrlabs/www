@@ -21,6 +21,7 @@ markdown_extensions:
       css_class: highlight
       guess_lang: false
   - footnotes
+  - md_in_html
   - smarty:
       smart_quotes: false
 nav:
