@@ -19,11 +19,11 @@ you can't complain once in a while?  So let's jump in.
 
 The talk I'm going to cover today was entitled [Everything is Awful: Kubernetes Devil's
 Advocate](https://kcsna2023.sched.com/event/1SpAy/everything-is-awful-kubernetes-devils-advocate), by Flynn at
-[Bouyant](https://ccoss.org/speakers/flynn/).  It was an exceptional talk and I definitely recommend watching the
-recording when it's posted[^1].  The high-level premise of the talk is that Kubernetes is complicated and the API is
-awful[^2].  Flynn took a very basic example of "I want to deploy a pod running a 'Hello, world' webserver" and walked
-through the steps needed to make that happen.  To anybody who's worked with Kubernetes, this is easy: just stick the pod
-spec in a deployment, apply it, boom!  You're done.
+[Bouyant](https://ccoss.org/speakers/flynn/) ([video link](https://www.youtube.com/watch?v=Xsyn5AWxjJs).  It was an
+exceptional talk and I definitely recommend watching the recording.  The high-level premise of the talk is that
+Kubernetes is complicated and the API is awful[^2].  Flynn took a very basic example of "I want to deploy a pod running
+a 'Hello, world' webserver" and walked through the steps needed to make that happen.  To anybody who's worked with
+Kubernetes, this is easy: just stick the pod spec in a deployment, apply it, boom!  You're done.
 
 But think about how much knowledge is wrapped up in that set of steps:
 
