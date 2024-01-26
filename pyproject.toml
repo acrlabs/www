@@ -11,7 +11,8 @@ mkdocs = "^1.5.3"
 mkdocs-multirepo-plugin = "^0.6.3"
 pygments = "^2.16.1"
 mkdocs-rss-plugin = "^1.8.0"
-
+mkdocs-mermaid2-plugin = "^1.1.1"
+pymdown-extensions = "^10.7"
 
 [build-system]
 requires = ["poetry-core"]

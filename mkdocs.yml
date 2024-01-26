@@ -3,7 +3,7 @@ site_name: Applied Computing Research Labs
 site_url: https://appliedcomputing.io
 docs_dir: root
 use_directory_urls: false
-theme: 
+theme:
   name: null
   custom_dir: theme
 plugins:
@@ -11,18 +11,22 @@ plugins:
       keep_docs_dir: true
   - rss:
       match_path: "posts/.*"
+  - mermaid2
 hooks:
   - hooks/jinja_regex.py
   - hooks/preprocess.py
   - hooks/post_list.py
 markdown_extensions:
   - admonition
-  - codehilite:
-      css_class: highlight
-      guess_lang: false
   - footnotes
   - md_in_html
   - smarty:
       smart_quotes: false
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid
 nav:
   - SimKube: '!import https://github.com/acrlabs/simkube?extra_imports=["README.md"]&config=docs/mkdocs.yml'

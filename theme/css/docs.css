@@ -50,7 +50,7 @@ aside h3 {
     padding: 0;
     margin: 0;
 }
-    
+
 .sidebar li a {
     width: 100%;
     display: block;
@@ -108,10 +108,4 @@ aside h3 {
 
 #sidebar-close a {
     color: var(--menu-font-color);
-}
-
-/* Code formatting */
-pre {
-    overflow-x: auto;
-    padding: 10px;
 }
