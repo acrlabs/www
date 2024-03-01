@@ -3,13 +3,11 @@ aside {
 }
 
 aside h1, aside h2, aside h3 {
-    background: #333;
+    background: #ddd;
     font-weight: normal;
     margin: 0;
     padding: 5px 0;
-    border-width: 1px 0;
-    border-color: var(--black);
-    border-style: solid;
+    color: var(--black);
 }
 
 aside h1 {
@@ -27,20 +25,8 @@ aside h3 {
     padding-left: 30px;
 }
 
-@media (max-width: 450px) {
-    .control {
-        display: block;
-    }
-
-    aside {
-        position: fixed;
-        left: calc(-1 * var(--sidebar-width-mobile));
-        z-index: 1;
-    }
-}
 
 .sidebar {
-    background: var(--black);
     padding: 0;
     padding-top: 100px;
     height: calc(100vh - 100px);
@@ -54,19 +40,19 @@ aside h3 {
 .sidebar li a {
     width: 100%;
     display: block;
+    color: var(--black);
 }
 
 .sidebar li a:hover {
-    color: var(--font-grey);
+    color: var(--menu-font-color);
 }
 
-/* override the grey background for clickable links in the sidebar */
 .sidebar h1:has(a), .sidebar h2:has(a), .sidebar h3:has(a) {
-    background: var(--black);
+    background: white;
 }
 
 .sidebar h1:has(a:hover), .sidebar h2:has(a:hover), .sidebar h3:has(a:hover) {
-    background: white;
+    background: var(--black);
 }
 
 .edit {
@@ -77,12 +63,59 @@ aside h3 {
   top: calc(100% - 100px);
 }
 
-.edit img {
+.edit a {
+    color: var(--black);
+}
+
+.edit a::after {
+  content: url("/img/github-mark-small.png");
   display: block;
-  width: 15%;
   margin: 5px auto;
 }
 
+@media (max-width: 450px) {
+    .control {
+        display: block;
+    }
+
+    aside {
+        position: fixed;
+        left: calc(-1 * var(--sidebar-width-mobile));
+        z-index: 1;
+    }
+
+    aside h1, aside h2, aside h3 {
+        border-width: 1px 0;
+        border-color: var(--black);
+        border-style: solid;
+        background: #333;
+        color: var(--menu-font-color);
+    }
+
+    .sidebar {
+        background: var(--black);
+    }
+
+    .sidebar li a:hover {
+        color: var(--font-grey);
+    }
+
+    .sidebar h1:has(a), .sidebar h2:has(a), .sidebar h3:has(a) {
+        background: var(--black);
+    }
+
+    .sidebar h1:has(a:hover), .sidebar h2:has(a:hover), .sidebar h3:has(a:hover) {
+        background: white;
+    }
+
+    .sidebar li a, .edit a {
+        color: var(--menu-font-color);
+    }
+
+    .edit a::after {
+        content: url("/img/github-mark-white-small.png");
+    }
+}
 /* controls */
 
 .control a {

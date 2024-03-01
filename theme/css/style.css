@@ -97,7 +97,6 @@ footer {
 .menu {
     position: sticky;
     font-family: "Lucida Console", "Courier New", monospace;
-    color: var(--menu-font-color);
     top: 0;
 }
 
@@ -113,6 +112,7 @@ footer {
 nav {
     /* We always have a nav bar but not always a sidebar */
     background: var(--black);
+    color: var(--menu-font-color);
 }
 
 nav ul {
