@@ -6,11 +6,6 @@ datetime: 2024-04-29 11:00:00
 template: post.html
 ---
 
-<figure markdown>
-  ![A stuffed elephant with robotic hands typing on a computer](/img/posts/blogophant.jpg)
-  <figcaption>Blogophant, the stuffed robotic blogging elephant that will be henceforth writing all of these posts.</figcaption>
-</figure>
-
 Hello, all!  You might've noticed it's been pretty quiet around here recently.  The last few weeks I've been a) busy
 with some client work, b) working on getting my first "real" simulations going with SimKube, and c) hitting the
 conference circuit again.  So I could say I haven't had much time to write, but I think the main reason I haven't posted

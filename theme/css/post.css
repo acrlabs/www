@@ -21,3 +21,8 @@ figcaption {
     font-size: 0.9rem;
     margin-top: -1rem;
 }
+
+figure img {
+    margin: auto;
+    display: block;
+}
