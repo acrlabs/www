@@ -6,7 +6,7 @@
     {%- for section in nav -%}
     {%- if section.title != "PostList" -%}
         {# The first child of each section _MUST_ contain a description tag in its meta #}
-        <li><a href="{{ section.title | lower }}/index.html">{{ section.title }}</a>: {{ section.children[0].meta.description }} </li>
+        <li><a href="/{{ section.title | lower }}">{{ section.title }}</a>: {{ section.children[0].meta.description }} </li>
     {%- endif -%}
     {%- endfor -%}
 </ul>

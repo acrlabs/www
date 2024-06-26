@@ -1,16 +1,28 @@
+---
 name: publish website
-on: 
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - 'master'
   workflow_dispatch: {}
+env:
+  CARGO_INCREMENTAL: 0
+  SCCACHE_GHA_ENABLED: "true"
+  RUSTC_WRAPPER: sccache
+  IN_CI: "true"
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo and build scripts
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+      - name: Check out simkube repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          repository: acrlabs/simkube
+          path: simkube
       - name: Setup python
         uses: actions/setup-python@v4
         with:
@@ -24,5 +36,12 @@ jobs:
         uses: abatilo/actions-poetry@v2
       - name: Install deps
         run: poetry install
+      - name: Run sccache
+        uses: mozilla-actions/sccache-action@v0.0.3
+      - name: Build SimKube
+        working-directory: simkube
+        run: make build
+      - name: Update path
+        run: echo "simkube/.build" >> $GITHUB_PATH
       - name: Publish
         run: make publish

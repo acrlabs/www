@@ -14,6 +14,7 @@ pygments = "^2.16.1"
 mkdocs-rss-plugin = "^1.8.0"
 mkdocs-mermaid2-plugin = "^1.1.1"
 pymdown-extensions = "^10.7"
+markdown-exec = {extras = ["ansi"], version = "^1.9.3"}
 
 [build-system]
 requires = ["poetry-core"]
