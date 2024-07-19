@@ -16,13 +16,12 @@ OK, some of you probably noticed I missed last week's post, and you're right.  I
 sorry, I was 2 miles down a never-ending rabbit hole."  But luckily for you, that rabbit hole gave me the material I
 needed to write a post this week!  So I'm calling it even.
 
-In some ways, this post could be considered SimKube Part 4.  If you'll recall from [my](https://blog.appliedcomputing.io/p/simkube-part-1-why-do-we-need-a-simulator)
-[previous](https://blog.appliedcomputing.io/p/simkube-part-2-virtual-kubelet-and) [entries](https://blog.appliedcomputing.io/p/simkube-part-3-tracing-a-cluster)
-in the series, the fourth post was supposed to be about analyzing the results of a simulation in an air-quotes
-"scientific" manner.  The reason I haven't ever written that post is because I've never had a good answer for how to do
-that.  However, I'm at the point now where I need to start being able to do that type of analysis, so in this post I'm
-going to try to walk through some of the design constraints and describe (one piece of) a (potential) solution to the
-problem[^1].
+In some ways, this post could be considered SimKube Part 4.  If you'll recall from [my](2023-08-28-simkube-part-1.md)
+[previous](2023-09-04-simkube-part-2.md) [entries](2023-09-18-simkube-part-3.md) in the series, the fourth post was
+supposed to be about analyzing the results of a simulation in an air-quotes "scientific" manner.  The reason I haven't
+ever written that post is because I've never had a good answer for how to do that.  However, I'm at the point now where
+I need to start being able to do that type of analysis, so in this post I'm going to try to walk through some of the
+design constraints and describe (one piece of) a (potential) solution to the problem[^1].
 
 Also, if you don't wanna read to the end and just want to see the cool thing I built, [prom2parquet](https://github.com/acrlabs/prom2parquet)
 is on GitHub.
