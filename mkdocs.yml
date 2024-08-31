@@ -26,6 +26,10 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:mermaid2.fence_mermaid
+  - pymdownx.snippets:
+      check_paths: true
+      base_path:
+        - root
   - smarty:
       smart_quotes: false
   - toc:
