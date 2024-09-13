@@ -303,10 +303,8 @@ Lastly, let's take a look at the resource utilization for KCA and Karpenter in o
   </figcaption>
 </figure>
 
-This is wild!  While both KCA and Karpenter are using similar amounts of memory, KCA is using 20-30 vCPUs during its
-busy scale-up periods, whereas Karpenter is peaking at about 2 vCPUs!  I know I said that KCA is using a less efficient
-method for iterating through instance types, but that doesn't seem to explain this massive difference.  What's going on
-here?
+From these graphs, we can see that while both KCA and Karpenter are using similar amounts of memory, KCA is using 2-3
+vCPUs during its busy scale-up periods, whereas Karpenter is using more like 1-2 vCPUs. What's going on here?
 
 I have not yet confirmed this hypothesis, but I _believe_ that what is happening results from another difference in
 implementation between KCA and Karpenter: see, KCA actually imports the _real_ Kubernetes scheduler code, and runs a
