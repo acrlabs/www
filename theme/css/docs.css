@@ -1,3 +1,7 @@
+header img {
+    height: 75px;
+}
+
 .headerlink {
     display: inline;
     color: lightgrey;
@@ -35,8 +39,8 @@ aside h3 {
 
 .sidebar {
     padding: 0;
-    padding-top: 100px;
-    height: calc(100vh - 100px);
+    padding-top: 20px;
+    height: calc(100vh - 20px);
 }
 
 .sidebar ul {
