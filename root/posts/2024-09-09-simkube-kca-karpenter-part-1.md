@@ -20,8 +20,8 @@ ground to cover, and I want to share as much context and background as I possibl
 SimKube](./2023-08-28-simkube-part-1.md), I will update this post with links to the upcoming posts as they're available.
 
 * Part 1 (this post) - Background and Motivation
-* Part 2 - Running the Simulations
-* Part 3 - Analysis and Following up
+* [Part 2 - Running the Simulations](./2024-09-16-simkube-kca-karpenter-part-2.md)
+* [Part 3 - Analysis and Following up](./2024-09-23-simkube-kca-karpenter-part-3.md)
 
 I'm pretty excited about this series of posts, to be honest: this is a big milestone for me, and I've been working
 pretty hard to get here over the last year.  I'm also excited because this series marks the release of [SimKube v1.0](https://github.com/acrlabs/simkube/releases/tag/v1.0.0)!

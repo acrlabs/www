@@ -22,7 +22,7 @@ recap, here's where we are in this blog series:
 
 * [Part 1 - Background and Motivation](./2024-09-09-simkube-kca-karpenter-part-1.md)
 * Part 2 (this post) - Running the Simulations
-* Part 3 - Analysis and Following up
+* [Part 3 - Analysis and Following up](./2024-09-23-simkube-kca-karpenter-part-3.md)
 
 I'd encourage you to go back and read last week's post for the most details, but as a refresher, here's where we're
 going: we want to produce some simulated results comparing the [Kubernetes Cluster Autoscaler (KCA)](https://kubernetes.io/docs/concepts/cluster-administration/cluster-autoscaling/),
