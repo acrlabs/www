@@ -4,6 +4,11 @@ extra_css:
   - /css/noheaderlinks.css
 -->
 
+# ACRL's SaaS Offering
+
+We're proud to announce that Applied Computing now has a SaaS offering!  No, it's not that kind of SaaS.  It stands for
+"scale-as-a-service", and you can read more about it on our [services](/services) page!
+
 # About Us
 
 Applied Computing Research Labs (ACRL) is a small business formed in 2023 by David R. Morrison; we use advanced
