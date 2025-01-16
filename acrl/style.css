@@ -1,0 +1,33 @@
+:root {
+    --background-1: #2c2c2c;
+    --background-2: #181818;
+    --background-reversed: #fff;
+    --header-background: var(--background-1);
+
+    --link-primary: #527a92;
+    --link-secondary: #6a6a6a;
+    --link-hover: #ec8a3b;
+
+    --font-primary: #a5a5a5;
+    --font-secondary: #fff;
+    --font-primary-reversed: #6a6a6a;
+    --font-secondary-reversed: #000;
+}
+
+/* HERO SECTION */
+.hero { padding-bottom: var(--section-padding); }
+.hero ul {
+    list-style: none;
+    margin: 42px 0;
+    padding: 0;
+}
+.hero ul li {
+    color: var(--font-secondary);
+    margin-bottom: 12px;
+}
+
+/* ICONS */
+.scale:before { content: url(/icons/scale.png); }
+.expertise:before { content: url(/icons/expertise.png); }
+.solutions:before { content: url(/icons/solutions.png); }
+.research:before { content: url(/icons/research.png); }

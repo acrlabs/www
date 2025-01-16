@@ -1,0 +1,7 @@
+:root {
+    --background: #fbfaf9;
+    --background-accent-1: #efeceb;
+    --background-accent-2: #000;
+    --header-background: #567e96;
+    --footer-background: var(--background);
+}

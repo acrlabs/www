@@ -1,0 +1,31 @@
+---
+site_name: SimKube
+site_url: "https://simkube.dev/"
+docs_dir: simkube
+theme:
+  name: null
+  custom_dir: theme
+extra_css:
+  - style.css
+plugins:
+  - multirepo:             # pull in docs from SimKube repo
+      keep_docs_dir: true
+  - markdown-exec          # execute commands from markdown (to generate usage code blocks)
+hooks:
+  - hooks/jinja_regex.py   # TODO is this needed?
+  - hooks/preprocess.py    # convert GH-style markdown to mkdocs-style markdown (headings and such)
+  - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
+markdown_extensions:
+  - admonition             # notes/warnings in documentation
+  - md_in_html             # parse markdown inside HTML tags
+  - pymdownx.blocks.html
+  - pymdownx.highlight     # code highlighting
+  - pymdownx.superfences:  # parse mermaid code fences and executable code blocks
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid
+  - toc:                   # generate table of contents
+      permalink: " #"
+nav:
+  - SimKube: '!import https://github.com/acrlabs/simkube?extra_imports=["README.md"]&config=docs/mkdocs.yml'

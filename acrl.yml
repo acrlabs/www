@@ -1,0 +1,31 @@
+---
+site_name: Applied Computing Research Labs
+site_url: "https://appliedcomputing.io"
+repo_url: "https://github.com/acrlabs"
+docs_dir: acrl
+theme:
+  name: null
+  custom_dir: theme
+  logo_path: /img/acrl_logo.png
+extra_css:
+  - style.css
+plugins:
+  - rss:                   # blog post RSS feed
+      match_path: "posts/.*"
+  - mermaid2               # generate mermaid diagrams in posts
+hooks:
+  - hooks/post_list.py     # generate blog post list
+  - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
+markdown_extensions:
+  - footnotes              # footnotes, duh
+  - md_in_html             # parse markdown inside HTML tags
+  - pymdownx.highlight     # code highlighting
+  - pymdownx.superfences:  # parse mermaid code fences
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid
+  - pymdownx.snippets:     # include contents of one file in another (used for interactive bokeh plots)
+      check_paths: true
+      base_path:
+        - acrl

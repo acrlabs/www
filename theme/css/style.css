@@ -1,226 +1,238 @@
-:root {
-    --black: #111;
-    --font-grey: #444;
-    --max-width: 1000px;
-    --min-body-width: 300px;
-    --sidebar-width-mobile: 200px;
-    --menu-font-color: white;
-    line-height: 1.6;
-    color: var(--font-grey);
-    max-width: var(--max-width);;
-    margin: 0 auto;
+/*
+ * Define the following variables in the site and include it with extra_css.  Those
+ * CSS files will get prepended to this file:
+ *
+ * --background-1
+ * --background-2
+ * --background-reversed
+ * --header-background
+ *
+ * --link-primary
+ * --link-secondary
+ * --link-hover
+ *
+ * --font-primary
+ * --font-secondary
+ * --font-primary-reversed
+ * --font-secondary-reversed
+ *
+ */
+
+/********************************************* FONTS **********************************************/
+@font-face {
+    font-family: "B612";
+    src: url(/fonts/B612-Regular.ttf);
 }
-
-img {
-    max-width: 100%;
+@font-face {
+    font-family: "B612";
+    src: url(/fonts/B612-Bold.ttf);
+    font-weight: bold;
 }
-
-body {
-    overflow-y: scroll;
-    margin: 0;
-}
-
-h1, h2, h3 {
-    line-height: 1.2;
-    margin-bottom: 5px;
-    margin-top: 0;
-}
-
-h2 { font-size: 1.75em; }
-h3 { font-size: 1.5em; }
-
-h1 + p, h2 + p, h3 + p {
-    margin-top: 0;
-}
-
-header {
-    margin: 40px 20px 0 20px;
-}
-
-header a {
-    text-decoration: none;
-}
-
-.headerlink {
-    display: none;
-}
-
-.tagline {
-    text-align: right;
-}
-
-.tagline, .copyright, .timestamp {
+@font-face {
+    font-family: "B612";
+    src: url(/fonts/B612-Italic.ttf);
     font-style: italic;
 }
 
-.content, footer {
-    margin: 0 15px;
+
+@font-face {
+    font-family: "tomorrow";
+    src: url(/fonts/Tomorrow-Regular.ttf);
 }
 
-.clear {
-    clear: both;
+/************************************* BASE STYLE DEFINITIONS *************************************/
+:root {
+    --content-width: 1296px;
+    --section-padding: 66px;
+
+    --menu-height: 76px;
+    --menu-logo-height: 44px;
+    --menu-icon-height: 30px;
+
+    --accent-green: #4e8a42;
+    --accent-orange: #ec8a3b;
+    --accent-purple: #9e70c2;
+    --accent-slate: #527a92;
+
+    background: var(--background-1);
 }
+
+body {
+    margin: 0 auto;
+    font-family: "B612";
+    font-size: 24px;
+    max-width: var(--content-width);
+    color: var(--font-primary);
+}
+
+main { margin: 0 auto; width: 90%; }
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4;
+    font-family: "tomorrow";
+    font-weight: normal;
+    color: var(--font-secondary);
+    margin: 0;
+}
+h1 { font-size: 48px; margin-bottom: 42px; }
+h2 { font-size: 36px; margin-bottom: 30px; }
+h3 { font-size: 30px; margin-bottom: 18px; }
+h4 { font-size: 24px; margin-bottom: 8px; }
+
+a { color: var(--link-primary); text-decoration: none; }
+a:hover { color: var(--link-hover); }
+
+ul { margin: 0; padding: 0; }
+
+header {  background: var(--header-background); }
+
+section, footer {
+    /* Make the background colors for these elements span the screen:
+     * we set the width to the viewport width, and use "border-box" box
+     * sizing to include the padding in the element's content box.  Then
+     * we set the padding on either side to 50% of the viewport width minus
+     * half of the desired content width.  We have to apply a negative margin
+     * since the body uses margin: auto to center things
+     */
+    width: 100vw;
+    box-sizing: border-box;
+    padding: var(--section-padding) calc(50vw - var(--content-width) / 2);
+    margin-left: min(0px, var(--content-width) / 2 - 50vw);
+}
+
+section > h1, section > h2, section > h3, section > h4, section > h5, section > h6 { text-align: center; }
+section:nth-child(odd) { background: var(--background-2); }
+section:nth-child(odd) .subsection { background: var(--background-1); }
+
+.subsection {
+    border-radius: 32px;
+    padding: 36px;
+    background: var(--background-2);
+    margin: 15px 0;
+}
+.subsection:nth-child(4n+1) h3:not(.icon) { color: var(--accent-slate); }
+.subsection:nth-child(4n+2) h3:not(.icon) { color: var(--accent-green); }
+.subsection:nth-child(4n+3) h3:not(.icon) { color: var(--accent-orange); }
+.subsection:nth-child(4n+4) h3:not(.icon) { color: var(--accent-purple); }
 
 footer {
-    padding-bottom: 60px;
+    display: flex;
+    background: var(--background-reversed);
+    color: var(--font-primary-reversed);
+}
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--font-secondary-reversed); }
+footer .item {
+    flex: 1;
+    margin-right: 30px;
+}
+footer .item:nth-child(1) { flex: 1.75; }
+
+footer ul { list-style-type: none; }
+footer ul li { margin-bottom: 8px; }
+
+/********************************************* LAYOUT *********************************************/
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 0 auto;
 }
 
-footer p {
-    margin-block-end: 0.5em;
+.flex.twocols .item {
+    flex: 1 35%;
+    max-width: 50%;
 }
+.flex.twocols .item:nth-child(odd) { margin: 0 15px 30px 0; }   /* odds on the left */
+.flex.twocols .item:nth-child(even) { margin: 0 0 30px 15px; }  /* evens on the right */
 
-table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-    border: 0;
+/************************************** NAVIGATION ELEMENTS ***************************************/
+
+/*
+ * It's not 100% clear how all these different pieces are interacting, but
+ * this is what I had to do to get the menu to look right.  The height of the
+ * menu bar is set to the same as the line-height, which lets the vertical-align: middle
+ * field work for the text (however, for some reason it seems not to be needed for the
+ * ACRL text on the left).
+ *
+ * The logo image is manually positioned using margins; however, the github and the
+ * light/dark icons couldn't use margins because that pushed the rest of the menu items
+ * down, so I manually adjust their position slightly.  It's hacky but seems to look OK.
+ */
+
+#menu {
+    width: 95%;
+    height: var(--menu-height);
+    line-height: var(--menu-height);
+    border-radius: calc(var(--menu-height) / 2);;
+    background: var(--background-reversed);
+    margin: 37px auto;
 }
+#menu a { color: var(--font-secondary-reversed); }
+#menu a:hover { color: var(--link-hover); }
 
-thead th:nth-child(1) {
-    width: 15%;
+#menu .homelink { float: left; font-family: "tomorrow"; font-size: 36px; }
+#menu .homelink img {
+    height: var(--menu-logo-height);
+    margin: calc((var(--menu-height) - var(--menu-logo-height)) / 2) 24px;
+    float: left;
 }
+#menu .homelink a:hover { color: var(--font-secondary-reversed); }
 
-thead tr {
-    border-bottom: 1px solid #555;
-}
-
-thead th {
-    text-align: center;
-}
-
-td {
-    text-align: right;
-    padding-right: 5px;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #eee;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #bbb;
-}
-
-tr th, tr td {
-    border: 0;
-    border-right: 1px solid #555;
-}
-
-/* layout for mobile versus non-mobile */
-
-@media (min-width: 450px) {
-    body {
-        display: grid;
-        grid-template-columns: 175px minmax(var(--min-body-width), 1fr);
-    }
-
-    aside {
-        grid-column-start: 1;
-    }
-
-    main {
-        grid-column-start: 2;
-    }
-
-    .control {
-        display: none;
-    }
-}
-
-@media (max-width: 450px) {
-    body {
-        min-width: var(--min-body-width);
-    }
-
-    aside {
-        width: var(--sidebar-width-mobile);
-        left: calc(-1 * var(--sidebar-width-mobile));
-    }
-
-    .control {
-        display: block;
-    }
-
-}
-
-/* Menus (nav bar, sidebar) */
-
-/* common definitions between sidebar and nav bar first */
-
-.menu {
-    position: sticky;
-    font-family: "Lucida Console", "Courier New", monospace;
-    top: 0;
-    z-index: 100;  /* make the menu stay over the top of bokeh plots */
-}
-
-.menu li {
-    list-style: none;
-}
-
-.menu a {
-    text-decoration: none;
-    color: var(--menu-font-color);
-}
-
-nav {
-    /* We always have a nav bar but not always a sidebar */
-    background: var(--black);
-    color: var(--menu-font-color);
-}
-
-nav ul {
-    padding: 10px 0 10px 10px;
-}
-
-nav li {
+#menu ul { float: right; }
+#menu ul li {
     display: inline-block;
+    margin-right: 54px;
+    font-size: 24px;
+    vertical-align: middle;
+}
+#menu ul li:has(img) {margin-right: 24px;}
+#menu ul li img {
+    position: relative;
+    top: 4px;
+    height: var(--menu-icon-height);
 }
 
-nav li a {
-    padding: 10px;
+.buttons { display: flex; }
+.buttons.center { justify-content: center; }
+
+.buttons .primary { background: var(--link-primary); }
+.buttons .secondary { background: var(--link-secondary); }
+.buttons .github {
+    background-image: url('/icons/gh-project.png');
+    width: 54px;
+    height: 54px;
+    padding: 0;
+    margin-left: auto;
 }
 
-nav li a:hover {
-    color: var(--font-grey);
-    background: var(--menu-font-color);
+.buttons a {
+    border-radius: 100px;
+    color: var(--font-secondary);
+    padding: 12px 24px;
+    text-align: center;
+    vertical-align: middle;
+    margin-right: 30px;
+}
+.buttons.center a, .buttons .github { margin-right: 0; }
+.buttons a:hover { background: var(--accent-orange); color: var(--font-secondary); }
+.buttons a.github:hover { background: none; background-image: url('/icons/gh-project-hover.png'); }
+
+/**************************************** ICONS AND IMAGES ****************************************/
+
+.icon:before {
+    vertical-align: middle;
+    display: inline-block;
+    width: 34px;
+    margin-right: 18px;
 }
 
-/* Admonitions */
-
-.admonition {
-    border: 1px solid black;
+footer .logo {
+    float: left;
+    height: 150px;
+    margin-right: 18px;
 }
 
-.admonition p, .admonition-title {
-    margin: 0;
-    padding: 5px;
-}
-
-.admonition-title {
-    font-weight: bold;
-}
-
-.admonition.note .admonition-title::before {
-    content: '++ ';
-}
-
-.admonition.note .admonition-title {
-    background: lightblue;
-}
-
-.admonition.note {
-    background: aliceblue;
-}
-
-.admonition.warning .admonition-title::before {
-    content: '!! ';
-}
-
-.admonition.warning .admonition-title {
-    background: goldenrod;
-}
-
-.admonition.warning {
-    background: gold;
+.external:after {
+    content: url(/icons/external.png);
+    margin-left: 12px;
 }

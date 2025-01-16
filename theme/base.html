@@ -5,13 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/css/style.css" rel="stylesheet" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script type="text/javascript" src="/js/util.js"></script>
-
-    <script type="text/javascript" defer>
-        $(document).ready(handle_hamburger);
-        $(document).ready(handle_sidebar_close);
-    </script>
 
     <!-- this is a lot of stupid work for a simple favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
@@ -23,54 +16,62 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="/img/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-
-    {% block extrahead %}
-    {% endblock %}
-
-    {%- for path in page.meta.extra_css %}
-      <link href="{{ path | url }}" rel="stylesheet">
-    {%- endfor %}
   </head>
 
   <body>
-      <aside>
-        <div class="sidebar menu">
-          {%- block sidebar -%}
-          {%- endblock -%}
+    <header>
+      <nav id="menu">
+        <div class="homelink">
+          <a href="{{ config.site_url }}">
+            <img src="{{ config.theme.logo_path }}"/>
+            <span>ACRL</span>
+          </a>
         </div>
-      </aside>
+        <ul>
+          <li><a href="/services/">Services</a></li>
+          <li><a href="/research/">Research</a></li>
+          <li><a href="/media/">Media</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a><img src="/icons/d2l.png"></a></li>
+          <li><a href="{{ config.repo_url }}"><img src="/icons/gh-menu-dark.png"></a></li>
+        </ul>
+      </nav>
+    </header>
 
-      <main>
-        {%- block pre -%}
-        {%- endblock -%}
-        <header>
-          <a href="/"><img src="/img/title.png" alt="Applied Computing Research Labs Logo" /></a>
-          <div class="tagline">Open source research and development in distributed systems</div>
-        </header>
+    {%- block content -%}
+    {{ page.content }}
+    {%- endblock -%}
 
-        <nav class="menu">
-          <ul>
-            <li><a href="https://blog.appliedcomputing.io/">Blog</a></li>
-            <li><a href="/services/">Services</a></li>
-            <li><a href="/docs/">Documentation</a></li>
-            {%- block github_url -%}
-            <li><a href="https://github.com/acrlabs/">GitHub</a></li>
-            {%- endblock -%}
-            <li><a href="/contact/">Contact</a></li>
-          </ul>
-        </nav>
-
-        <div class="content">
-        {%- block content -%}
-        {{ page.content }}
-        {%- endblock -%}
-        <hr/>
-        </div>
-
-        <footer>
-          <h3>Black Lives Matter</h3>
-          <div class="copyright">Copyright (c) {{ build_date_utc.strftime('%Y') }}  Applied Computing Research Labs, LLC</div>
-        </footer>
-      </main>
+    <footer>
+      <div class="item">
+        <img src="/img/acrl_logo.png" class="logo">
+        <h4>Applied Computing Research Labs</h4>
+        Black Lives Matter
+      </div>
+      <div class="item">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://blog.appliedcomputing.io">Blog</a></li>
+          <li><a href="/media">Media</a></li>
+          <li><a href="/research">Research</a></li>
+        <ul>
+      </div>
+      <div class="item">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="">SimKube</a></li>
+          <li><a href="">SaaS</a></li>
+          <li><a href="">Pricing</a></li>
+        <ul>
+      </div>
+      <div class="item">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="">About Us</a></li>
+          <li><a href="">Community</a></li>
+          <li><a href="">Contact</a></li>
+        <ul>
+      </div>
+    </footer>
   </body>
 </html>
