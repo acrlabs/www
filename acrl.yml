@@ -16,6 +16,7 @@ plugins:
 hooks:
   - hooks/post_list.py     # generate blog post list
   - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
+  - hooks/empty_cells.py   # remove (erroneous) empty table cells
 markdown_extensions:
   - footnotes              # footnotes, duh
   - md_in_html             # parse markdown inside HTML tags
@@ -29,3 +30,4 @@ markdown_extensions:
       check_paths: true
       base_path:
         - acrl
+  - smarty                 # smart quotes/em dashes/etc

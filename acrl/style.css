@@ -12,6 +12,11 @@
     --font-secondary: #fff;
     --font-primary-reversed: #6a6a6a;
     --font-secondary-reversed: #000;
+
+    --table-background-primary: #e9e9e9;
+    --table-background-secondary: #a5a5a5;
+    --table-font-primary: #2c2c2c;
+    --table-font-secondary: #000;
 }
 
 /* HERO SECTION */

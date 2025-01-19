@@ -16,9 +16,14 @@
  * --font-primary-reversed
  * --font-secondary-reversed
  *
+ * --table-background-primary
+ * --table-background-secondary
+ * --table-font-primary
+ * --table-font-secondary
+ *
  */
 
-/********************************************* FONTS **********************************************/
+/******************************************************* FONTS ********************************************************/
 @font-face {
     font-family: "B612";
     src: url(/fonts/B612-Regular.ttf);
@@ -40,10 +45,14 @@
     src: url(/fonts/Tomorrow-Regular.ttf);
 }
 
-/************************************* BASE STYLE DEFINITIONS *************************************/
+/*********************************************** BASE STYLE DEFINITIONS ***********************************************/
 :root {
     --content-width: 1296px;
-    --section-padding: 66px;
+    --section-margin: 66px;
+    --subsection-border-radius: 32px;
+
+    --font-size-regular: 24px;
+    --font-size-small: 20px;
 
     --menu-height: 76px;
     --menu-logo-height: 44px;
@@ -54,18 +63,20 @@
     --accent-purple: #9e70c2;
     --accent-slate: #527a92;
 
+    --table-border-radius: 12px;
+
     background: var(--background-1);
 }
 
 body {
     margin: 0 auto;
     font-family: "B612";
-    font-size: 24px;
+    font-size: var(--font-size-regular);
     max-width: var(--content-width);
     color: var(--font-primary);
 }
 
-main { margin: 0 auto; width: 90%; }
+main { margin: 0 auto var(--section-margin) auto; width: 90%; }
 
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
@@ -79,10 +90,14 @@ h2 { font-size: 36px; margin-bottom: 30px; }
 h3 { font-size: 30px; margin-bottom: 18px; }
 h4 { font-size: 24px; margin-bottom: 8px; }
 
+main > h1, main > h2, main > h3, main > h4, main > h5, main > h6 { text-align: center; }
+section > h1, section > h2, section > h3, section > h4, section > h5, section > h6 { text-align: center; }
+
 a { color: var(--link-primary); text-decoration: none; }
 a:hover { color: var(--link-hover); }
 
-ul { margin: 0; padding: 0; }
+ul { margin: 0 0 24px 0; padding: 0; }
+ul li { margin-bottom: 12px; }
 
 header {  background: var(--header-background); }
 
@@ -96,24 +111,37 @@ section, footer {
      */
     width: 100vw;
     box-sizing: border-box;
-    padding: var(--section-padding) calc(50vw - var(--content-width) / 2);
+    padding: var(--section-margin) calc(50vw - var(--content-width) / 2);
     margin-left: min(0px, var(--content-width) / 2 - 50vw);
 }
 
-section > h1, section > h2, section > h3, section > h4, section > h5, section > h6 { text-align: center; }
 section:nth-child(odd) { background: var(--background-2); }
 section:nth-child(odd) .subsection { background: var(--background-1); }
 
 .subsection {
-    border-radius: 32px;
+    border-radius: var(--subsection-border-radius);
     padding: 36px;
     background: var(--background-2);
     margin: 15px 0;
 }
-.subsection:nth-child(4n+1) h3:not(.icon) { color: var(--accent-slate); }
-.subsection:nth-child(4n+2) h3:not(.icon) { color: var(--accent-green); }
-.subsection:nth-child(4n+3) h3:not(.icon) { color: var(--accent-orange); }
-.subsection:nth-child(4n+4) h3:not(.icon) { color: var(--accent-purple); }
+/* will do funky things if nested in a section but we don't do that (right now) */
+.subsection .subsection { background: var(--background-1); }
+
+.subsection:nth-child(4n+1) h3:not(.icon),
+.subsection:nth-child(4n+1) .subsection h3:not(.icon)
+    { color: var(--accent-slate); }
+.subsection:nth-child(4n+2) h3:not(.icon),
+.subsection:nth-child(4n+2) .subsection h3:not(.icon)
+    { color: var(--accent-green); }
+.subsection:nth-child(4n+3) h3:not(.icon),
+.subsection:nth-child(4n+3) .subsection h3:not(.icon)
+    { color: var(--accent-orange); }
+.subsection:nth-child(4n+4) h3:not(.icon),
+.subsection:nth-child(4n+4) .subsection h3:not(.icon)
+    { color: var(--accent-purple); }
+
+.subsection ul li { font-size: var(--font-size-small); }
+.subsection img { width: 100%; border-radius: var(--subsection-border-radius); }
 
 footer {
     display: flex;
@@ -121,31 +149,35 @@ footer {
     color: var(--font-primary-reversed);
 }
 footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--font-secondary-reversed); }
-footer .item {
+footer > div {
     flex: 1;
     margin-right: 30px;
 }
-footer .item:nth-child(1) { flex: 1.75; }
+footer > div:first-child { flex: 1.75; }
 
 footer ul { list-style-type: none; }
 footer ul li { margin-bottom: 8px; }
 
-/********************************************* LAYOUT *********************************************/
+/******************************************************* LAYOUT *******************************************************/
 .flex {
     display: flex;
     flex-wrap: wrap;
     width: 90%;
-    margin: 0 auto;
+    margin: 36px auto 0 auto;
 }
+.subsection .flex { width: 100%; }
 
-.flex.twocols .item {
+.flex > div { flex: 1; margin: 0 15px 0 15px; }
+.flex > div:first-child { margin: 0 15px 0 0; }
+.flex > div:last-child { margin: 0 0 0 15px; }
+.flex.twocols > div {
     flex: 1 35%;
     max-width: 50%;
 }
-.flex.twocols .item:nth-child(odd) { margin: 0 15px 30px 0; }   /* odds on the left */
-.flex.twocols .item:nth-child(even) { margin: 0 0 30px 15px; }  /* evens on the right */
+.flex.twocols > div:nth-child(odd) { margin: 0 15px 30px 0; }   /* odds on the left */
+.flex.twocols > div:nth-child(even) { margin: 0 0 30px 15px; }  /* evens on the right */
 
-/************************************** NAVIGATION ELEMENTS ***************************************/
+/************************************************ NAVIGATION ELEMENTS *************************************************/
 
 /*
  * It's not 100% clear how all these different pieces are interacting, but
@@ -182,7 +214,6 @@ footer ul li { margin-bottom: 8px; }
 #menu ul li {
     display: inline-block;
     margin-right: 54px;
-    font-size: 24px;
     vertical-align: middle;
 }
 #menu ul li:has(img) {margin-right: 24px;}
@@ -194,16 +225,18 @@ footer ul li { margin-bottom: 8px; }
 
 .buttons { display: flex; }
 .buttons.center { justify-content: center; }
+.buttons a { background: var(--link-primary); }
 
-.buttons .primary { background: var(--link-primary); }
 .buttons .secondary { background: var(--link-secondary); }
-.buttons .github {
-    background-image: url('/icons/gh-project.png');
+.buttons .github, .buttons .rss {
+    background: none;
     width: 54px;
     height: 54px;
     padding: 0;
     margin-left: auto;
 }
+.buttons .github { background-image: url('/icons/gh-project.png'); }
+.buttons .rss, .buttons a.rss:hover { background-image: url('/icons/rss.png'); background-position: 3px 1px; }
 
 .buttons a {
     border-radius: 100px;
@@ -213,12 +246,36 @@ footer ul li { margin-bottom: 8px; }
     vertical-align: middle;
     margin-right: 30px;
 }
-.buttons.center a, .buttons .github { margin-right: 0; }
+.buttons.center a, .buttons a:last-child, .buttons .github { margin-right: 0; }
 .buttons a:hover { background: var(--accent-orange); color: var(--font-secondary); }
 .buttons a.github:hover { background: none; background-image: url('/icons/gh-project-hover.png'); }
 
-/**************************************** ICONS AND IMAGES ****************************************/
+/******************************************************* TABLES *******************************************************/
+table {
+    width: 85%;
+    margin: 0 auto var(--section-margin) auto;
+    table-layout: fixed;
+    font-size: var(--font-size-small);
+}
 
+table th { color: var(--font-secondary); font-weight: normal; }
+table:nth-of-type(4n+1) th { background: var(--accent-slate); }
+table:nth-of-type(4n+2) th { background: var(--accent-green); }
+table:nth-of-type(4n+3) th { background: var(--accent-orange); }
+table:nth-of-type(4n+4) th { background: var(--accent-purple); }
+
+table th, table td { padding: 12px 24px; }
+
+table td {
+    color: var(--table-font-primary);
+    background: var(--table-background-primary);
+}
+table td:first-child {
+    color: var(--table-font-secondary);
+    background: var(--table-background-secondary);
+}
+
+/************************************************** ICONS AND IMAGES **************************************************/
 .icon:before {
     vertical-align: middle;
     display: inline-block;
@@ -236,3 +293,7 @@ footer .logo {
     content: url(/icons/external.png);
     margin-left: 12px;
 }
+
+
+/******************************************************* VIDEOS *******************************************************/
+.youtube { margin-bottom: 24px; border-radius: 24px; }

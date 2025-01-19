@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% include "post_header.html" %}
+
+{% block content %}
+<h1>{{ page.title }}</h1>
+
+<div class="postmeta">
+  <hr>
+  <div class="avatars">
+    {%- for author in page.meta.authors -%}
+      <img src="/img/people/{{ author }}.png" />
+    {%- endfor -%}
+  </div>
+  <div class="rss">
+    <a href="/feed_rss_created.xml"><img src="/feed_rss_created.xml" /></a>
+  </div>
+  <div class="timestamp">Published on: {{ page.meta.datetime.strftime('%b. %-d, %Y @ %H:%M') }}</div>
+  <div class="authors">
+    Written with ❤️  by {{ ','.join(page.meta.authors) }}
+  </div>
+  <hr class="clear">
+</div>
+
+{{ page.content }}
+
+{% endblock %}
