@@ -66,9 +66,6 @@
     --table-border-radius: 12px;
 
     --about-entry-height: 310px;
-
-    background: var(--background-1);
-    overflow-x: hidden;
 }
 
 body {
@@ -77,6 +74,8 @@ body {
     font-size: var(--font-size-regular);
     max-width: var(--content-width);
     color: var(--font-primary);
+    background: var(--background-1);
+    overflow-x: hidden;
 }
 
 main { margin: 0 auto var(--section-margin) auto; width: 90%; }
@@ -177,7 +176,7 @@ footer ul li { margin-bottom: 8px; }
 }
 .about .subsection img {
     float: left;
-    background-color: #fff;
+    background-color: var(--background-reversed);
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     height: var(--about-entry-height);
@@ -243,8 +242,8 @@ footer ul li { margin-bottom: 8px; }
     margin-right: 54px;
     vertical-align: middle;
 }
-#menu ul li:has(img) {margin-right: 24px;}
-#menu ul li img {
+#menu ul li:has(.icon) { margin-right: 24px; }
+#menu ul li .icon {
     position: relative;
     top: 4px;
     height: var(--menu-icon-height);
@@ -267,14 +266,14 @@ footer ul li { margin-bottom: 8px; }
 
 .buttons a {
     border-radius: 100px;
-    color: var(--font-secondary);
+    color: var(--button-font);
     padding: 12px 24px;
     text-align: center;
     vertical-align: middle;
     margin-right: 30px;
 }
 .buttons.center a, .buttons a:last-child, .buttons .github { margin-right: 0; }
-.buttons a:hover { background: var(--accent-orange); color: var(--font-secondary); }
+.buttons a:hover { background: var(--accent-orange); color: var(--button-font); }
 .buttons a.github:hover { background: none; background-image: url('/icons/gh-project-hover.png'); }
 
 /******************************************************* TABLES *******************************************************/
@@ -285,7 +284,7 @@ table {
     font-size: var(--font-size-small);
 }
 
-table th { color: var(--font-secondary); font-weight: normal; }
+table th { color: var(--table-font-heading); font-weight: normal; }
 table:nth-of-type(4n+1) th { background: var(--accent-slate); }
 table:nth-of-type(4n+2) th { background: var(--accent-green); }
 table:nth-of-type(4n+3) th { background: var(--accent-orange); }
@@ -303,6 +302,11 @@ table td:first-child {
 }
 
 /************************************************** ICONS AND MEDIA ***************************************************/
+[data-theme="dark"] #themeswitcher:after  { content: url(/icons/d2l.png); }
+[data-theme="dark"] #menu .github:after  { content: url(/icons/gh-menu-dark.png); }
+[data-theme="light"] #themeswitcher:after  { content: url(/icons/l2d.png); }
+[data-theme="light"] #menu .github:after  { content: url(/icons/gh-menu-light.png); }
+
 .icon:before {
     vertical-align: middle;
     display: inline-block;

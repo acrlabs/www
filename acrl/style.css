@@ -12,11 +12,36 @@
     --font-secondary: #fff;
     --font-primary-reversed: #6a6a6a;
     --font-secondary-reversed: #000;
+    --button-font: #fff;
 
     --table-background-primary: #e9e9e9;
     --table-background-secondary: #a5a5a5;
     --table-font-primary: #2c2c2c;
     --table-font-secondary: #000;
+    --table-font-heading: #000;
+}
+
+[data-theme="light"] {
+    --background-1: #e9e9e9;
+    --background-2: #fff;
+    --background-reversed: #000;
+    --header-background: var(--background-1);
+
+    --link-primary: #527a92;
+    --link-secondary: #6a6a6a;
+    --link-hover: #ec8a3b;
+
+    --font-primary: #000;
+    --font-secondary: #000;
+    --font-primary-reversed: #e9e9e9;
+    --font-secondary-reversed: #e9e9e9;
+    --button-font: #fff;
+
+    --table-background-primary: #fff;
+    --table-background-secondary: #a5a5a5;
+    --table-font-primary: #2c2c2c;
+    --table-font-secondary: #000;
+    --table-font-heading: #fff;
 }
 
 /* HERO SECTION */

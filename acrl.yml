@@ -10,9 +10,9 @@ theme:
 extra_css:
   - style.css
 plugins:
+  - mermaid2               # generate mermaid diagrams in posts
   - rss:                   # blog post RSS feed
       match_path: "posts/.*"
-  - mermaid2               # generate mermaid diagrams in posts
 hooks:
   - hooks/post_list.py     # generate blog post list
   - hooks/prebuild_css.py  # concatenate extra_css into css/style.css

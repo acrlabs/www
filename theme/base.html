@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html data-theme="dark">
   <head>
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/css/style.css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/util.js" ></script>
 
     <!-- this is a lot of stupid work for a simple favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
@@ -32,8 +33,8 @@
           <li><a href="/research/">Research</a></li>
           <li><a href="/media/">Media</a></li>
           <li><a href="/about/">About</a></li>
-          <li><a><img src="/icons/d2l.png"></a></li>
-          <li><a href="{{ config.repo_url }}"><img src="/icons/gh-menu-dark.png"></a></li>
+          <li><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;"></a></li>
+          <li><a class="github icon" href="{{ config.repo_url }}"></a></li>
         </ul>
       </nav>
     </header>
