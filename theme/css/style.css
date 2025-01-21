@@ -65,7 +65,10 @@
 
     --table-border-radius: 12px;
 
+    --about-entry-height: 310px;
+
     background: var(--background-1);
+    overflow-x: hidden;
 }
 
 body {
@@ -115,8 +118,8 @@ section, footer {
     margin-left: min(0px, var(--content-width) / 2 - 50vw);
 }
 
-section:nth-child(odd) { background: var(--background-2); }
-section:nth-child(odd) .subsection { background: var(--background-1); }
+section:nth-of-type(odd) { background: var(--background-2); }
+section:nth-of-type(odd) .subsection { background: var(--background-1); }
 
 .subsection {
     border-radius: var(--subsection-border-radius);
@@ -157,6 +160,30 @@ footer > div:first-child { flex: 1.75; }
 
 footer ul { list-style-type: none; }
 footer ul li { margin-bottom: 8px; }
+
+.about .subsection h2 { padding-top: 24px; margin-bottom: 0; }
+.about .subsection h3 {
+    /* the nth-child rules seem to get evaluated last, even though this is
+     * later in the cascade, hence the !important.  Since this is only used
+     * in one place I think the !important is OK */
+    color: var(--font-secondary) !important;
+}
+.about .subsection {
+    display: flex;
+    width: 90%;
+    padding: 0;
+    margin: 36px auto;
+    font-size: var(--font-size-small);
+}
+.about .subsection img {
+    float: left;
+    background-color: #fff;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: var(--about-entry-height);
+    width: var(--about-entry-height);
+}
+.about .subsection p { margin: 0; padding-right: 24px; }
 
 /******************************************************* LAYOUT *******************************************************/
 .flex {
@@ -275,7 +302,7 @@ table td:first-child {
     background: var(--table-background-secondary);
 }
 
-/************************************************** ICONS AND IMAGES **************************************************/
+/************************************************** ICONS AND MEDIA ***************************************************/
 .icon:before {
     vertical-align: middle;
     display: inline-block;
@@ -294,6 +321,4 @@ footer .logo {
     margin-left: 12px;
 }
 
-
-/******************************************************* VIDEOS *******************************************************/
 .youtube { margin-bottom: 24px; border-radius: 24px; }

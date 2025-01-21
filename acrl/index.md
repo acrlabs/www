@@ -1,5 +1,5 @@
 ---
-template: home.html
+template: base.html
 ---
 
 <div class="hero flex twocols">
