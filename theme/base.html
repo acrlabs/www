@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html data-theme="dark">
+<html data-theme="default">
   <head>
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/css/style.css" rel="stylesheet" />
-    <script type="text/javascript" src="/js/util.js" ></script>
+    <script type="text/javascript" src="/js/util.js"></script>
 
     <!-- this is a lot of stupid work for a simple favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
@@ -17,6 +17,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="msapplication-config" content="/img/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
+
+    {%- block extra_headers -%}{%- endblock -%}
   </head>
 
   <body>
@@ -25,16 +27,37 @@
         <div class="homelink">
           <a href="{{ config.site_url }}">
             <img src="{{ config.theme.logo_path }}"/>
-            <span>ACRL</span>
+            <span>{{ config.site_name }}</span>
           </a>
         </div>
         <ul>
-          <li><a href="/services/">Services</a></li>
-          <li><a href="/research/">Research</a></li>
-          <li><a href="/media/">Media</a></li>
-          <li><a href="/about/">About</a></li>
-          <li><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;"></a></li>
-          <li><a class="github icon" href="{{ config.repo_url }}"></a></li>
+          {%- for item in config.theme.menu.links -%}
+            {%- set name -%}
+              {%- if item is mapping -%}
+              {{ item.keys() | first }}
+              {%- else -%}
+              {{ item }}
+              {%- endif -%}
+            {%- endset -%}
+            {%- set path -%}
+              {%- if item is mapping -%}
+              {{ item.values() | first }}
+              {%- else -%}
+              {{ item | lower }}
+              {%- endif -%}
+            {%- endset -%}
+            <li><a href="/{{ path }}/">
+              {%- if name is lower -%}
+                {{ name | capitalize }}
+              {%- else -%}
+                {{ name }}
+              {%- endif -%}</a>
+            </a></li>
+          {%- endfor -%}
+          {%- if config.theme.menu.icons -%}
+            <li><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;"></a></li>
+            <li><a class="github icon" href="{{ config.repo_url }}"></a></li>
+          {%- endif -%}
         </ul>
       </nav>
     </header>

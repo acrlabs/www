@@ -1,5 +1,5 @@
 ---
-site_name: Applied Computing Research Labs
+site_name: ACRL
 site_url: "https://appliedcomputing.io"
 repo_url: "https://github.com/acrlabs"
 docs_dir: acrl
@@ -7,6 +7,13 @@ theme:
   name: null
   custom_dir: theme
   logo_path: /img/acrl_logo.png
+  menu:
+    icons: true
+    links:
+      - services
+      - research
+      - media
+      - about
 extra_css:
   - style.css
 plugins:

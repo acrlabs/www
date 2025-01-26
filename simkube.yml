@@ -1,16 +1,29 @@
 ---
 site_name: SimKube
 site_url: "https://simkube.dev/"
+repo_url: "https://github.com/acrlabs/simkube"
 docs_dir: simkube
+dev_addr: 127.0.0.1:8001
 theme:
   name: null
   custom_dir: theme
+  logo_path: /img/simkube_logo.png
+  menu:
+    icons: false
+    links:
+      - documentation
+      - community
+      - FAQ: simkube/docs/faq
+      - about
+  static_templates:
+    - search.html
 extra_css:
   - style.css
 plugins:
   - multirepo:             # pull in docs from SimKube repo
       keep_docs_dir: true
   - markdown-exec          # execute commands from markdown (to generate usage code blocks)
+  - search                 # search the docs
 hooks:
   - hooks/jinja_regex.py   # TODO is this needed?
   - hooks/preprocess.py    # convert GH-style markdown to mkdocs-style markdown (headings and such)
@@ -20,6 +33,10 @@ markdown_extensions:
   - md_in_html             # parse markdown inside HTML tags
   - pymdownx.blocks.html
   - pymdownx.highlight     # code highlighting
+  - pymdownx.snippets:     # include contents of one file in another (used for interactive bokeh plots)
+      check_paths: true
+      base_path:
+        - temp_dir
   - pymdownx.superfences:  # parse mermaid code fences and executable code blocks
       custom_fences:
         - name: mermaid
@@ -27,6 +44,6 @@ markdown_extensions:
           format: !!python/name:mermaid2.fence_mermaid
   - smarty                 # smart quotes/em dashes/etc
   - toc:                   # generate table of contents
-      permalink: " #"
+      baselevel: 2         # page contents headings start at h2
 nav:
-  - SimKube: '!import https://github.com/acrlabs/simkube?extra_imports=["README.md"]&config=docs/mkdocs.yml'
+  - SimKube: '!import file:///home/drmorr/tmp/simkube?extra_imports=["CODE_OF_CONDUCT.md"]&config=docs/mkdocs.yml'

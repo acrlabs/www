@@ -3,16 +3,19 @@
     --background-2: #181818;
     --background-reversed: #fff;
     --header-background: var(--background-1);
+    --footer-background: var(--background-reversed);
+    --menu-background: var(--background-reversed);
 
-    --link-primary: #527a92;
+    --link-primary: var(--accent-slate);
     --link-secondary: #6a6a6a;
-    --link-hover: #ec8a3b;
+    --link-hover: var(--accent-orange);
 
     --font-primary: #a5a5a5;
     --font-secondary: #fff;
-    --font-primary-reversed: #6a6a6a;
-    --font-secondary-reversed: #000;
+    --footer-font-primary #6a6a6a;
+    --footer-font-secondary: #000;
     --button-font: #fff;
+    --menu-font: #000;
 
     --table-background-primary: #e9e9e9;
     --table-background-secondary: #a5a5a5;
@@ -21,21 +24,24 @@
     --table-font-heading: #000;
 }
 
-[data-theme="light"] {
+[data-theme="alternate"] {
     --background-1: #e9e9e9;
     --background-2: #fff;
     --background-reversed: #000;
     --header-background: var(--background-1);
+    --footer-background: var(--background-reversed);
+    --menu-background: var(--background-reversed);
 
-    --link-primary: #527a92;
+    --link-primary: var(--accent-slate);
     --link-secondary: #6a6a6a;
-    --link-hover: #ec8a3b;
+    --link-hover: var(--accent-orange);
 
     --font-primary: #000;
     --font-secondary: #000;
-    --font-primary-reversed: #e9e9e9;
-    --font-secondary-reversed: #e9e9e9;
+    --footer-font-primary: #e9e9e9;
+    --footer-font-secondary: #e9e9e9;
     --button-font: #fff;
+    --menu-font: #e9e9e9;
 
     --table-background-primary: #fff;
     --table-background-secondary: #a5a5a5;
@@ -44,8 +50,7 @@
     --table-font-heading: #fff;
 }
 
-/* HERO SECTION */
-.hero { padding-bottom: var(--section-padding); }
+/*************************************************** HERO SECTION *****************************************************/
 .hero ul {
     list-style: none;
     margin: 42px 0;
@@ -56,7 +61,62 @@
     margin-bottom: 12px;
 }
 
-/* ICONS */
+/*************************************************** ABOUT SECTION ****************************************************/
+.about .subsection h2 { padding-top: 24px; margin-bottom: 0; }
+.about .subsection h3 {
+    /* the nth-child rules seem to get evaluated last, even though this is
+     * later in the cascade, hence the !important.  Since this is only used
+     * in one place I think the !important is OK */
+    color: var(--font-secondary) !important;
+}
+.about .subsection {
+    display: flex;
+    width: 90%;
+    padding: 0;
+    margin: 36px auto;
+    font-size: var(--font-size-small);
+}
+.about .subsection img {
+    float: left;
+    background-color: var(--background-reversed);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    height: var(--about-entry-height);
+    width: var(--about-entry-height);
+}
+.about .subsection p { margin: 0; padding-right: 24px; }
+
+/******************************************************* TABLES *******************************************************/
+table {
+    width: 85%;
+    margin: 0 auto var(--section-spacing) auto;
+    table-layout: fixed;
+    font-size: var(--font-size-small);
+}
+
+table th { color: var(--table-font-heading); font-weight: normal; }
+table:nth-of-type(4n+1) th { background: var(--accent-slate); }
+table:nth-of-type(4n+2) th { background: var(--accent-green); }
+table:nth-of-type(4n+3) th { background: var(--accent-orange); }
+table:nth-of-type(4n+4) th { background: var(--accent-purple); }
+
+table th, table td { padding: 12px 24px; }
+
+table td {
+    color: var(--table-font-primary);
+    background: var(--table-background-primary);
+}
+table td:first-child {
+    color: var(--table-font-secondary);
+    background: var(--table-background-secondary);
+}
+
+/************************************************** ICONS AND MEDIA ***************************************************/
+[data-theme="default"] #themeswitcher:after  { content: url(/icons/d2l.png); }
+[data-theme="default"] nav .github:after  { content: url(/icons/gh-menu-dark.png); }
+[data-theme="alternate"] #themeswitcher:after  { content: url(/icons/l2d.png); }
+[data-theme="alternate"] nav .github:after  { content: url(/icons/gh-menu-light.png); }
+
 .scale:before { content: url(/icons/scale.png); }
 .expertise:before { content: url(/icons/expertise.png); }
 .solutions:before { content: url(/icons/solutions.png); }

@@ -4,8 +4,9 @@
  *
  * --background-1
  * --background-2
- * --background-reversed
  * --header-background
+ * --footer-background
+ * --menu-background
  *
  * --link-primary
  * --link-secondary
@@ -13,13 +14,10 @@
  *
  * --font-primary
  * --font-secondary
- * --font-primary-reversed
- * --font-secondary-reversed
- *
- * --table-background-primary
- * --table-background-secondary
- * --table-font-primary
- * --table-font-secondary
+ * --footer-font-primary
+ * --footer-font-secondary
+ * --button-font
+ * --menu-font
  *
  */
 
@@ -48,13 +46,14 @@
 /*********************************************** BASE STYLE DEFINITIONS ***********************************************/
 :root {
     --content-width: 1296px;
-    --section-margin: 66px;
+    --section-spacing: 66px;
     --subsection-border-radius: 32px;
 
     --font-size-regular: 24px;
     --font-size-small: 20px;
 
-    --menu-height: 76px;
+    --menu-height: 75px;
+    --menu-spacing: 36px;
     --menu-logo-height: 44px;
     --menu-icon-height: 30px;
 
@@ -78,7 +77,7 @@ body {
     overflow-x: hidden;
 }
 
-main { margin: 0 auto var(--section-margin) auto; width: 90%; }
+main { margin: 0 auto var(--section-spacing) auto; width: 90%; }
 
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
@@ -102,6 +101,7 @@ ul { margin: 0 0 24px 0; padding: 0; }
 ul li { margin-bottom: 12px; }
 
 header {  background: var(--header-background); }
+.hero { padding-bottom: var(--section-spacing); }
 
 section, footer {
     /* Make the background colors for these elements span the screen:
@@ -113,7 +113,7 @@ section, footer {
      */
     width: 100vw;
     box-sizing: border-box;
-    padding: var(--section-margin) calc(50vw - var(--content-width) / 2);
+    padding: var(--section-spacing) calc(50vw - var(--content-width) / 2);
     margin-left: min(0px, var(--content-width) / 2 - 50vw);
 }
 
@@ -147,42 +147,19 @@ section:nth-of-type(odd) .subsection { background: var(--background-1); }
 
 footer {
     display: flex;
-    background: var(--background-reversed);
-    color: var(--font-primary-reversed);
+    background: var(--footer-background);
+    color: var(--footer-font-primary);
+    font-size: var(--font-size-small);
 }
-footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--font-secondary-reversed); }
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--footer-font-secondary); }
 footer > div {
     flex: 1;
-    margin-right: 30px;
+    margin: 0 20px;
 }
 footer > div:first-child { flex: 1.75; }
 
 footer ul { list-style-type: none; }
 footer ul li { margin-bottom: 8px; }
-
-.about .subsection h2 { padding-top: 24px; margin-bottom: 0; }
-.about .subsection h3 {
-    /* the nth-child rules seem to get evaluated last, even though this is
-     * later in the cascade, hence the !important.  Since this is only used
-     * in one place I think the !important is OK */
-    color: var(--font-secondary) !important;
-}
-.about .subsection {
-    display: flex;
-    width: 90%;
-    padding: 0;
-    margin: 36px auto;
-    font-size: var(--font-size-small);
-}
-.about .subsection img {
-    float: left;
-    background-color: var(--background-reversed);
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    height: var(--about-entry-height);
-    width: var(--about-entry-height);
-}
-.about .subsection p { margin: 0; padding-right: 24px; }
 
 /******************************************************* LAYOUT *******************************************************/
 .flex {
@@ -221,11 +198,11 @@ footer ul li { margin-bottom: 8px; }
     width: 95%;
     height: var(--menu-height);
     line-height: var(--menu-height);
-    border-radius: calc(var(--menu-height) / 2);;
-    background: var(--background-reversed);
-    margin: 37px auto;
+    border-radius: calc(var(--menu-height) / 2);
+    background: var(--menu-background);
+    margin: var(--menu-spacing) auto;
 }
-#menu a { color: var(--font-secondary-reversed); }
+#menu a { color: var(--menu-font); }
 #menu a:hover { color: var(--link-hover); }
 
 #menu .homelink { float: left; font-family: "tomorrow"; font-size: 36px; }
@@ -234,7 +211,7 @@ footer ul li { margin-bottom: 8px; }
     margin: calc((var(--menu-height) - var(--menu-logo-height)) / 2) 24px;
     float: left;
 }
-#menu .homelink a:hover { color: var(--font-secondary-reversed); }
+#menu .homelink a:hover { color: var(--menu-font); }
 
 #menu ul { float: right; }
 #menu ul li {
@@ -272,40 +249,17 @@ footer ul li { margin-bottom: 8px; }
     vertical-align: middle;
     margin-right: 30px;
 }
-.buttons.center a, .buttons a:last-child, .buttons .github { margin-right: 0; }
-.buttons a:hover { background: var(--accent-orange); color: var(--button-font); }
+.buttons a:last-child, .buttons .github { margin-right: 0; }
+.buttons a:hover { background: var(--link-hover); color: var(--button-font); }
 .buttons a.github:hover { background: none; background-image: url('/icons/gh-project-hover.png'); }
 
-/******************************************************* TABLES *******************************************************/
-table {
-    width: 85%;
-    margin: 0 auto var(--section-margin) auto;
-    table-layout: fixed;
-    font-size: var(--font-size-small);
-}
-
-table th { color: var(--table-font-heading); font-weight: normal; }
-table:nth-of-type(4n+1) th { background: var(--accent-slate); }
-table:nth-of-type(4n+2) th { background: var(--accent-green); }
-table:nth-of-type(4n+3) th { background: var(--accent-orange); }
-table:nth-of-type(4n+4) th { background: var(--accent-purple); }
-
-table th, table td { padding: 12px 24px; }
-
-table td {
-    color: var(--table-font-primary);
-    background: var(--table-background-primary);
-}
-table td:first-child {
-    color: var(--table-font-secondary);
-    background: var(--table-background-secondary);
-}
-
 /************************************************** ICONS AND MEDIA ***************************************************/
-[data-theme="dark"] #themeswitcher:after  { content: url(/icons/d2l.png); }
-[data-theme="dark"] #menu .github:after  { content: url(/icons/gh-menu-dark.png); }
+[data-theme="default"] #themeswitcher:after  { content: url(/icons/d2l.png); }
+[data-theme="dark"] nav .github:after  { content: url(/icons/gh-menu-dark.png); }
+[data-theme="dark"] nav .slack:after  { content: url(/icons/slack-menu-dark.png); }
 [data-theme="light"] #themeswitcher:after  { content: url(/icons/l2d.png); }
-[data-theme="light"] #menu .github:after  { content: url(/icons/gh-menu-light.png); }
+[data-theme="light"] nav .github:after  { content: url(/icons/gh-menu-light.png); }
+[data-theme="light"] nav .slack:after  { content: url(/icons/slack-menu-light.png); }
 
 .icon:before {
     vertical-align: middle;
