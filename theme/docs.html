@@ -3,14 +3,15 @@
 {% block extra_headers %}
     <link href="/css/highlight.css" rel="stylesheet" />
     <script>var base_url = {{ base_url|tojson }};</script>
-    <script type="text/javascript" src="search/main.js" defer></script>
+    <script type="text/javascript" src="/search/main.js" defer></script>
 {% endblock %}
 
 {%- block content -%}
 <div class="docs">
   {# if no value for 'sidebar' is specified in the docs page meta, default to showing the sidebar #}
   {%- if 'sidebar' not in page.meta or page.meta.sidebar -%}
-  <nav id="sidebar">
+  <a href="#" onclick="toggleDropdown('sidebar'); return false;"><span class="sidebar-hamburger"></span></a>
+  <nav id="sidebar" class="floating">
     <h3><a href="/documentation/">Home</a></h3>
 
     <form action="/search.html">
@@ -24,11 +25,10 @@
           <li>
             <a href="#" onclick="toggleSidebarItem(this.id)" id="{{ nav_item.title | replace(" ", "-") | lower }}; return false">
               {{ nav_item.title }}
-              <img src="/icons/down-arrow.png"/>
+              <span class="downarrow"></span>
             </a>
             <ul {% if page.parent.title == nav_item.title %}
-               class="open-menu-item"
-               style="max-height: {{ nav_item.children | length * 40 }}px"
+               class="open" style="max-height: {{ nav_item.children | length * 40 }}px"
                {% endif %}
             >
               {%- for child in nav_item.children -%}

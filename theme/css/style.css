@@ -61,10 +61,13 @@
     --accent-orange: #ec8a3b;
     --accent-purple: #9e70c2;
     --accent-slate: #527a92;
+}
 
-    --table-border-radius: 12px;
-
-    --about-entry-height: 310px;
+@media (max-width: 1024px) {
+    :root {
+        --font-size-regular: 18px;
+        --font-size-small: 12px;
+    }
 }
 
 body {
@@ -90,6 +93,13 @@ h1 { font-size: 48px; margin-bottom: 42px; }
 h2 { font-size: 36px; margin-bottom: 30px; }
 h3 { font-size: 30px; margin-bottom: 18px; }
 h4 { font-size: 24px; margin-bottom: 8px; }
+
+@media (max-width: 1024px) {
+    h1 { font-size: 32px; margin-bottom: 24px; }
+    h2 { font-size: 26px; margin-bottom: 20px; }
+    h3 { font-size: 20px; margin-bottom: 12px; }
+    h4 { font-size: 18px; margin-bottom: 4px; }
+}
 
 main > h1, main > h2, main > h3, main > h4, main > h5, main > h6 { text-align: center; }
 section > h1, section > h2, section > h3, section > h4, section > h5, section > h6 { text-align: center; }
@@ -127,7 +137,13 @@ section:nth-of-type(odd) .subsection { background: var(--background-1); }
     margin: 15px 0;
 }
 /* will do funky things if nested in a section but we don't do that (right now) */
-.subsection .subsection { background: var(--background-1); }
+.subsection .subsection {
+    background: var(--background-1);
+}
+
+@media (max-width: 1024px) {
+    .subsection .subsection { flex: 1 1 100%; }
+}
 
 .subsection:nth-child(4n+1) h3:not(.icon),
 .subsection:nth-child(4n+1) .subsection h3:not(.icon)
@@ -150,16 +166,22 @@ footer {
     background: var(--footer-background);
     color: var(--footer-font-primary);
     font-size: var(--font-size-small);
+    flex-wrap: wrap;
 }
 footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--footer-font-secondary); }
-footer > div {
-    flex: 1;
-    margin: 0 20px;
-}
-footer > div:first-child { flex: 1.75; }
-
 footer ul { list-style-type: none; }
 footer ul li { margin-bottom: 8px; }
+footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile view */
+
+@media (max-width: 1024px) {
+    footer > div {
+        flex-shrink: 1;
+        flex-basis: 100%;
+    }
+}
+@media (min-width: 1024px) {
+    footer > div:first-child { flex: 1.75; }
+}
 
 /******************************************************* LAYOUT *******************************************************/
 .flex {
@@ -170,15 +192,22 @@ footer ul li { margin-bottom: 8px; }
 }
 .subsection .flex { width: 100%; }
 
-.flex > div { flex: 1; margin: 0 15px 0 15px; }
-.flex > div:first-child { margin: 0 15px 0 0; }
-.flex > div:last-child { margin: 0 0 0 15px; }
-.flex.twocols > div {
-    flex: 1 35%;
-    max-width: 50%;
+@media (min-width: 1024px) {
+    .flex > div { flex: 1; margin: 0 15px 0 15px; }
+    .flex > div:first-child { margin: 0 15px 0 0; }
+    .flex > div:last-child { margin: 0 0 0 15px; }
+
+    .flex.twocols > div {
+        flex: 1 35%;
+        max-width: 50%;
+    }
+    .flex.twocols > div:nth-child(odd) { margin: 0 15px 30px 0; }   /* odds on the left */
+    .flex.twocols > div:nth-child(even) { margin: 0 0 30px 15px; }  /* evens on the right */
 }
-.flex.twocols > div:nth-child(odd) { margin: 0 15px 30px 0; }   /* odds on the left */
-.flex.twocols > div:nth-child(even) { margin: 0 0 30px 15px; }  /* evens on the right */
+
+@media (max-width: 1024px) {
+    .flex > div { flex: 1 1 100%; }
+}
 
 /************************************************ NAVIGATION ELEMENTS *************************************************/
 
@@ -202,33 +231,61 @@ footer ul li { margin-bottom: 8px; }
     background: var(--menu-background);
     margin: var(--menu-spacing) auto;
 }
-#menu a { color: var(--menu-font); }
+#menu h2 { display: inline; vertical-align: middle; }
+#menu a, #menu h2 { color: var(--menu-font); }
 #menu a:hover { color: var(--link-hover); }
 
-#menu .homelink { float: left; font-family: "tomorrow"; font-size: 36px; }
-#menu .homelink img {
+#menu .home { float: left;  }
+#menu .home img {
     height: var(--menu-logo-height);
     margin: calc((var(--menu-height) - var(--menu-logo-height)) / 2) 24px;
     float: left;
 }
-#menu .homelink a:hover { color: var(--menu-font); }
+#menu .home a:hover { color: var(--menu-font); }
 
-#menu ul { float: right; }
-#menu ul li {
-    display: inline-block;
-    margin-right: 54px;
-    vertical-align: middle;
+#menu .links { float: right; }
+#menu ul { list-style-type: none; }
+
+@media (min-width: 1024px) {
+    #menu ul li {
+        display: inline-block;
+        margin-right: 54px;
+        vertical-align: middle;
+    }
+    #menu ul li:has(.icon) { margin-right: 24px; }
+    #menu ul li .icon {
+        position: relative;
+        top: 4px;
+        height: var(--menu-icon-height);
+    }
 }
-#menu ul li:has(.icon) { margin-right: 24px; }
-#menu ul li .icon {
-    position: relative;
-    top: 4px;
-    height: var(--menu-icon-height);
+@media (max-width: 1024px) {
+    #menu .hamburger { display: inline-block; margin: 8px 24px 0 0; }
+    #menu ul { line-height: normal; }
+
+    .floating {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        border-radius: 12px;
+        padding: 0;
+        box-shadow: 0 0 5px;
+    }
+    .floating.open { padding: 12px; }
+    .floating li:has(.icon), .floating span:has(.icon) { display: inline; margin-right: 8px; }
+
+    #mainmenu {
+        position: absolute;
+        background: var(--menu-background);
+        width: 150px;
+        right: 24px;
+        top: 90px;
+    }
+    #mainmenu.open { border: 2px solid var(--background-2); }
 }
 
-.buttons { display: flex; }
+.buttons { display: flex; flex-wrap: wrap; }
 .buttons.center { justify-content: center; }
-.buttons a { background: var(--link-primary); }
 
 .buttons .secondary { background: var(--link-secondary); }
 .buttons .github, .buttons .rss {
@@ -242,24 +299,31 @@ footer ul li { margin-bottom: 8px; }
 .buttons .rss, .buttons a.rss:hover { background-image: url('/icons/rss.png'); background-position: 3px 1px; }
 
 .buttons a {
-    border-radius: 100px;
+    background: var(--link-primary);
     color: var(--button-font);
+    border-radius: 100px;
     padding: 12px 24px;
-    text-align: center;
-    vertical-align: middle;
-    margin-right: 30px;
+    margin: 12px 30px 0 0;
 }
 .buttons a:last-child, .buttons .github { margin-right: 0; }
 .buttons a:hover { background: var(--link-hover); color: var(--button-font); }
 .buttons a.github:hover { background: none; background-image: url('/icons/gh-project-hover.png'); }
 
+@media {
+    .buttons a { line-height: 2; }
+}
+
 /************************************************** ICONS AND MEDIA ***************************************************/
 [data-theme="default"] #themeswitcher:after  { content: url(/icons/d2l.png); }
-[data-theme="dark"] nav .github:after  { content: url(/icons/gh-menu-dark.png); }
-[data-theme="dark"] nav .slack:after  { content: url(/icons/slack-menu-dark.png); }
-[data-theme="light"] #themeswitcher:after  { content: url(/icons/l2d.png); }
-[data-theme="light"] nav .github:after  { content: url(/icons/gh-menu-light.png); }
-[data-theme="light"] nav .slack:after  { content: url(/icons/slack-menu-light.png); }
+[data-theme="default"] nav .github:after  { content: url(/icons/gh-menu-dark.png); }
+[data-theme="default"] nav .slack:after  { content: url(/icons/slack-menu-dark.png); }
+[data-theme="default"] nav .hamburger:after  { content: url(/icons/hamburger.png); }
+[data-theme="alternate"] #themeswitcher:after  { content: url(/icons/l2d.png); }
+[data-theme="alternate"] nav .github:after  { content: url(/icons/gh-menu-light.png); }
+[data-theme="alternate"] nav .slack:after  { content: url(/icons/slack-menu-light.png); }
+[data-theme="alternate"] nav .hamburger:after  { content: url(/icons/hamburger-light.png); }
+
+.hamburger { display: none; }  /* only use hamburger menus on mobile */
 
 .icon:before {
     vertical-align: middle;
@@ -274,9 +338,14 @@ footer .logo {
     margin-right: 18px;
 }
 
+@media (max-width: 1024px) {
+    footer img.logo { height: 66px; padding-bottom: 20px; }
+}
+
 .external:after {
     content: url(/icons/external.png);
     margin-left: 12px;
+    vertical-align: middle;
 }
 
 .youtube { margin-bottom: 24px; border-radius: 24px; }

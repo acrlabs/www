@@ -22,6 +22,9 @@
     --table-font-primary: #2c2c2c;
     --table-font-secondary: #000;
     --table-font-heading: #000;
+
+    --about-entry-height: 310px;
+    --table-border-radius: 12px;
 }
 
 [data-theme="alternate"] {
@@ -31,10 +34,6 @@
     --header-background: var(--background-1);
     --footer-background: var(--background-reversed);
     --menu-background: var(--background-reversed);
-
-    --link-primary: var(--accent-slate);
-    --link-secondary: #6a6a6a;
-    --link-hover: var(--accent-orange);
 
     --font-primary: #000;
     --font-secondary: #000;
@@ -50,6 +49,12 @@
     --table-font-heading: #fff;
 }
 
+@media (max-width: 1024px) {
+    :root {
+        --about-entry-height: 150px;
+    }
+}
+
 /*************************************************** HERO SECTION *****************************************************/
 .hero ul {
     list-style: none;
@@ -62,7 +67,7 @@
 }
 
 /*************************************************** ABOUT SECTION ****************************************************/
-.about .subsection h2 { padding-top: 24px; margin-bottom: 0; }
+.about .subsection h2 { margin-bottom: 0; }
 .about .subsection h3 {
     /* the nth-child rules seem to get evaluated last, even though this is
      * later in the cascade, hence the !important.  Since this is only used
@@ -76,15 +81,20 @@
     margin: 36px auto;
     font-size: var(--font-size-small);
 }
-.about .subsection img {
+.about .avatar {
     float: left;
     background-color: var(--background-reversed);
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    height: var(--about-entry-height);
-    width: var(--about-entry-height);
+    border-radius: var(--subsection-border-radius) 0 0 var(--subsection-border-radius);
+
+    /* hack to get the image to appear in the center */
+    display: flex;
+    align-items: center;
 }
-.about .subsection p { margin: 0; padding-right: 24px; }
+.about .avatar img {
+    width: var(--about-entry-height);
+    height: var(--about-entry-height);
+}
+.about .bio { margin: 24px; }
 
 /******************************************************* TABLES *******************************************************/
 table {
@@ -112,11 +122,6 @@ table td:first-child {
 }
 
 /************************************************** ICONS AND MEDIA ***************************************************/
-[data-theme="default"] #themeswitcher:after  { content: url(/icons/d2l.png); }
-[data-theme="default"] nav .github:after  { content: url(/icons/gh-menu-dark.png); }
-[data-theme="alternate"] #themeswitcher:after  { content: url(/icons/l2d.png); }
-[data-theme="alternate"] nav .github:after  { content: url(/icons/gh-menu-light.png); }
-
 .scale:before { content: url(/icons/scale.png); }
 .expertise:before { content: url(/icons/expertise.png); }
 .solutions:before { content: url(/icons/solutions.png); }

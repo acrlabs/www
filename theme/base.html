@@ -24,41 +24,44 @@
   <body>
     <header>
       <nav id="menu">
-        <div class="homelink">
+        <div class="home">
           <a href="{{ config.site_url }}">
             <img src="{{ config.theme.logo_path }}"/>
-            <span>{{ config.site_name }}</span>
+            <h2>{{ config.site_name }}</h2>
           </a>
         </div>
-        <ul>
-          {%- for item in config.theme.menu.links -%}
-            {%- set name -%}
-              {%- if item is mapping -%}
-              {{ item.keys() | first }}
-              {%- else -%}
-              {{ item }}
-              {%- endif -%}
-            {%- endset -%}
-            {%- set path -%}
-              {%- if item is mapping -%}
-              {{ item.values() | first }}
-              {%- else -%}
-              {{ item | lower }}
-              {%- endif -%}
-            {%- endset -%}
-            <li><a href="/{{ path }}/">
-              {%- if name is lower -%}
-                {{ name | capitalize }}
-              {%- else -%}
-                {{ name }}
-              {%- endif -%}</a>
-            </a></li>
-          {%- endfor -%}
-          {%- if config.theme.menu.icons -%}
-            <li><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;"></a></li>
-            <li><a class="github icon" href="{{ config.repo_url }}"></a></li>
-          {%- endif -%}
-        </ul>
+        <div class="links">
+          <a href="#" onclick="toggleDropdown('mainmenu'); return false;"><span class="hamburger"></span></a>
+          <ul id="mainmenu" class="floating">
+            {%- for item in config.theme.menu.links -%}
+              {%- set name -%}
+                {%- if item is mapping -%}
+                {{ item.keys() | first }}
+                {%- else -%}
+                {{ item }}
+                {%- endif -%}
+              {%- endset -%}
+              {%- set path -%}
+                {%- if item is mapping -%}
+                {{ item.values() | first }}
+                {%- else -%}
+                {{ item | lower }}
+                {%- endif -%}
+              {%- endset -%}
+              <li><a href="/{{ path }}/">
+                {%- if name is lower -%}
+                  {{ name | capitalize }}
+                {%- else -%}
+                  {{ name }}
+                {%- endif -%}</a>
+              </a></li>
+            {%- endfor -%}
+            {%- if config.theme.menu.icons -%}
+              <li><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;"></a></li>
+              <li><a class="github icon" href="{{ config.repo_url }}"></a></li>
+            {%- endif -%}
+          </ul>
+        </div>
       </nav>
     </header>
 

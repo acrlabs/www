@@ -18,9 +18,11 @@ open-source-first company; our work is, and will always be, available and open t
 ## Who are we?
 
 <div class="subsection" markdown="1">
-<img src="/img/people/drmorr.png" alt="A grumpy red robot, upside down">
+<div class="avatar">
+  <img src="/img/people/drmorr.png" alt="A grumpy red robot, upside down">
+</div>
 
-<div markdown="1">
+<div class="bio" markdown="1">
 ## David R. Morrison
 ### Founder
 drmorr is the founder of ACRL, and is a computer scientist, researcher, and software engineer focused on problems in
