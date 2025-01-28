@@ -36,7 +36,9 @@ markdown_extensions:
   - pymdownx.snippets:     # include contents of one file in another (used for interactive bokeh plots)
       check_paths: true
       base_path:
-        - temp_dir
+        - include
+      auto_append:
+        - glossary.md
   - pymdownx.superfences:  # parse mermaid code fences and executable code blocks
       custom_fences:
         - name: mermaid

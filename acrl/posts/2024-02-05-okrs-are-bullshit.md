@@ -178,3 +178,5 @@ Thanks for reading,
     thank you.  Even if you do use a few too many spreadsheets.
 
 [^8]: Now there's a statement I never expected I would utter.
+
+*[OKR] Objective and Key Result

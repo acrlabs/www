@@ -25,6 +25,7 @@ hooks:
   - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
   - hooks/empty_cells.py   # remove (erroneous) empty table cells
 markdown_extensions:
+  - abbr
   - footnotes              # footnotes, duh
   - md_in_html             # parse markdown inside HTML tags
   - pymdownx.highlight     # code highlighting
@@ -37,6 +38,9 @@ markdown_extensions:
       check_paths: true
       base_path:
         - acrl
+        - include
+      auto_append:
+        - glossary.md
   - smarty                 # smart quotes/em dashes/etc
 validation:
   links:
