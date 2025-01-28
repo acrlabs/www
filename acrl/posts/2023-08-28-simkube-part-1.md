@@ -96,7 +96,7 @@ if we wanted to change the analysis or look at something different, I had to go 
 not be sustainable.
 
 After that experience, I took a pretty hard-line "simulation is impossible" stance for a few years, but I've recently
-been revisiting that position. Maybe this is because I've matured8 as a developer and realized that saying something is
+been revisiting that position. Maybe this is because I've matured[^8] as a developer and realized that saying something is
 "impossible" isn't helpful, but also maybe this is because the existence of tools like Kubernetes-in-Docker (aka kind)
 make it possible to actually run a full-fledged distributed cluster _locally_ with all the "real" control-plane
 components present. This solves the first (and, imo, the hardest) issue that I ran into with the Clusterman

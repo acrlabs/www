@@ -1,6 +1,6 @@
 ---
 title: "KubeCon Recap, Part 4: My favorite talks"
-authors: 
+authors:
   - drmorr
 datetime: 2023-12-11 11:00:00
 template: post.html
@@ -14,7 +14,7 @@ highlight a few of my favorites.
 
 [Video Link](https://www.youtube.com/watch?v=OtigVP3lRh4)
 
-I [already did a deep dive](./2023-11-20-kubecon-recap-part-2.html) on one of the talks from the contributor summit (I
+I [already did a deep dive](./2023-11-20-kubecon-recap-part-2.md) on one of the talks from the contributor summit (I
 added a link to the video from that post), but my other favorite contributor summit talk was by Jordan Liggitt, talking
 about the challenges of keeping your Kubernetes install up to date.  In multiple previous lives, I've experienced the
 pain of a) running an old Kubernetes version and b) trying to get off that old version onto a supported version.  It's

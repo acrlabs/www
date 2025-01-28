@@ -47,3 +47,6 @@ markdown_extensions:
       baselevel: 2         # page contents headings start at h2
 nav:
   - SimKube: '!import file:///home/drmorr/tmp/simkube?extra_imports=["CODE_OF_CONDUCT.md"]&config=docs/mkdocs.yml'
+validation:
+  nav:
+    omitted_files: ignore

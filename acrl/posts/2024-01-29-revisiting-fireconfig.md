@@ -14,7 +14,7 @@ template: post.html
 
 This past week, now that I'm done with grant proposals and such, I wanted to dive back into technical work, but I really
 wasn't feeling excited about picking up SimKube again.  I wanted something that was a little more frivolous, so I
-decided to pick up one of my toy side projects, 🔥Config.  You may recall that I [blogged about 🔥Config](doing-kubernetes-configuration-good.md)
+decided to pick up one of my toy side projects, 🔥Config.  You may recall that I [blogged about 🔥Config](./2023-08-07-doing-kubernetes-configuration-good.md)
 way back in the beginning of my whole endeavour, and it's mostly been accomplishing what I wanted and staying out of my
 way otherwise since then.  I've made a few small improvements, but the initial goal of "publish Kubernetes manifests
 without having to deal with YAML" has been, I'd say, successful.

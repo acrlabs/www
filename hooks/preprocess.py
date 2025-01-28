@@ -1,9 +1,14 @@
+import logging
+
+log = logging.getLogger(f"mkdocs.plugins.{__name__}")
+
 COMMENT_OPEN = "<!--\n"
 COMMENT_CLOSE = "-->\n"
 YAML_META_TAG = "---\n"
 
+
 # Replace HTML comment markers at the beginning of the file
-# with YAML metadata tags, e.g., 
+# with YAML metadata tags, e.g.,
 #
 #   <!--
 #   foo: bar
@@ -17,7 +22,6 @@ YAML_META_TAG = "---\n"
 #
 # The opening lines must match EXACTLY, e.g., no white space at the end.
 def on_page_read_source(page, config):
-    print(page.file.abs_src_path)
     with open(page.file.abs_src_path) as f:
         lines = f.readlines()
         if lines[0] == COMMENT_OPEN:
@@ -27,20 +31,20 @@ def on_page_read_source(page, config):
 
         indent_next = False
         for i in range(len(lines)):
-            if lines[i].startswith('> [!WARNING]'):
-                print('translating warning')
-                lines[i] = lines[i].replace('> [!WARNING]', '!!! warning')
+            if lines[i].startswith("> [!WARNING]"):
+                log.info(f"translating warning in {page.title}")
+                lines[i] = lines[i].replace("> [!WARNING]", "!!! warning")
                 indent_next = True
-            elif lines[i].startswith('> [!NOTE]'):
-                print('translating note')
-                lines[i] = lines[i].replace('> [!NOTE]', '!!! note')
+            elif lines[i].startswith("> [!NOTE]"):
+                log.info(f"translating note in {page.title}")
+                lines[i] = lines[i].replace("> [!NOTE]", "!!! note")
                 indent_next = True
             elif indent_next:
-                if lines[i].strip() == '':
+                if lines[i].strip() == "":
                     indent_next = False
                 else:
-                    if lines[i][0] == '>':
+                    if lines[i][0] == ">":
                         lines[i] = lines[i][1:]
-                    lines[i] = '    ' + lines[i].strip()
+                    lines[i] = "    " + lines[i].strip()
 
-        return ''.join(lines)
+        return "".join(lines)

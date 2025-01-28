@@ -97,10 +97,10 @@ pithy, maybe not as exciting-sounding, but I'm hoping that it will pay off for m
 sure you're solving the right problems."
 
 As with everything in life there are always tradeoffs.  If you move too slowly, you're going to miss your window of
-opportunity; the world will have moved on[^9].  But if you move too fast, all you're gonna get is a trail of broken
+opportunity; the world will have moved on[^7].  But if you move too fast, all you're gonna get is a trail of broken
 toys.  So in the work that I've been doing for the past year, I've tried really hard to make sure that I'm solving the
 right problems, and then spend time solving those problems the right way.  For example, SimKube has ~75% test coverage,
-and CI pipelines that work[^10].  Why?  Why bother, when nobody's using it except me right now?  Couldn't I have made
+and CI pipelines that work[^8].  Why?  Why bother, when nobody's using it except me right now?  Couldn't I have made
 more progress on SimKube by moving faster and ignoring that stuff?  Yes, absolutely, but also SimKube would not be
 nearly as robust as it is right now.  Spending the time to do the basic stuff right, right now, will (I _hope_) have
 compounding returns for me in the future.
@@ -125,7 +125,7 @@ The other strategy I take here is to isolate or abstract the broken system; mayb
 gross, but I don't have time or the ability to fix it right now.  I stuff that sucker behind a "clean" abstraction layer
 and then write a bunch of tests around the abstraction layer to make sure it's behaving correctly.  That way, the
 brokenness isn't visible from the outside, and in the future it's easy for me to _fix_ the broken component without
-impacting the rest of the system[^11].
+impacting the rest of the system[^9].
 
 So what's the point of all this?  Aside from me getting another opportunity to rant about the state of the industry, I
 guess I'm hoping I can popularize a new motto: "move fast; solve the right problems; pay someone else to solve the
@@ -156,18 +156,12 @@ Thanks for reading, and I hope you're all enjoying your summer!
     update](https://arstechnica.com/information-technology/2024/07/crowdstrike-fixes-start-at-reboot-up-to-15-times-and-get-more-complex-from-there/)
     whether they like broken things.
 
-[^7]: 30-second review: I generally agreed with the content, but I felt like it didn't go deep enough.  Lots of pithy
-    advice and aphorisms, relatively light on the "How do you actually apply this when you're working in a company with
-    30 years of technical debt and limited support from upper management to make things better."
-
-[^8]: Which studies?  [Top.  Studies.](https://www.youtube.com/watch?v=Fdjf4lMmiiI)
-
-[^9]: I'm re-reading [The Dark Tower series](https://www.amazon.com/The-Dark-Tower-I-Stephen-King-audiobook/dp/B019NOJ4JG/ref=sr_1_1)
+[^7]: I'm re-reading [The Dark Tower series](https://www.amazon.com/The-Dark-Tower-I-Stephen-King-audiobook/dp/B019NOJ4JG/ref=sr_1_1)
     by Stephen King, which is another book with lots of great sayings and wisdom.
 
-[^10]: And ok, look, I'm using "test coverage" and "CI pipelines" as proxies here.  Having high test coverage for the
+[^8]: And ok, look, I'm using "test coverage" and "CI pipelines" as proxies here.  Having high test coverage for the
     sake of high test coverage is a waste of time.  You have to make sure you're testing the right things.  Having a CI
     pipeline for the sake of having a CI pipeline is a waste of time.  You have a CI pipeline so that you can make sure
     your product is meeting the reliability bar that you've set for it.  Don't at me.
 
-[^11]: _And_, because I already wrote the tests, it's easy to verify that I fixed the broken part.
+[^9]: _And_, because I already wrote the tests, it's easy to verify that I fixed the broken part.

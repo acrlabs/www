@@ -24,4 +24,4 @@ Alternately, email us at [simkube@appliedcomputing.io](mailto:simkube@appliedcom
 ## Community Guidelines
 
 Applied Computing Research Labs has a strict code of conduct we expect all contributors to adhere to. Please read the
-[full text](/simkube/CODE_OF_CONDUCT) so that you understand the expectations upon you as a contributor.
+[full text](simkube/CODE_OF_CONDUCT.md) so that you understand the expectations upon you as a contributor.

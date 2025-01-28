@@ -32,7 +32,7 @@ Berkeley
 
 [**Link to the paper**](https://www.usenix.org/system/files/nsdi24-wu-zhanghao.pdf)
 
-I was immediately intrigued by this talk, since my first "real" job at Yelp was dealing with spot instance management ,
+I was immediately intrigued by this talk, since my first "real" job at Yelp was dealing with spot instance management[^3],
 and I've spent a bunch of time since then trying to build systems to reason about spot instances.  The [gRPC
 expander](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/proposals/expander-plugin-grpc.md) my
 colleague Evan at Airbnb built was also designed to help us autoscale and manage spot instances.  So I was very curious

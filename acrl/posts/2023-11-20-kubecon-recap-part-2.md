@@ -1,6 +1,6 @@
 ---
 title: "KubeCon Recap, Part 2: Two Kubernetes Tales"
-authors: 
+authors:
   - drmorr
 datetime: 2023-11-20 11:00:00
 template: post.html
@@ -20,7 +20,7 @@ you can't complain once in a while?  So let's jump in.
 The talk I'm going to cover today was entitled [Everything is Awful: Kubernetes Devil's
 Advocate](https://kcsna2023.sched.com/event/1SpAy/everything-is-awful-kubernetes-devils-advocate), by Flynn at
 [Bouyant](https://ccoss.org/speakers/flynn/) ([video link](https://www.youtube.com/watch?v=Xsyn5AWxjJs).  It was an
-exceptional talk and I definitely recommend watching the recording.  The high-level premise of the talk is that
+exceptional talk and I definitely recommend watching the recording[^1].  The high-level premise of the talk is that
 Kubernetes is complicated and the API is awful[^2].  Flynn took a very basic example of "I want to deploy a pod running
 a 'Hello, world' webserver" and walked through the steps needed to make that happen.  To anybody who's worked with
 Kubernetes, this is easy: just stick the pod spec in a deployment, apply it, boom!  You're done.
@@ -162,7 +162,7 @@ hoping".  How is this considered acceptable?  How does _anybody_ learn how to do
 ## Summing up: I guess Everything _really is_ Terrible
 
 So where do we go from here?  I think, as an industry, we need to take a _massive_ step back and provide developers with
-tooling to make it easier to get their jobs done.  We are collapsing under the mountain of YAML and `kubectl` commands 
+tooling to make it easier to get their jobs done.  We are collapsing under the mountain of YAML and `kubectl` commands
 that we've built up, and we just keep piling more on top[^13].  Now don't get me wrong: all of the features that we've
 built into Kubernetes are important and necessary and useful.  But they're not all important and necessary and useful to
 _everybody_ in _every setting_, and understanding which ones are important in which settings is _very very hard to do_.
@@ -215,7 +215,7 @@ Thanks for reading,
     it up and use it".
 
 [^7]: I pointed my friend towards [kubectx](https://github.com/ahmetb/kubectx) and
-    [kube-ps1](https://github.com/jonmosco/kube-ps1), which provide functionality that is, in my opinion, table stakes 
+    [kube-ps1](https://github.com/jonmosco/kube-ps1), which provide functionality that is, in my opinion, table stakes
     for the Kubernetes user interface.  Why these aren't built directly into `kubectl` is beyond me.
 
 [^8]: I was having a conversation with a (different) friend a while back who made the observation that the difference

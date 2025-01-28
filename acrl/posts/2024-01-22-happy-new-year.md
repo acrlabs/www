@@ -1,6 +1,6 @@
 ---
 title: "2020 IV: A New Hope"
-authors: 
+authors:
   - drmorr
 datetime: 2024-01-22 11:00:00
 template: post.html
@@ -8,7 +8,7 @@ template: post.html
 
 <figure markdown>
   ![A collection of people and droids, some of them carrying lightsabers, underneath a fleet of giant spaceships with
-  legs in improbable configurations.  The caption reads "Teenty Teety A New VIV Hope" in approximately Star Wars font.](/img/posts/anewhope.jpg) 
+  legs in improbable configurations.  The caption reads "Teenty Teety A New VIV Hope" in approximately Star Wars font.](/img/posts/anewhope.jpg)
   <figcaption>We ended last year with a cursed Star Trek image so I figured we should start this year with a cursed Star
   Wars image.  Created by Bing Image Creator.</figcaption>
 </figure>
@@ -77,7 +77,7 @@ So what makes me think that I have what it takes to be a professional open-sourc
 of hubris, I do think we are beginning to see some changes in our industry.  The success of CNCF and Kubernetes has
 really shown the world that open-source products can have a lot more value than (badly) re-inventing the same wheel at
 every single corporation.  Couple this with a number of high-profile incidents around poorly-funded but highly important
-open-source projects ([leftpad](https://qz.com/646467/how-one-programmer-broke-the-internet-by-deleting-a-tiny-piece-of-code), 
+open-source projects ([leftpad](https://qz.com/646467/how-one-programmer-broke-the-internet-by-deleting-a-tiny-piece-of-code),
 [heartbleed](https://heartbleed.com), [log4j](https://theconversation.com/what-is-log4j-a-cybersecurity-expert-explains-the-latest-internet-vulnerability-how-bad-it-is-and-whats-at-stake-173896))
 , and I think we are beginning to see a shift in the mindset of folks in tech.  Specifically, my hypothesis is that as
 an industry, we are now more willing than ever to pay for open-source development, and I predict/hope that this trend
@@ -125,7 +125,7 @@ not the work itself.
 Now that you have an understanding of my business model, such as it is, let's talk about "what success looks like".  The
 conventional figure I've heard in the industry is that a software engineer costs about $250,000 per year, once you
 factor in salary and benefits.  And even that number is low if you look at high-paying companies like Google or
-Facebook, particularly if you get lots of stock benefits as a part of employment.  But we don't have stock at ACRL[^5], 
+Facebook, particularly if you get lots of stock benefits as a part of employment.  But we don't have stock at ACRL[^5],
 and I'm not interested in becoming a billionaire, so let's stick with that $250k number for now.
 
 I do want to grow the company this year---if we could double in size that would be amazing!  And I'd like to have about

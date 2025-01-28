@@ -38,3 +38,6 @@ markdown_extensions:
       base_path:
         - acrl
   - smarty                 # smart quotes/em dashes/etc
+validation:
+  links:
+    absolute_links: relative_to_docs
