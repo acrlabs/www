@@ -143,6 +143,45 @@ table td:first-child {
 .post hr { clear: both; margin: 0; }
 .post article { width: 75%; margin: 0 auto; }
 
+/******************************************************** FORM ********************************************************/
+#contactform { max-width: 600px; margin: auto; }
+#contactform input, #contactform textarea {
+    width: 100%;
+    margin-bottom: 20px;
+}
+#contactform input {
+    height: 42px;
+    border-radius: 75px;
+    font-size: var(--font-size-normal);
+    text-indent: 12px;
+}
+#contactform textarea {
+    height: 180px;
+    border-radius: 24px;
+    font-size: var(--font-size-normal);
+    text-indent: 12px;
+    padding-top: 12px;
+}
+
+#vegetable { display: none; }
+
+#result {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+    border: 1px black solid;
+    color: black;
+}
+
+.error, .success {
+    padding: 5px;
+    display: block;
+}
+
+.error { background: darkorange; }
+.success { background: lightgreen; }
+
+
 /************************************************** ICONS AND MEDIA ***************************************************/
 .scale:before { content: url(/icons/scale.png); }
 .expertise:before { content: url(/icons/expertise.png); }

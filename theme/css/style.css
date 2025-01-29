@@ -296,7 +296,7 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
     margin-left: auto;
 }
 
-.buttons a {
+.buttons a, button {
     background: var(--link-primary);
     color: var(--button-font);
     border-radius: 100px;
@@ -304,7 +304,14 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
     margin: 12px 30px 0 0;
 }
 .buttons a:last-child, .buttons .github { margin-right: 0; }
-.buttons a:hover { background: var(--link-hover); color: var(--button-font); }
+.buttons a:hover, button:hover { background: var(--link-hover); color: var(--button-font); }
+
+button {
+    border: 0;
+    font-family: "B612";
+    width: 100%;
+    font-size: var(--font-size-normal);
+}
 
 @media {
     .buttons a { line-height: 2; }
