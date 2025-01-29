@@ -61,6 +61,7 @@ main h3 { text-align: left; }
     background: var(--header-background);
     text-align: center;
 }
+.hero p { width: 90%; margin-left: auto; margin-right: auto; }
 
 .hero h1, .hero h2, .hero h3, .hero h4, .hero h5, .hero h6 { color: #fff; }
 

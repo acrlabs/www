@@ -2,14 +2,14 @@
 
 {% block extra_headers %}
     <script>var base_url = {{ base_url|tojson }};</script>
-    <script type="text/javascript" src="search/main.js" defer></script>
+    <script type="text/javascript" src="/search/main.js" defer></script>
 {% endblock %}
 
 {% block content %}
-
+<main>
   <h1 id="search">{% trans %}Search Results{% endtrans %}</h1>
 
-  <form id="content_search" action="/search.html">
+  <form id="content_search" action="/search/index.html">
     <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
     <input name="q" id="mkdocs-search-query" type="text"  placeholder="Search the Docs" aria-label="Search the Docs" autocomplete="off" autofocus title="Type search term here">
   </form>
@@ -17,5 +17,5 @@
   <div id="mkdocs-search-results" class="search-results" data-no-results-text="{% trans %}No results found{% endtrans %}">
     {% trans %}Searching...{% endtrans %}
   </div>
-
+</main>
 {% endblock %}

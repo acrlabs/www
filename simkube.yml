@@ -29,6 +29,7 @@ hooks:
   - hooks/preprocess.py    # convert GH-style markdown to mkdocs-style markdown (headings and such)
   - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
 markdown_extensions:
+  - abbr                   # common abbreviations
   - admonition             # notes/warnings in documentation
   - md_in_html             # parse markdown inside HTML tags
   - pymdownx.blocks.html
