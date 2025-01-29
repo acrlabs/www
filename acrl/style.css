@@ -121,6 +121,28 @@ table td:first-child {
     background: var(--table-background-secondary);
 }
 
+/******************************************************** POSTS *******************************************************/
+.posts h1 { display: inline-block; text-align: center; width: 100%; }
+.posts .rss, .postmeta .rss {
+    border-radius: 100px;
+    float: right;
+    position: absolute;
+}
+.posts .rss { right: 2.5%; }
+.postmeta .rss { right: 5%; margin-top: -3px; }
+
+.postmeta { padding: 12px 0; }
+.postmeta .avatar {
+    float: left;
+    max-height: 50px; /* matches the RSS logo height */
+    background-color: var(--background-reversed);
+    border-radius: var(--subsection-border-radius);
+    margin: -3px 12px 0 0;
+}
+.postmeta .timestamp { font-style: italic; }
+.post hr { clear: both; margin: 0; }
+.post article { width: 75%; margin: 0 auto; }
+
 /************************************************** ICONS AND MEDIA ***************************************************/
 .scale:before { content: url(/icons/scale.png); }
 .expertise:before { content: url(/icons/expertise.png); }

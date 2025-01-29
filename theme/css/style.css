@@ -295,8 +295,6 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
     padding: 0;
     margin-left: auto;
 }
-.buttons .github { background-image: url('/icons/gh-project.png'); }
-.buttons .rss, .buttons a.rss:hover { background-image: url('/icons/rss.png'); background-position: 3px 1px; }
 
 .buttons a {
     background: var(--link-primary);
@@ -307,21 +305,25 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
 }
 .buttons a:last-child, .buttons .github { margin-right: 0; }
 .buttons a:hover { background: var(--link-hover); color: var(--button-font); }
-.buttons a.github:hover { background: none; background-image: url('/icons/gh-project-hover.png'); }
 
 @media {
     .buttons a { line-height: 2; }
 }
 
 /************************************************** ICONS AND MEDIA ***************************************************/
-[data-theme="default"] #themeswitcher:after  { content: url(/icons/d2l.png); }
-[data-theme="default"] nav .github:after  { content: url(/icons/gh-menu-dark.png); }
-[data-theme="default"] nav .slack:after  { content: url(/icons/slack-menu-dark.png); }
-[data-theme="default"] nav .hamburger:after  { content: url(/icons/hamburger.png); }
-[data-theme="alternate"] #themeswitcher:after  { content: url(/icons/l2d.png); }
-[data-theme="alternate"] nav .github:after  { content: url(/icons/gh-menu-light.png); }
-[data-theme="alternate"] nav .slack:after  { content: url(/icons/slack-menu-light.png); }
-[data-theme="alternate"] nav .hamburger:after  { content: url(/icons/hamburger-light.png); }
+[data-theme="default"] #themeswitcher { content: url(/icons/d2l.png); }
+[data-theme="default"] nav .github { content: url(/icons/gh-menu-dark.png); }
+[data-theme="default"] .slack { content: url(/icons/slack-menu-dark.png); }
+[data-theme="default"] .hamburger { content: url(/icons/hamburger.png); }
+[data-theme="alternate"] #themeswitcher { content: url(/icons/l2d.png); }
+[data-theme="alternate"] nav .github { content: url(/icons/gh-menu-light.png); }
+[data-theme="alternate"] .slack { content: url(/icons/slack-menu-light.png); }
+[data-theme="alternate"] .hamburger { content: url(/icons/hamburger-light.png); }
+
+/* we have different github icons for nav versus in-page */
+.buttons .github { content: url('/icons/gh-project.png'); }
+.buttons a.github:hover { content: url('/icons/gh-project-hover.png'); }
+.rss { content: url(/icons/rss.png); }
 
 .hamburger { display: none; }  /* only use hamburger menus on mobile */
 

@@ -16,7 +16,7 @@ theme:
       - FAQ: simkube/docs/faq
       - about
   static_templates:
-    - search.html
+    - search/index.html
 extra_css:
   - style.css
 plugins:
