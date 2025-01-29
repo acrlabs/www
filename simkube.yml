@@ -28,6 +28,7 @@ hooks:
   - hooks/jinja_regex.py   # TODO is this needed?
   - hooks/preprocess.py    # convert GH-style markdown to mkdocs-style markdown (headings and such)
   - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
+  - hooks/changelog.py
 markdown_extensions:
   - abbr                   # common abbreviations
   - admonition             # notes/warnings in documentation
@@ -38,6 +39,7 @@ markdown_extensions:
       check_paths: true
       base_path:
         - include
+        - temp_dir
       auto_append:
         - glossary.md
   - pymdownx.superfences:  # parse mermaid code fences and executable code blocks
@@ -49,7 +51,7 @@ markdown_extensions:
   - toc:                   # generate table of contents
       baselevel: 2         # page contents headings start at h2
 nav:
-  - SimKube: '!import file:///home/drmorr/tmp/simkube?extra_imports=["CODE_OF_CONDUCT.md"]&config=docs/mkdocs.yml'
+  - SimKube: '!import file:///home/drmorr/tmp/simkube?extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
 validation:
   nav:
     omitted_files: ignore

@@ -16,8 +16,8 @@ template: base.html
 
 <div class="flex twocols" markdown="1">
 <div markdown="1">
-## Why SimKube?
-### Stop Guessing at your Scale--Simulate it!
+# Why SimKube?
+## Stop Guessing at your Scale--Simulate it!
 
 Simulate Kubernetes clusters to test, explore, and optimize workloads in a risk-free environment. It’s built to help you
 understand and solve real-world Kubernetes challenges before they hit production.
@@ -33,11 +33,7 @@ image goes here
 image goes here
 </div>
 
-<div markdown="1">
-## What's New?
-### SimKube 1.0
-
-* Added Things
-* Fixed Bugs
-</div>
+<div class="changelog" markdown="1">
+# What's New in SimKube?
+<!-- INSERT CHANGELOG -->
 </div>
