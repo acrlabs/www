@@ -3,6 +3,7 @@ site_name: SimKube
 site_url: "https://simkube.dev/"
 repo_url: "https://github.com/acrlabs/simkube"
 docs_dir: simkube
+site_dir: site/simkube
 dev_addr: 127.0.0.1:8001
 theme:
   name: null
@@ -51,7 +52,7 @@ markdown_extensions:
   - toc:                   # generate table of contents
       baselevel: 2         # page contents headings start at h2
 nav:
-  - SimKube: '!import file:///home/drmorr/tmp/simkube?extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
+  - SimKube: '!import https://github.com/acrlabs/simkube?branch=drmorr/docs-next&extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
 validation:
   nav:
     omitted_files: ignore
