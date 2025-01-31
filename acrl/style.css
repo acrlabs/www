@@ -98,10 +98,12 @@
 
 /******************************************************* TABLES *******************************************************/
 table {
-    width: 85%;
     margin: 0 auto var(--section-spacing) auto;
     table-layout: fixed;
     font-size: var(--font-size-small);
+}
+@media (min-width: 1024px) {
+    table { width: 85%; }
 }
 
 table th { color: var(--table-font-heading); font-weight: normal; }
@@ -111,6 +113,9 @@ table:nth-of-type(4n+3) th { background: var(--accent-orange); }
 table:nth-of-type(4n+4) th { background: var(--accent-purple); }
 
 table th, table td { padding: 12px 24px; }
+@media (max-width: 1024px) {
+    table th, table td { padding: 12px; }
+}
 
 table td {
     color: var(--table-font-primary);
@@ -127,6 +132,8 @@ table td:first-child {
     border-radius: 100px;
     float: right;
     position: absolute;
+    height: var(--link-icon-size);
+    width: var(--link-icon-size);
 }
 .posts .rss { right: 2.5%; }
 .postmeta .rss { right: 5%; margin-top: -3px; }

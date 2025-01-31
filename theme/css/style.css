@@ -61,12 +61,14 @@
     --accent-orange: #ec8a3b;
     --accent-purple: #9e70c2;
     --accent-slate: #527a92;
+
+    --link-icon-size: 40px;
 }
 
 @media (max-width: 1024px) {
     :root {
         --font-size-regular: 18px;
-        --font-size-small: 12px;
+        --font-size-small: 16px;
     }
 }
 
@@ -123,7 +125,7 @@ section, footer {
      */
     width: 100vw;
     box-sizing: border-box;
-    padding: var(--section-spacing) calc(50vw - var(--content-width) / 2);
+    padding: var(--section-spacing) calc(max(12px, 50vw - var(--content-width) / 2));
     margin-left: min(0px, var(--content-width) / 2 - 50vw);
 }
 
@@ -167,14 +169,16 @@ footer {
     color: var(--footer-font-primary);
     font-size: var(--font-size-small);
     flex-wrap: wrap;
+    gap: 40px;
 }
 footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--footer-font-secondary); }
 footer ul { list-style-type: none; }
 footer ul li { margin-bottom: 8px; }
-footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile view */
+footer > div { flex: 1; }  /* clear: both used in the mobile view */
 
 @media (max-width: 1024px) {
-    footer > div {
+    footer > div { flex-basis: 25%; }
+    footer > div:first-child {
         flex-shrink: 1;
         flex-basis: 100%;
     }
@@ -188,21 +192,17 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
     display: flex;
     flex-wrap: wrap;
     width: 90%;
-    margin: 36px auto 0 auto;
+    margin: 36px auto 30px auto;
+    gap: 30px;
 }
+.flex > div { margin: 0; }
 .subsection .flex { width: 100%; }
 
 @media (min-width: 1024px) {
-    .flex > div { flex: 1; margin: 0 15px 0 15px; }
-    .flex > div:first-child { margin: 0 15px 0 0; }
-    .flex > div:last-child { margin: 0 0 0 15px; }
-
     .flex.twocols > div {
         flex: 1 35%;
         max-width: 50%;
     }
-    .flex.twocols > div:nth-child(odd) { margin: 0 15px 30px 0; }   /* odds on the left */
-    .flex.twocols > div:nth-child(even) { margin: 0 0 30px 15px; }  /* evens on the right */
 }
 
 @media (max-width: 1024px) {
@@ -210,19 +210,6 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
 }
 
 /************************************************ NAVIGATION ELEMENTS *************************************************/
-
-/*
- * It's not 100% clear how all these different pieces are interacting, but
- * this is what I had to do to get the menu to look right.  The height of the
- * menu bar is set to the same as the line-height, which lets the vertical-align: middle
- * field work for the text (however, for some reason it seems not to be needed for the
- * ACRL text on the left).
- *
- * The logo image is manually positioned using margins; however, the github and the
- * light/dark icons couldn't use margins because that pushed the rest of the menu items
- * down, so I manually adjust their position slightly.  It's hacky but seems to look OK.
- */
-
 #menu {
     width: 95%;
     height: var(--menu-height);
@@ -247,6 +234,17 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
 #menu ul { list-style-type: none; }
 
 @media (min-width: 1024px) {
+    /*
+     * It's not 100% clear how all these different pieces are interacting, but
+     * this is what I had to do to get the menu to look right.  The height of the
+     * menu bar is set to the same as the line-height, which lets the vertical-align: middle
+     * field work for the text (however, for some reason it seems not to be needed for the
+     * ACRL text on the left).
+     *
+     * The logo image is manually positioned using margins; however, the github and the
+     * light/dark icons couldn't use margins because that pushed the rest of the menu items
+     * down, so I manually adjust their position slightly.  It's hacky but seems to look OK.
+     */
     #menu ul li {
         display: inline-block;
         margin-right: 54px;
@@ -260,7 +258,11 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
     }
 }
 @media (max-width: 1024px) {
-    #menu .hamburger { display: inline-block; margin: 8px 24px 0 0; }
+    #menu .hamburger {
+        display: inline-block;
+        margin-right: 24px;
+        vertical-align: middle;
+    }
     #menu ul { line-height: normal; }
 
     .floating {
@@ -284,14 +286,19 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
     #mainmenu.open { border: 2px solid var(--background-2); }
 }
 
-.buttons { display: flex; flex-wrap: wrap; }
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
 .buttons.center { justify-content: center; }
 
 .buttons .secondary { background: var(--link-secondary); }
 .buttons .github, .buttons .rss {
     background: none;
-    width: 54px;
-    height: 54px;
+    width: var(--link-icon-size);
+    height: var(--link-icon-size);
     padding: 0;
     margin-left: auto;
 }
@@ -301,7 +308,6 @@ footer > div { margin: 0 20px; flex: 1; }  /* clear: both used in the mobile vie
     color: var(--button-font);
     border-radius: 100px;
     padding: 12px 24px;
-    margin: 12px 30px 0 0;
 }
 .buttons a:last-child, .buttons .github { margin-right: 0; }
 .buttons a:hover, button:hover { background: var(--link-hover); color: var(--button-font); }
@@ -311,10 +317,6 @@ button {
     font-family: "B612";
     width: 100%;
     font-size: var(--font-size-normal);
-}
-
-@media {
-    .buttons a { line-height: 2; }
 }
 
 /************************************************** ICONS AND MEDIA ***************************************************/
@@ -348,7 +350,7 @@ footer .logo {
 }
 
 @media (max-width: 1024px) {
-    footer img.logo { height: 66px; padding-bottom: 20px; }
+    footer img.logo { height: 72px; padding-bottom: 20px; }
 }
 
 .external:after {
@@ -357,4 +359,8 @@ footer .logo {
     vertical-align: middle;
 }
 
-.youtube { margin-bottom: 24px; border-radius: 24px; }
+.youtube {
+    margin-bottom: 24px;
+    border-radius: 24px;
+    max-width: 90%;
+}

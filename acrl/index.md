@@ -13,7 +13,7 @@ template: base.html
     </ul>
     <div class="buttons">
       <a href="">View Demo</a>
-      <a class="secondary" href="">Partner with Us</a>
+      <a class="secondary" href="/contact/">Partner with Us</a>
     </div>
   </div>
 
