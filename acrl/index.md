@@ -28,23 +28,23 @@ template: base.html
   <div class="flex twocols">
     <div class="subsection">
       <h3 class="scale icon">Efficiency at Scale</h3>
-      ACRL applies simulation analysis to your compute platform in order to eliminate bottlenecks, optimize costs, and
-      improve resource utilization, all without risking production downtime.
+      <p>ACRL applies simulation analysis to your compute platform in order to eliminate bottlenecks, optimize costs, and
+      improve resource utilization, all without risking production downtime.</p>
     </div>
     <div class="subsection">
       <h3 class="expertise icon">Proven Expertise</h3>
-      Our team brings unmatched expertise to your organization, with a decade of industry experience operating and
-      managing large-scale distributed systems like Kubernetes.
+      <p>Our team brings unmatched expertise to your organization, with a decade of industry experience operating and
+      managing large-scale distributed systems like Kubernetes.</p>
     </div>
     <div class="subsection">
       <h3 class="solutions icon">Innovative Solutions</h3>
-      We use advanced algorithms, applied mathematics, and machine learning techniques to solve some of the hardest
-      problems in cloud computing.
+      <p>We use advanced algorithms, applied mathematics, and machine learning techniques to solve some of the hardest
+      problems in cloud computing.</p>
     </div>
     <div class="subsection">
       <h3 class="research icon">Open-Source Research</h3>
-      All our work is available under an open-source license and our results are disseminated in industry-leading
-      venues and academic publications.
+      <p>All our work is available under an open-source license and our results are disseminated in industry-leading
+      venues and academic publications.</p>
     </div>
   </div>
   </div>

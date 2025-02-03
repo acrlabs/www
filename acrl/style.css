@@ -10,7 +10,7 @@
     --link-secondary: #6a6a6a;
     --link-hover: var(--accent-orange);
 
-    --font-primary: #a5a5a5;
+    --font-primary: #b8b8b8;
     --font-secondary: #fff;
     --footer-font-primary #6a6a6a;
     --footer-font-secondary: #000;
@@ -18,7 +18,7 @@
     --menu-font: #000;
 
     --table-background-primary: #e9e9e9;
-    --table-background-secondary: #a5a5a5;
+    --table-background-secondary: #b8b8b8;
     --table-font-primary: #2c2c2c;
     --table-font-secondary: #000;
     --table-font-heading: #000;
