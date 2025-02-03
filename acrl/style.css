@@ -67,6 +67,8 @@
 }
 
 /*************************************************** ABOUT SECTION ****************************************************/
+.about section > * { width: 90%; margin-left: auto; margin-right: auto; }
+
 .about .subsection h2 { margin-bottom: 0; }
 .about .subsection h3 {
     /* the nth-child rules seem to get evaluated last, even though this is

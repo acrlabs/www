@@ -2,7 +2,9 @@
 template: base.html
 ---
 
-<main markdown="1">
+<div class="about" markdown="1">
+
+<section markdown="1">
 # About ACRL
 
 Applied Computing Research Labs (ACRL) is a small business formed in 2023 by David R. Morrison; we use advanced
@@ -12,9 +14,9 @@ extensive experience with running such systems as Kubernetes in production.
 
 We believe that people come first, and have a strong commitment to diversity, equity, and inclusion.  We are an
 open-source-first company; our work is, and will always be, available and open to all.
-</main>
+</section>
 
-<section class="about" markdown="1">
+<section markdown="1">
 ## Who are we?
 
 <div class="subsection" markdown="1">
@@ -32,3 +34,15 @@ in academic research.  In his spare time he builds Legos, plays board games, and
 </div>
 </div>
 </section>
+
+<section markdown="1">
+## Contact ACRL
+
+Want to know more about who we are or what we do?  Send us a note, we'd love to hear from you!
+
+<div class="buttons center">
+<a href="/contact">Contact us!</a>
+</div>
+</section>
+
+</div>

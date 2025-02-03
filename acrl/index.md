@@ -28,38 +28,50 @@ template: base.html
   <div class="flex twocols">
     <div class="subsection">
       <h3 class="scale icon">Efficiency at Scale</h3>
-      We're proud to announce that Applied Computing now has a SaaS offering!  No, it's not that kind of SaaS.  It stands for
-      "scale-as-a-service", and you can read more about it on our [services](/services) page!
+      ACRL applies simulation analysis to your compute platform in order to eliminate bottlenecks, optimize costs, and
+      improve resource utilization, all without risking production downtime.
     </div>
     <div class="subsection">
       <h3 class="expertise icon">Proven Expertise</h3>
-      We're proud to announce that Applied Computing now has a SaaS offering!  No, it's not that kind of SaaS.  It stands for
-      "scale-as-a-service", and you can read more about it on our [services](/services) page!
+      Our team brings unmatched expertise to your organization, with a decade of industry experience operating and
+      managing large-scale distributed systems like Kubernetes.
     </div>
     <div class="subsection">
       <h3 class="solutions icon">Innovative Solutions</h3>
-      We're proud to announce that Applied Computing now has a SaaS offering!  No, it's not that kind of SaaS.  It stands for
-      "scale-as-a-service", and you can read more about it on our [services](/services) page!
+      We use advanced algorithms, applied mathematics, and machine learning techniques to solve some of the hardest
+      problems in cloud computing.
     </div>
     <div class="subsection">
       <h3 class="research icon">Open-Source Research</h3>
-      We're proud to announce that Applied Computing now has a SaaS offering!  No, it's not that kind of SaaS.  It stands for
-      "scale-as-a-service", and you can read more about it on our [services](/services) page!
+      All our work is available under an open-source license and our results are disseminated in industry-leading
+      venues and academic publications.
     </div>
   </div>
   </div>
 </section>
 
 <section>
-  <h2> Products and Services</h2>
+  <h2>Products and Services</h2>
   <div class="flex twocols">
     <div class="subsection">
       <h3>SimKube</h3>
-      A record-and-replay simulation tool for Kubernetes
+      <p>A record-and-replay simulation environment for Kubernetes</p>
+      <ul>
+        <li>Increase reliability by replaying production data locally</li>
+        <li>Identify future scaling bottlenecks in your Kubernetes platform</li>
+        <li>Improve performance by tuning cluster configuration parameters</li>
+        <li>Troubleshoot incidents and verify remediations in an isolated environment</li>
+      </ul>
     </div>
     <div class="subsection">
       <h3>Scale-as-a-Service</h3>
-      Over eight weeks, ACRL embeds an engineer in your team
+      <p>Focused investigation into specific cost, scale, or reliability concerns</p>
+      <ul>
+        <li>Get full-time access to ACRL engineers to address specific concerns in your infrastructure</li>
+        <li>Implement industry-standard best practices for autoscaling, scheduling, and reliability</li>
+        <li>Improve your observability, testing, and deployment pipelines</li>
+        <li>Receive training in modeling, experimentation, and analysis of complex systems</li>
+      </ul>
     </div>
   </div>
   <div class="buttons center"><a  href="/services">View Services</a></div>

@@ -110,7 +110,7 @@ a { color: var(--link-primary); text-decoration: none; }
 a:hover { color: var(--link-hover); }
 
 ul { margin: 0 0 24px 0; padding: 0; }
-ul li { margin-bottom: 12px; }
+ul li { margin-bottom: 12px; margin-left: 1em; }
 
 header {  background: var(--header-background); }
 .hero { padding-bottom: var(--section-spacing); }
@@ -143,10 +143,6 @@ section:nth-of-type(odd) .subsection { background: var(--background-1); }
     background: var(--background-1);
 }
 
-@media (max-width: 1024px) {
-    .subsection .subsection { flex: 1 1 100%; }
-}
-
 .subsection:nth-child(4n+1) h3:not(.icon),
 .subsection:nth-child(4n+1) .subsection h3:not(.icon)
     { color: var(--accent-slate); }
@@ -173,7 +169,7 @@ footer {
 }
 footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--footer-font-secondary); }
 footer ul { list-style-type: none; }
-footer ul li { margin-bottom: 8px; }
+footer ul li { margin-left: 0; margin-bottom: 8px; }
 footer > div { flex: 1; }  /* clear: both used in the mobile view */
 
 @media (max-width: 1024px) {
@@ -195,7 +191,7 @@ footer > div { flex: 1; }  /* clear: both used in the mobile view */
     margin: 36px auto 30px auto;
     gap: 30px;
 }
-.flex > div { margin: 0; }
+.flex > div { margin: 0; flex: 1 }
 .subsection .flex { width: 100%; }
 
 @media (min-width: 1024px) {
@@ -232,6 +228,7 @@ footer > div { flex: 1; }  /* clear: both used in the mobile view */
 
 #menu .links { float: right; }
 #menu ul { list-style-type: none; }
+#menu ul li { margin-left: 0; }
 
 @media (min-width: 1024px) {
     /*

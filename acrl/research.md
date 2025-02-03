@@ -9,8 +9,9 @@ Here are some of our most exciting research projects:
 <div class="subsection" markdown="1">
 ### Kompile
 
-Quickly set up a local Kubernetes cluster and run a demo app to resize images or test workflows. Use simple commands to
-compile, deploy, and explore Kubernetes objects in action!
+Kompile allows you to sidestep the "monolith vs. microservices" question; write a single program in Go and automatically
+"compile" it to run on Kubernetes.  Goroutines are converted to microservice calls, and channel communications are
+converted to network requests.  Joint work with Tim Goodwin at UCSC.
 
 <div class="buttons">
   <a href="https://www.youtube.com/watch?v=QcYsGytNBe8" class="primary external">Watch the talk!</a>
@@ -22,8 +23,8 @@ compile, deploy, and explore Kubernetes objects in action!
 <div class="subsection" markdown="1">
 ### Cluster Autoscaler/Karpenter Comparison
 
-A "reference" implementation for building a Kubernetes scheduler in Rust. This does a basic job of scheduling pods onto
-nodes in a Kubernetes cluster.
+An in-depth analysis comparing the performance of the Kubernetes Cluster Autoscaler and Karpenter, two competing
+node autoscaling solutions for Kubernetes.
 
 <div class="buttons">
   <a href="https://www.youtube.com/watch?v=DvNh4Isqjng" class="primary external">Watch the talk!</a>
@@ -36,8 +37,8 @@ nodes in a Kubernetes cluster.
 <div class="subsection" markdown="1">
 ### Kube-scheduler-rs
 
-A "reference" implementation for building a Kubernetes scheduler in Rust. This does a basic job of scheduling pods onto
-nodes in a Kubernetes cluster.
+A "reference" implementation for building a Kubernetes scheduler in Rust, using the [kube-rs](https://github.com/kube-rs/kube)
+Kubernetes API bindings and controller utils.
 
 <div class="buttons">
   <a href="https://blog.appliedcomputing.io/p/writing-a-kubernetes-scheduler-in" class="primary external">Read the post!</a>
@@ -49,9 +50,9 @@ nodes in a Kubernetes cluster.
 <div class="subsection" markdown="1">
 ### prom2parquet and DataKube
 
-p2p- Remote write target for Prometheus that saves metrics to parquet files
-
-DataKube- Utility functions for performing data analysis on Kubernetes metric data
+Tools for collecting, storing, and analyzing Prometheus metrics from Kubernetes.  `prom2parquet` is a remote-write
+backend for Prometheus that saves time-series data to parquet files.  DataKube is a DuckDB-backed collection of utility
+functions for analyzing the collected data.
 
 <div class="buttons">
   <a href="https://blog.appliedcomputing.io/p/introducing-prom2parquet-its-time" class="primary external">Read about prom2parquet!</a>
@@ -64,8 +65,8 @@ DataKube- Utility functions for performing data analysis on Kubernetes metric da
 <div class="subsection" markdown="1">
 ### 🔥Config
 
-Config is a (prototype of) a Python-based configuration-as-code library for generating Kubernetes manifests built on top
-of cdk8s.
+FireConfig is a prototype of a Python-based configuration-as-code library for generating Kubernetes manifests built on top
+of [cdk8s](https://cdk8s.io).
 
 <div class="buttons">
   <a href="https://blog.appliedcomputing.io/p/revisiting-config" class="primary external">Read the post!</a>
