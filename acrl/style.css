@@ -192,7 +192,7 @@ table td:first-child {
 
 
 /************************************************** ICONS AND MEDIA ***************************************************/
-.scale:before { content: url(/icons/scale.png); }
-.expertise:before { content: url(/icons/expertise.png); }
-.solutions:before { content: url(/icons/solutions.png); }
-.research:before { content: url(/icons/research.png); }
+.scale:before { content: url(/icons/scale.svg); }
+.expertise:before { content: url(/icons/expertise.svg); }
+.solutions:before { content: url(/icons/solutions.svg); }
+.research:before { content: url(/icons/research.svg); }

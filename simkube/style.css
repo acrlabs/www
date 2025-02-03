@@ -98,11 +98,11 @@ main h3 { text-align: left; }
     border-bottom: 1px #9a9a9a solid;
 }
 #sidebar .downarrow:before {
-    content: url('/icons/down-arrow.png');
+    content: url('/icons/down-arrow.svg');
     float: right
 }
 [data-theme="alternate"] #sidebar .downarrow:before {
-    content: url('/icons/down-arrow-light.png');
+    content: url('/icons/down-arrow-light.svg');
 }
 #sidebar ul li ul {
     margin: 0;
@@ -119,7 +119,7 @@ main h3 { text-align: left; }
 
 @media (max-width: 1024px) {
     .sidebar-hamburger {
-        content: url(/icons/hamburger.png);
+        content: url(/icons/hamburger.svg);
         padding: 8px;
         border-radius: 100px;
         background: var(--accent-slate);
@@ -142,7 +142,7 @@ main h3 { text-align: left; }
 
 /****************************************************** SEARCH ********************************************************/
 #mkdocs-search-query {
-    background: url('/icons/search.png') no-repeat scroll calc(100% - 10px) 10px, linear-gradient(to right, #fff, #fff);
+    background: url('/icons/search.svg') no-repeat scroll calc(100% - 10px) 10px, linear-gradient(to right, #fff, #fff);
     border: 2px solid var(--background-1);
     border-radius: 48px;
     height: 36px;
@@ -169,6 +169,8 @@ p.admonition-title { margin-top: 0; font-size: 24px; }
 {
     vertical-align: middle;
     margin-right: 12px;
+    transform: scale(0.75);
+    display: inline-block;
 }
 
 .admonition.note {
@@ -176,7 +178,7 @@ p.admonition-title { margin-top: 0; font-size: 24px; }
     background: #e4ecf0;
 }
 .admonition.note .admonition-title { color: var(--accent-slate); }
-.admonition.note .admonition-title:before { content: url('/icons/note.png'); }
+.admonition.note .admonition-title:before { content: url('/icons/note.svg'); }
 [data-theme="alternate"] .admonition.note { background: #143f55; }
 
 .admonition.tip{
@@ -184,12 +186,12 @@ p.admonition-title { margin-top: 0; font-size: 24px; }
     background: #e6f0e4;
 }
 .admonition.tip .admonition-title { color: var(--accent-green); }
-.admonition.tip .admonition-title:before { content: url('/icons/tip.png'); }
+.admonition.tip .admonition-title:before { content: url('/icons/tip.svg'); }
 
 .admonition.warning{
     border-color: #b75d20;
     background: #f0e9e4;
 }
 .admonition.warning .admonition-title { color: #b75d20; }
-.admonition.warning .admonition-title:before { content: url('/icons/warning.png'); }
+.admonition.warning .admonition-title:before { content: url('/icons/warning.svg'); }
 [data-theme="alternate"] .admonition.warning { background: #432612; }

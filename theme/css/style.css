@@ -281,6 +281,7 @@ footer > div { flex: 1; }  /* clear: both used in the mobile view */
         top: 90px;
     }
     #mainmenu.open { border: 2px solid var(--background-2); }
+    #mainmenu .icon { transform: scale(0.75); }
 }
 
 .buttons {
@@ -317,27 +318,27 @@ button {
 }
 
 /************************************************** ICONS AND MEDIA ***************************************************/
-[data-theme="default"] #themeswitcher { content: url(/icons/d2l.png); }
-[data-theme="default"] nav .github { content: url(/icons/gh-menu-dark.png); }
-[data-theme="default"] .slack { content: url(/icons/slack-menu-dark.png); }
-[data-theme="default"] .hamburger { content: url(/icons/hamburger.png); }
-[data-theme="alternate"] #themeswitcher { content: url(/icons/l2d.png); }
-[data-theme="alternate"] nav .github { content: url(/icons/gh-menu-light.png); }
-[data-theme="alternate"] .slack { content: url(/icons/slack-menu-light.png); }
-[data-theme="alternate"] .hamburger { content: url(/icons/hamburger-light.png); }
+[data-theme="default"] #themeswitcher { content: url(/icons/d2l.svg); }
+[data-theme="default"] nav .github { content: url(/icons/gh-menu-dark.svg); }
+[data-theme="default"] .slack { content: url(/icons/slack-menu-dark.svg); }
+[data-theme="default"] .hamburger { content: url(/icons/hamburger.svg); }
+[data-theme="alternate"] #themeswitcher { content: url(/icons/l2d.svg); }
+[data-theme="alternate"] nav .github { content: url(/icons/gh-menu-light.svg); }
+[data-theme="alternate"] .slack { content: url(/icons/slack-menu-light.svg); }
+[data-theme="alternate"] .hamburger { content: url(/icons/hamburger-light.svg); }
 
 /* we have different github icons for nav versus in-page */
-.buttons .github { content: url('/icons/gh-project.png'); }
-.buttons a.github:hover { content: url('/icons/gh-project-hover.png'); }
-.rss { content: url(/icons/rss.png); }
+.buttons .github { content: url('/icons/gh-project.svg'); }
+.buttons a.github:hover { content: url('/icons/gh-project-hover.svg'); }
+.rss { content: url(/icons/rss.svg); }
 
 .hamburger { display: none; }  /* only use hamburger menus on mobile */
 
 .icon:before {
     vertical-align: middle;
     display: inline-block;
-    width: 34px;
-    margin-right: 18px;
+    margin-right: 8px;
+    transform: scale(0.75);
 }
 
 footer .logo {
@@ -348,12 +349,15 @@ footer .logo {
 
 @media (max-width: 1024px) {
     footer img.logo { height: 72px; padding-bottom: 20px; }
+    .
 }
 
 .external:after {
-    content: url(/icons/external.png);
-    margin-left: 12px;
+    content: url(/icons/external.svg);
+    margin-left: 8px;
     vertical-align: middle;
+    display: inline-block;
+    transform: scale(0.75);
 }
 
 .youtube {

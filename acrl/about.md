@@ -25,7 +25,7 @@ open-source-first company; our work is, and will always be, available and open t
 </div>
 
 <div class="bio" markdown="1">
-## David R. Morrison
+## Dr. David R. Morrison
 ### Founder
 drmorr is the founder of ACRL, and is a computer scientist, researcher, and software engineer focused on problems in
 optimization, scheduling, and distributed systems. He received his PhD from the University of Illinois, Urbana-Champaign
