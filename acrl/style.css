@@ -98,6 +98,8 @@
 }
 .about .bio { margin: 24px; }
 
+.about .icon { margin-left: 0; }
+
 /******************************************************* TABLES *******************************************************/
 table {
     margin: 0 auto var(--section-spacing) auto;
@@ -196,3 +198,8 @@ table td:first-child {
 .expertise:before { content: url(/icons/expertise.svg); }
 .solutions:before { content: url(/icons/solutions.svg); }
 .research:before { content: url(/icons/research.svg); }
+.mastodon { content: url(/icons/mastodon.svg); }
+.buttons a.mastodon:hover{ content: url(/icons/mastodon-hover.svg); }
+.bluesky { background: #6a6a6a; content: url(/icons/bluesky.svg); }
+.buttons a.bluesky:hover{ content: url(/icons/bluesky-hover.svg); }
+.rss { content: url(/icons/rss.svg); }

@@ -47,9 +47,13 @@
         {%- endfor -%}
       </ul>
     {%- endfor -%}
-    <span><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;"></a></span>
-    <span><a class="github icon" href="{{ config.repo_url | url }}"></a></span>
-    <span><a class="slack icon" href="https://kubernetes.slack.com/archives/C07LTUB823Z"></a></span>
+    <span><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;">
+        <span class="icon-text">Toggle Light/Dark Mode</span>
+    </a></span>
+    <span><a class="github icon" href="{{ config.repo_url | url }}"><span class="icon-text">Github</span></a></span>
+    <span><a class="slack icon" href="https://kubernetes.slack.com/archives/C07LTUB823Z">
+        <span class="icon-text">Slack</span>
+    </a></span>
     </ul>
   </nav>
   {%- endif -%}

@@ -31,7 +31,7 @@
 {%- endmacro -%}
 
 <!DOCTYPE html>
-<html data-theme="default">
+<html data-theme="default" lang="en">
   <head>
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
     <meta charset="utf-8" />
@@ -69,8 +69,10 @@
               {{ menu_link(item) }}
             {%- endfor -%}
             {%- if config.theme.menu.icons -%}
-              <li><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;"></a></li>
-              <li><a class="github icon" href="{{ config.repo_url }}"></a></li>
+              <li><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;">
+                  <span class="icon-text">Toggle Light/Dark Mode</span>
+              </a></li>
+              <li><a class="github icon" href="{{ config.repo_url }}"><span class="icon-text">Github</span></a></li>
             {%- endif -%}
           </ul>
         </div>

@@ -15,7 +15,7 @@ converted to network requests.  Joint work with Tim Goodwin at UCSC.
 
 <div class="buttons">
   <a href="https://www.youtube.com/watch?v=QcYsGytNBe8" class="primary external">Watch the talk!</a>
-  <a href="https://github.com/acrlabs/kompile" class="github"></a>
+  <a href="https://github.com/acrlabs/kompile" class="github icon"><span class="icon-text">Github</span></a>
 </div>
 
 </div>
@@ -29,7 +29,7 @@ node autoscaling solutions for Kubernetes.
 <div class="buttons">
   <a href="https://www.youtube.com/watch?v=DvNh4Isqjng" class="primary external">Watch the talk!</a>
   <a href="https://blog.appliedcomputing.io/p/using-simkube-10-comparing-kubernetes" class="primary external">Read the post!</a>
-  <a href="https://github.com/acrlabs/simkube" class="github"></a>
+  <a href="https://github.com/acrlabs/simkube" class="github icon"><span class="icon-text">Github</span></a>
 </div>
 
 </div>
@@ -42,7 +42,7 @@ Kubernetes API bindings and controller utils.
 
 <div class="buttons">
   <a href="https://blog.appliedcomputing.io/p/writing-a-kubernetes-scheduler-in" class="primary external">Read the post!</a>
-  <a href="https://github.com/acrlabs/kube-scheduler-rs-reference" class="github"></a>
+  <a href="https://github.com/acrlabs/kube-scheduler-rs-reference" class="github icon"><span class="icon-text">Github</span></a>
 </div>
 
 </div>
@@ -57,7 +57,7 @@ functions for analyzing the collected data.
 <div class="buttons">
   <a href="https://blog.appliedcomputing.io/p/introducing-prom2parquet-its-time" class="primary external">Read about prom2parquet!</a>
   <a href="https://blog.appliedcomputing.io/p/analyzing-simkube-10-how-well-does?utm_source=publication-search" class="primary external">Read about DataKube!</a>
-  <a href="https://github.com/acrlabs/prom2parquet" class="github"></a>
+  <a href="https://github.com/acrlabs/prom2parquet" class="github icon"><span class="icon-text">Github</span></a>
 </div>
 
 </div>
@@ -70,7 +70,7 @@ of [cdk8s](https://cdk8s.io).
 
 <div class="buttons">
   <a href="https://blog.appliedcomputing.io/p/revisiting-config" class="primary external">Read the post!</a>
-  <a href="https://github.com/acrlabs/fireconfig" class="github"></a>
+  <a href="https://github.com/acrlabs/fireconfig" class="github icon"><span class="icon-text">Github</span></a>
 </div>
 
 </div>

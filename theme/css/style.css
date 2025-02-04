@@ -293,7 +293,7 @@ footer > div { flex: 1; }  /* clear: both used in the mobile view */
 .buttons.center { justify-content: center; }
 
 .buttons .secondary { background: var(--link-secondary); }
-.buttons .github, .buttons .rss {
+.buttons .icon {
     background: none;
     width: var(--link-icon-size);
     height: var(--link-icon-size);
@@ -328,9 +328,8 @@ button {
 [data-theme="alternate"] .hamburger { content: url(/icons/hamburger-light.svg); }
 
 /* we have different github icons for nav versus in-page */
-.buttons .github { content: url('/icons/gh-project.svg'); }
-.buttons a.github:hover { content: url('/icons/gh-project-hover.svg'); }
-.rss { content: url(/icons/rss.svg); }
+.buttons .github { content: url(/icons/gh-project.svg); }
+.buttons a.github:hover { content: url(/icons/gh-project-hover.svg); }
 
 .hamburger { display: none; }  /* only use hamburger menus on mobile */
 

@@ -14,7 +14,7 @@ Read ACRL's blog for event highlights, industry insights, and updates on SimKube
 
 <div class="buttons">
   <a class="external" href="https://blog.appliedcomputing.io">See all Posts</a>
-  <a class="rss" href="http://127.0.0.1:8000/feed_rss_created.xml"></a>
+  <a class="rss icon" href="http://127.0.0.1:8000/feed_rss_created.xml"><span class="icon-text">RSS</span></a>
 </div>
 </div>
 

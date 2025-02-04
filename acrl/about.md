@@ -31,6 +31,10 @@ drmorr is the founder of ACRL, and is a computer scientist, researcher, and soft
 optimization, scheduling, and distributed systems. He received his PhD from the University of Illinois, Urbana-Champaign
 in 2014, and has over a decade of industry experience (at companies like Airbnb and Yelp) as well as a strong background
 in academic research.  In his spare time he builds Legos, plays board games, and writes fiction.
+<div class="buttons">
+  <a class="mastodon icon" href="https://hachyderm.io/@drmorr"><span class="icon-text">Mastodon</a></a>
+  <a class="bluesky icon" href="https://bsky.app/profile/drmorr.appliedcomputing.io"><span class="icon-text">Bluesky</span></a>
+  <a class="github icon" href="https://github.com/drmorr0"><span class="icon-text">Github</span></a>
 </div>
 </div>
 </section>
