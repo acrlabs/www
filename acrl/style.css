@@ -156,15 +156,22 @@ table td:first-child {
 
 /******************************************************** FORM ********************************************************/
 #contactform { max-width: 600px; margin: auto; }
-#contactform input, #contactform textarea {
+#contactform input, #contactform textarea, #contactform select {
     width: 100%;
     margin-bottom: 20px;
 }
-#contactform input {
+#contactform input, #contactform select {
     height: 42px;
     border-radius: 75px;
     font-size: var(--font-size-normal);
     text-indent: 12px;
+}
+#contactform select {
+    appearance: none;
+    background-image: url(/icons/down-arrow.svg);
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-position-x: 97%;
 }
 #contactform textarea {
     height: 180px;
@@ -172,6 +179,17 @@ table td:first-child {
     font-size: var(--font-size-normal);
     text-indent: 12px;
     padding-top: 12px;
+}
+
+/* hiding labels except for screen readers */
+#contactform label {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }
 
 #vegetable { display: none; }
@@ -191,7 +209,6 @@ table td:first-child {
 
 .error { background: darkorange; }
 .success { background: lightgreen; }
-
 
 /************************************************** ICONS AND MEDIA ***************************************************/
 .scale:before { content: url(/icons/scale.svg); }

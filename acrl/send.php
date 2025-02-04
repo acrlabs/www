@@ -2,33 +2,10 @@
 
 require("/usr/share/php/sendgrid/sendgrid-php.php");
 
-
-function check_captcha($response) {
-	$fields = [
-		'response' => $_POST['h-captcha-response'],
-		'secret'   => $_SERVER['H_CAPTCHA_SECRET'],
-	];
-	$fields_str = http_build_query($fields);
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'https://hcaptcha.com/siteverify');
-	curl_setopt($ch, CURLOPT_POST, true);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_str);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-	$result = curl_exec($ch);
-	curl_close($ch);
-	
-	$data = json_decode($result);
-	return $data->success;
-}
-
 $msg = '';
 $success = true;
 if (array_key_exists('email', $_POST)) {
-	if (!$_POST['h-captcha-response']) {
-        $msg = "Please complete the CAPTCHA";
-        $success = false;
-	} else if ($_POST['vegetable'] != "" || !check_captcha($_POST['h-captcha-response'])) {
+	if ($_POST['vegetable'] != "") {
         $msg = "Sorry, you look like a bot.  Please don't try again";
         $success = false;
 	} else {

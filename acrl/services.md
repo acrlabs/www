@@ -1,5 +1,4 @@
 # Services
-Stop guessing about your scale---simulate it!
 
 <div class="subsection">
   <h3>Scale-as-a-Service</h3>

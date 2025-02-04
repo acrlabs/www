@@ -7,7 +7,7 @@ We're here to help you make the best choice for your goals.
 
 | Focus Area   | Description | Time Frame | Cost        |
 |--------------|-------------|------------|-------------|
-| Cost Savings | Discover inefficiencies and reduce costs in your cloud infrastructure | 8 weeks <td rowspan=2> $150,000</td>
+| Cost Savings | Find inefficiencies and reduce costs in your cloud infrastructure | 8 weeks <td rowspan=2> $150,000</td>
 | Reliability at Scale | Identify scaling bottlenecks and reliability concerns in your Kubernetes platform | 8 weeks | |
 | Comprehensive | Fully characterize your cost/reliability tradeoffs and identify areas of improvement | 12+ weeks | Starting at $200,000 |
 

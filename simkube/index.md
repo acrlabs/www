@@ -14,6 +14,7 @@ template: base.html
   </div>
 </div>
 
+<section markdown="1">
 <div class="flex twocols" markdown="1">
 <div markdown="1">
 # Why SimKube?
@@ -28,7 +29,11 @@ Join our community to collaborate, share ideas, and contribute to shaping the fu
 <div>
 image goes here
 </div>
+</div>
+</section>
 
+<section markdown="1">
+<div class="flex twocols" markdown="1">
 <div>
 image goes here
 </div>
@@ -37,3 +42,5 @@ image goes here
 # What's New in SimKube?
 <!-- INSERT CHANGELOG -->
 </div>
+</div>
+</section>

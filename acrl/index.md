@@ -52,6 +52,7 @@ template: base.html
 
 <section>
   <h2>Products and Services</h2>
+  <h3>Stop guessing at your scale&mdash;simulate it!</h3>
   <div class="flex twocols">
     <div class="subsection">
       <h3>SimKube</h3>

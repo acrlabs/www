@@ -74,7 +74,7 @@
 
 body {
     margin: 0 auto;
-    font-family: "B612";
+    font-family: "B612", "Arial", "Helvetica", sans-serif;
     font-size: var(--font-size-regular);
     max-width: var(--content-width);
     color: var(--font-primary);
@@ -86,7 +86,7 @@ main { margin: 0 auto var(--section-spacing) auto; width: 90%; }
 
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
-    font-family: "tomorrow";
+    font-family: "tomorrow", "Courier New", "Courier", monospace;
     font-weight: normal;
     color: var(--font-secondary);
     margin: 0;
@@ -166,6 +166,7 @@ footer {
     font-size: var(--font-size-small);
     flex-wrap: wrap;
     gap: 40px;
+    box-shadow: 0 50vh 0 50vh var(--footer-background);  /* make the footer extend to the bottom of the screen */
 }
 footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--footer-font-secondary); }
 footer ul { list-style-type: none; }
