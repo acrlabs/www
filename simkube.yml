@@ -16,6 +16,18 @@ theme:
       - community
       - FAQ: simkube/docs/faq
       - about
+  footer:
+    resources:
+      - documentation
+      - blog: "https://blog.appliedcomputing.io"
+      - presentations: "https://www.youtube.com/playlist?list=PLOgtqKaB5McBaIN-XMtvhWAkz0HnCmjDo"
+    community:
+      - github: "https://github.com/acrlabs/simkube"
+      - slack: "https://kubernetes.slack.com/archives/C07LTUB823Z"
+    ACRL:
+      - about: "https://appliedcomputing.io"
+      - services: "https://appliedcomputing.io/services/"
+      - research: "https://appliedcomputing.io/research/"
   static_templates:
     - search/index.html
 extra_css:
