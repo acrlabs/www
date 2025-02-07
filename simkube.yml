@@ -67,7 +67,7 @@ markdown_extensions:
       toc_depth: '3-3'     # because page contents headings start at h2, I don't want to include the
                            # FAQ heading in the FAQ itself, so I set this from depth 3 to depth 3.
 nav:
-  - SimKube: '!import https://github.com/acrlabs/simkube?branch=drmorr/docs-next&extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
+  - SimKube: '!import https://github.com/acrlabs/simkube?extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
 validation:
   nav:
     omitted_files: ignore

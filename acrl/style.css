@@ -89,6 +89,34 @@ main { margin-bottom: var(--section-spacing); }
     .hero img { display: none; }
 }
 
+/******************************************************* CLIENTS ******************************************************/
+.clients { justify-content: center; gap: 24px; }
+.client { max-width: 20%; position: relative; }
+
+.testimonial {
+    position: absolute;
+    top: 0;
+    left: 12px;
+    z-index: 1;
+    background: var(--background-1);
+    width: 500px;
+    border-radius: 12px;
+    font-size: var(--font-size-tiny);
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 0.2s ease-out;
+    color: var(--font-color-primary);
+}
+.testimonial:hover { color: var(--font-color-primary); }
+.testimonial.open {
+    border: 2px solid var(--background-reversed);
+    padding: 12px;
+}
+
+@media (max-width: 1024px) {
+    .testimonial { width: 50vw; }
+}
 
 /*************************************************** ABOUT SECTION ****************************************************/
 .about section > * { width: 90%; margin-left: auto; margin-right: auto; }
