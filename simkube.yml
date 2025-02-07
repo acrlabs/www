@@ -39,7 +39,6 @@ plugins:
   - markdown-exec          # execute commands from markdown (to generate usage code blocks)
   - search                 # search the docs
 hooks:
-  - hooks/jinja_regex.py   # TODO is this needed?
   - hooks/preprocess.py    # convert GH-style markdown to mkdocs-style markdown (headings and such)
   - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
   - hooks/changelog.py

@@ -91,7 +91,15 @@ main { margin-bottom: var(--section-spacing); }
 
 /******************************************************* CLIENTS ******************************************************/
 .clients { justify-content: center; gap: 24px; }
-.client { max-width: 20%; position: relative; }
+.client { position: relative; }
+
+@media (min-width: 1024px) {
+    .client { max-width: 20%; }
+}
+
+@media (max-width: 1024px) {
+    .client { flex: 1; }
+}
 
 .testimonial {
     position: absolute;
