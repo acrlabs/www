@@ -46,6 +46,11 @@ header, .hero {
     margin: 0 auto;
     border-radius: 12px;
     font-size: var(--font-size-regular);
+    position: relative; /* let us position the mascot relative to the menu */
+}
+#menu ul li {
+    position: relative; /* menu items take priority over the mascot link */
+    z-index: 1;
 }
 
 .buttons a { border-radius: 12px; }
@@ -63,6 +68,16 @@ main h3 { text-align: left; }
 
 .hero h1, .hero h2, .hero h3, .hero h4, .hero h5, .hero h6 { color: #fff; }
 
+.mascot {
+    position: absolute;
+    top: 45px;
+    right: 50px;
+}
+@media (max-width: 1024px) {
+    .mascot { top: 120px; right: 10px; }
+    .mascot img { width: 75px; }
+}
+
 /************************************************** DOCUMENTATION *****************************************************/
 .docs { display: flex; width: 95%; margin: 0 auto; }
 .docs main { flex: 1; padding: 24px; width: calc(90% - var(--sidebar-width) - 2 * var(--sidebar-padding)); }
@@ -71,6 +86,17 @@ main h3 { text-align: left; }
     margin-bottom: 0;
 }
 .docs .flex { margin-left: 0; margin-right: 0; width: 100%; }
+
+.changelog ul li, .toc ul li { margin-bottom: 4px; }
+.textwrap { margin-top: 20px; float: right; display: flex; flex-direction: column; align-items: center;}
+.textwrap .img { max-width: 500px; }
+.textwrap figcaption {
+    font-size: var(--font-size-tiny);
+    margin-top: 12px;
+    font-family: "tomorrow", "Courier New", "Courier", monospace;
+}
+
+.toc { margin-top: 12px; }
 
 /**************************************************** NAVIGATION ******************************************************/
 #sidebar {
@@ -97,11 +123,7 @@ main h3 { text-align: left; }
     border-bottom: 1px #9a9a9a solid;
 }
 #sidebar .downarrow:before {
-    content: url('/icons/down-arrow.svg');
     float: right
-}
-[data-theme="alternate"] #sidebar .downarrow:before {
-    content: url('/icons/down-arrow-light.svg');
 }
 #sidebar ul li ul {
     margin: 0;
@@ -178,7 +200,6 @@ p.admonition-title { margin-top: 0; font-size: 24px; }
     background: #e4ecf0;
 }
 .admonition.note .admonition-title { color: var(--accent-slate); }
-.admonition.note .admonition-title:before { content: url('/icons/note.svg'); }
 [data-theme="alternate"] .admonition.note { background: #143f55; }
 
 .admonition.tip{
@@ -186,12 +207,21 @@ p.admonition-title { margin-top: 0; font-size: 24px; }
     background: #e6f0e4;
 }
 .admonition.tip .admonition-title { color: var(--accent-green); }
-.admonition.tip .admonition-title:before { content: url('/icons/tip.svg'); }
 
 .admonition.warning{
     border-color: #b75d20;
     background: #f0e9e4;
 }
 .admonition.warning .admonition-title { color: #b75d20; }
-.admonition.warning .admonition-title:before { content: url('/icons/warning.svg'); }
 [data-theme="alternate"] .admonition.warning { background: #432612; }
+
+/************************************************** ICONS AND MEDIA ***************************************************/
+[data-theme="default"] #sidebar .downarrow:before { content: url('/icons/down-arrow.svg'); }
+[data-theme="alternate"] #sidebar .downarrow:before { content: url('/icons/down-arrow-light.svg'); }
+
+.admonition.note .admonition-title:before { content: url('/icons/note.svg'); }
+.admonition.tip .admonition-title:before { content: url('/icons/tip.svg'); }
+.admonition.warning .admonition-title:before { content: url('/icons/warning.svg'); }
+
+[data-theme="default"] #architecture { content: url('/img/architecture.svg'); }
+[data-theme="alternate"] #architecture { content: url('/img/architecture-white.svg'); }

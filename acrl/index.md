@@ -12,7 +12,7 @@ template: base.html
       <li class="icon research">Open-Source Research</li>
     </ul>
     <div class="buttons">
-      <a href="">View Demo</a>
+      <a href="https://youtu.be/oaWxk5Vr2s0">View Demo</a>
       <a class="secondary" href="/contact/">Partner with Us</a>
     </div>
   </div>

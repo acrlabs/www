@@ -51,6 +51,7 @@
 
     --font-size-regular: 24px;
     --font-size-small: 20px;
+    --font-size-tiny: 16px;
 
     --menu-height: 75px;
     --menu-spacing: 36px;
@@ -69,6 +70,7 @@
     :root {
         --font-size-regular: 18px;
         --font-size-small: 16px;
+        --font-size-tiny: 12px;
     }
 }
 
@@ -184,6 +186,11 @@ footer > div { flex: 1; }  /* clear: both used in the mobile view */
     footer > div:first-child { flex: 1.75; }
 }
 
+abbr {
+    border-bottom: 1px dotted;
+    text-decoration: none;
+}
+
 /******************************************************* LAYOUT *******************************************************/
 .flex {
     display: flex;
@@ -192,7 +199,14 @@ footer > div { flex: 1; }  /* clear: both used in the mobile view */
     margin: 36px auto 30px auto;
     gap: 30px;
 }
+.flex > div:has(.img) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .flex > div { margin: 0; flex: 1 }
+.flex .img { max-width: 100%; }
 .subsection .flex { width: 100%; }
 
 @media (min-width: 1024px) {
@@ -280,6 +294,7 @@ footer > div { flex: 1; }  /* clear: both used in the mobile view */
         width: 150px;
         right: 24px;
         top: 90px;
+        z-index: 1;
     }
     #mainmenu.open { border: 2px solid var(--background-2); }
     #mainmenu .icon { transform: scale(0.75); }

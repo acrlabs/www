@@ -76,6 +76,12 @@
             {%- endif -%}
           </ul>
         </div>
+        {%- if config.theme.menu.mascot and page.title == "Home" -%}
+          <a class="mascot" href="/mascot/">
+            <img src="/img/mascot-alt.png"
+                 alt="an orange-and-blue octopus with an intense but curious expression, holding a magnifying glass to his eye"/>
+          </a>
+        {%- endif -%}
       </nav>
     </header>
 
