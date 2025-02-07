@@ -58,6 +58,8 @@ header, .hero {
 main h2 { margin-top: 24px; }
 main h3 { text-align: left; }
 
+h2 + h3 { margin-top: -24px; }
+
 /*************************************************** HERO SECTION *****************************************************/
 .hero {
     color: #fff;
@@ -83,16 +85,20 @@ main h3 { text-align: left; }
 .docs main { flex: 1; padding: 24px; width: calc(90% - var(--sidebar-width) - 2 * var(--sidebar-padding)); }
 .docs main h1, .docs main h2, .docs main h3, .docs main h4, .docs main h5, .docs main h6 {
     text-align: left;
-    margin-bottom: 0;
+    margin-top: 0;
 }
 .docs .flex { margin-left: 0; margin-right: 0; width: 100%; }
 
-.changelog ul li, .toc ul li { margin-bottom: 4px; }
-.textwrap { margin-top: 20px; float: right; display: flex; flex-direction: column; align-items: center;}
+.docs ul li, .changelog ul li, .toc ul li { margin-bottom: 4px; }
+.textwrap { margin-left: 20px; float: right; display: flex; flex-direction: column; align-items: center;}
 .textwrap .img { max-width: 500px; }
+@media (max-width: 1024px) {
+    .textwrap { margin-left: 0px }
+    .textwrap .img { max-width: 100%; }
+}
 .textwrap figcaption {
     font-size: var(--font-size-tiny);
-    margin-top: 12px;
+    margin: 12px;
     font-family: "tomorrow", "Courier New", "Courier", monospace;
 }
 
@@ -154,7 +160,7 @@ main h3 { text-align: left; }
     #sidebar {
         background: var(--background-2);
         position: fixed;
-        width: 150px;
+        width: 50%;
         right: 30px;
         bottom: 80px;
     }
@@ -225,3 +231,8 @@ p.admonition-title { margin-top: 0; font-size: 24px; }
 
 [data-theme="default"] #architecture { content: url('/img/architecture.svg'); }
 [data-theme="alternate"] #architecture { content: url('/img/architecture-white.svg'); }
+[data-theme="alternate"] .hamburger { content: url(/icons/hamburger.svg); }
+
+@media (max-width: 1024px) {
+    .icon { width: 24px; }
+}

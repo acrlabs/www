@@ -48,6 +48,7 @@
     --content-width: 1296px;
     --section-spacing: 66px;
     --subsection-border-radius: 32px;
+    --subsection-padding: 36px;
 
     --font-size-regular: 24px;
     --font-size-small: 20px;
@@ -71,6 +72,9 @@
         --font-size-regular: 18px;
         --font-size-small: 16px;
         --font-size-tiny: 12px;
+        --section-spacing: 32px;
+        --subsection-padding: 20px;
+
     }
 }
 
@@ -84,7 +88,7 @@ body {
     overflow-x: hidden;
 }
 
-main { margin: 0 auto var(--section-spacing) auto; width: 90%; }
+main { margin: 0 auto; width: 90%; }
 
 h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
@@ -99,8 +103,8 @@ h3 { font-size: 30px; margin-bottom: 18px; }
 h4 { font-size: 24px; margin-bottom: 8px; }
 
 @media (max-width: 1024px) {
-    h1 { font-size: 32px; margin-bottom: 24px; }
-    h2 { font-size: 26px; margin-bottom: 20px; }
+    h1 { font-size: 32px; margin-bottom: 20px; }
+    h2 { font-size: 26px; margin-bottom: 16px; }
     h3 { font-size: 20px; margin-bottom: 12px; }
     h4 { font-size: 18px; margin-bottom: 4px; }
 }
@@ -113,9 +117,13 @@ a:hover { color: var(--link-hover); }
 
 ul { margin: 0 0 24px 0; padding: 0; }
 ul li { margin-bottom: 12px; margin-left: 1em; }
+ol li { margin-bottom: 12px; }
+@media (max-width: 1024px) {
+    ul li { margin-bottom: 4px; }
+    ol li { margin-bottom: 4px; }
+}
 
 header {  background: var(--header-background); }
-.hero { padding-bottom: var(--section-spacing); }
 
 section, footer {
     /* Make the background colors for these elements span the screen:
@@ -136,9 +144,10 @@ section:nth-of-type(odd) .subsection { background: var(--background-1); }
 
 .subsection {
     border-radius: var(--subsection-border-radius);
-    padding: 36px;
+    padding: var(--subsection-padding);;
     background: var(--background-2);
     margin: 15px 0;
+    overflow: auto;
 }
 /* will do funky things if nested in a section but we don't do that (right now) */
 .subsection .subsection {

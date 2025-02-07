@@ -25,7 +25,7 @@ theme:
       - SaaS
       - pricing
     company:
-      - "About Us": "/about/"
+      - "About Us": about
       - community: "https://kubernetes.slack.com/archives/C07LTUB823Z"
       - contact
   static_templates:

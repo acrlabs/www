@@ -17,7 +17,7 @@
     {%- if _path.startswith("http") -%}
       {{ _path }}
     {%- else -%}
-      /{{ _path | lower }}/
+      {{ config.site_url }}{{ _path | lower }}/
     {%- endif -%}
   {%- endset -%}
 

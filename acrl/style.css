@@ -23,8 +23,7 @@
     --table-font-secondary: #000;
     --table-font-heading: #000;
 
-    --about-entry-height: 310px;
-    --table-border-radius: 12px;
+    --about-entry-height: 150px;
 }
 
 [data-theme="alternate"] {
@@ -55,6 +54,8 @@
     }
 }
 
+main { margin-bottom: var(--section-spacing); }
+
 /*************************************************** HERO SECTION *****************************************************/
 .hero ul {
     list-style: none;
@@ -63,8 +64,31 @@
 }
 .hero ul li {
     color: var(--font-secondary);
-    margin-bottom: 12px;
 }
+@media (min-width: 1024px;) {
+    .hero .left {
+        flex: 0.65 !important;
+    }
+}
+
+.hero img {
+    position: relative;
+    box-shadow: 0 0 8px 8px var(--accent-slate);
+}
+#hero1 {
+    width: 90%;
+    top: 10%;
+    left: -15%;
+    z-index: -1;
+}
+#hero2 {
+    width: 100%;
+    top: -10%;
+}
+@media (max-width: 1024px) {
+    .hero img { display: none; }
+}
+
 
 /*************************************************** ABOUT SECTION ****************************************************/
 .about section > * { width: 90%; margin-left: auto; margin-right: auto; }
@@ -78,7 +102,7 @@
 }
 .about .subsection {
     display: flex;
-    width: 90%;
+    flex-wrap: wrap;
     padding: 0;
     margin: 36px auto;
     font-size: var(--font-size-small);
@@ -86,7 +110,7 @@
 .about .avatar {
     float: left;
     background-color: var(--background-reversed);
-    border-radius: var(--subsection-border-radius) 0 0 var(--subsection-border-radius);
+    border-radius: var(--subsection-border-radius) 0 var(--subsection-border-radius) 0;
 
     /* hack to get the image to appear in the center */
     display: flex;
@@ -96,7 +120,12 @@
     width: var(--about-entry-height);
     height: var(--about-entry-height);
 }
-.about .bio { margin: 24px; }
+.about .title, .about .bio { margin: 24px; }
+.about .bio { margin-top: 0; }
+
+@media (max-width: 1024px) {
+    .about .title { margin-bottom: 0; }
+}
 
 .about .icon { margin-left: 0; }
 

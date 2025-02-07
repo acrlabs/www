@@ -7,17 +7,17 @@ template: base.html
   <p>Test, experiment with, and optimize your Kubernetes clusters safely!<br>
   Join a thriving open-source community shaping the future of Kubernetes performance, reliability, and scalability.</p>
   <div class="buttons center">
-    <a href="/documentation">Read the Docs</a>
-    <a class="secondary" href="">Start Contributing</a>
+    <a href="/documentation/">Read the Docs</a>
+    <a class="secondary" href="/simkube/docs/dev/setup/">Start Contributing</a>
   </div>
 </div>
 
 <section markdown="1">
+# Why SimKube?
+## Stop Guessing at your Scale--Simulate it!
 <div class="flex twocols" markdown="1">
 
 <div markdown="1">
-# Why SimKube?
-## Stop Guessing at your Scale--Simulate it!
 
 Use SimKube to explore and optimize your Kubernetes clusters in a risk-free environment. SimKube is built to help you
 understand and solve real-world Kubernetes challenges before they hit production.
@@ -31,7 +31,6 @@ Follow these three simple steps to get started:
 
 <div>
 <div id="architecture" class="img"></div>
-<figcaption>SimKube architecture diagram</figcaption>
 </div>
 
 </div>

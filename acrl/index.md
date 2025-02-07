@@ -3,7 +3,7 @@ template: base.html
 ---
 
 <div class="hero flex twocols">
-  <div>
+  <div class="left">
     <h1>Applied Computing Research Labs</h1>
     <ul>
       <li class="icon scale">Efficiency at Scale</li>
@@ -18,7 +18,8 @@ template: base.html
   </div>
 
   <div>
-    Some images go here
+    <img id="hero1" src="/img/hero1.png">
+    <img id="hero2" src="/img/hero2.png">
   </div>
 </div>
 

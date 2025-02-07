@@ -68,4 +68,4 @@ in case you have questions or need help.
 
 ## Want more info?
 
-[Contact us](/contact/) today!
+[Contact us](contact.md) today!
