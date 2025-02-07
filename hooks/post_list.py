@@ -1,9 +1,13 @@
-from mkdocs.structure.nav import Navigation
+import logging
+
 from mkdocs.structure.nav import Section
 from mkdocs.structure.pages import Page
 
+log = logging.getLogger(f"mkdocs.plugins.{__name__}")
+
+
 def on_nav(nav, config, files):
-    print('calling on nav')
+    log.info("Generating post list")
     post_pages = [
         Page(None, f, config)
         for f in sorted(files, key=lambda f: f.src_uri, reverse=True)

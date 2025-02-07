@@ -1,226 +1,391 @@
-:root {
-    --black: #111;
-    --font-grey: #444;
-    --max-width: 1000px;
-    --min-body-width: 300px;
-    --sidebar-width-mobile: 200px;
-    --menu-font-color: white;
-    line-height: 1.6;
-    color: var(--font-grey);
-    max-width: var(--max-width);;
-    margin: 0 auto;
+/*
+ * Define the following variables in the site and include it with extra_css.  Those
+ * CSS files will get prepended to this file:
+ *
+ * --background-1
+ * --background-2
+ * --header-background
+ * --footer-background
+ * --menu-background
+ *
+ * --link-primary
+ * --link-secondary
+ * --link-hover
+ *
+ * --font-primary
+ * --font-secondary
+ * --footer-font-primary
+ * --footer-font-secondary
+ * --button-font
+ * --menu-font
+ *
+ */
+
+/******************************************************* FONTS ********************************************************/
+@font-face {
+    font-family: "B612";
+    src: url(/fonts/B612-Regular.ttf);
 }
-
-img {
-    max-width: 100%;
+@font-face {
+    font-family: "B612";
+    src: url(/fonts/B612-Bold.ttf);
+    font-weight: bold;
 }
-
-body {
-    overflow-y: scroll;
-    margin: 0;
-}
-
-h1, h2, h3 {
-    line-height: 1.2;
-    margin-bottom: 5px;
-    margin-top: 0;
-}
-
-h2 { font-size: 1.75em; }
-h3 { font-size: 1.5em; }
-
-h1 + p, h2 + p, h3 + p {
-    margin-top: 0;
-}
-
-header {
-    margin: 40px 20px 0 20px;
-}
-
-header a {
-    text-decoration: none;
-}
-
-.headerlink {
-    display: none;
-}
-
-.tagline {
-    text-align: right;
-}
-
-.tagline, .copyright, .timestamp {
+@font-face {
+    font-family: "B612";
+    src: url(/fonts/B612-Italic.ttf);
     font-style: italic;
 }
 
-.content, footer {
-    margin: 0 15px;
+
+@font-face {
+    font-family: "tomorrow";
+    src: url(/fonts/Tomorrow-Regular.ttf);
 }
 
-.clear {
-    clear: both;
+/*********************************************** BASE STYLE DEFINITIONS ***********************************************/
+:root {
+    --content-width: 1296px;
+    --section-spacing: 66px;
+    --subsection-border-radius: 32px;
+    --subsection-padding: 36px;
+
+    --font-size-regular: 24px;
+    --font-size-small: 20px;
+    --font-size-tiny: 16px;
+
+    --menu-height: 75px;
+    --menu-spacing: 36px;
+    --menu-logo-height: 44px;
+    --menu-icon-height: 30px;
+
+    --accent-green: #4e8a42;
+    --accent-orange: #ec8a3b;
+    --accent-purple: #9e70c2;
+    --accent-slate: #527a92;
+
+    --link-icon-size: 40px;
 }
+
+@media (max-width: 1024px) {
+    :root {
+        --font-size-regular: 18px;
+        --font-size-small: 16px;
+        --font-size-tiny: 12px;
+        --section-spacing: 32px;
+        --subsection-padding: 20px;
+
+    }
+}
+
+body {
+    margin: 0 auto;
+    font-family: "B612", "Arial", "Helvetica", sans-serif;
+    font-size: var(--font-size-regular);
+    max-width: var(--content-width);
+    color: var(--font-primary);
+    background: var(--background-1);
+    overflow-x: hidden;
+}
+
+main { margin: 0 auto; width: 90%; }
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.4;
+    font-family: "tomorrow", "Courier New", "Courier", monospace;
+    font-weight: normal;
+    color: var(--font-secondary);
+    margin: 0;
+}
+h1 { font-size: 48px; margin-bottom: 42px; }
+h2 { font-size: 36px; margin-bottom: 30px; }
+h3 { font-size: 30px; margin-bottom: 18px; }
+h4 { font-size: 24px; margin-bottom: 8px; }
+
+@media (max-width: 1024px) {
+    h1 { font-size: 32px; margin-bottom: 20px; }
+    h2 { font-size: 26px; margin-bottom: 16px; }
+    h3 { font-size: 20px; margin-bottom: 12px; }
+    h4 { font-size: 18px; margin-bottom: 4px; }
+}
+
+main > h1, main > h2, main > h3, main > h4, main > h5, main > h6 { text-align: center; }
+section > h1, section > h2, section > h3, section > h4, section > h5, section > h6 { text-align: center; }
+
+a { color: var(--link-primary); text-decoration: none; }
+a:hover { color: var(--link-hover); }
+
+ul { margin: 0 0 24px 0; padding: 0; }
+ul li { margin-bottom: 12px; margin-left: 1em; }
+ol li { margin-bottom: 12px; }
+@media (max-width: 1024px) {
+    ul li { margin-bottom: 4px; }
+    ol li { margin-bottom: 4px; }
+}
+
+header {  background: var(--header-background); }
+
+section, footer {
+    /* Make the background colors for these elements span the screen:
+     * we set the width to the viewport width, and use "border-box" box
+     * sizing to include the padding in the element's content box.  Then
+     * we set the padding on either side to 50% of the viewport width minus
+     * half of the desired content width.  We have to apply a negative margin
+     * since the body uses margin: auto to center things
+     */
+    width: 100vw;
+    box-sizing: border-box;
+    padding: var(--section-spacing) calc(max(12px, 50vw - var(--content-width) / 2));
+    margin-left: min(0px, var(--content-width) / 2 - 50vw);
+}
+
+section:nth-of-type(odd) { background: var(--background-2); }
+section:nth-of-type(odd) .subsection { background: var(--background-1); }
+
+.subsection {
+    border-radius: var(--subsection-border-radius);
+    padding: var(--subsection-padding);;
+    background: var(--background-2);
+    margin: 15px 0;
+    overflow: auto;
+}
+/* will do funky things if nested in a section but we don't do that (right now) */
+.subsection .subsection {
+    background: var(--background-1);
+}
+
+.subsection:nth-child(4n+1) h3:not(.icon),
+.subsection:nth-child(4n+1) .subsection h3:not(.icon)
+    { color: var(--accent-slate); }
+.subsection:nth-child(4n+2) h3:not(.icon),
+.subsection:nth-child(4n+2) .subsection h3:not(.icon)
+    { color: var(--accent-green); }
+.subsection:nth-child(4n+3) h3:not(.icon),
+.subsection:nth-child(4n+3) .subsection h3:not(.icon)
+    { color: var(--accent-orange); }
+.subsection:nth-child(4n+4) h3:not(.icon),
+.subsection:nth-child(4n+4) .subsection h3:not(.icon)
+    { color: var(--accent-purple); }
+
+.subsection ul li { font-size: var(--font-size-small); }
+.subsection img { width: 100%; border-radius: var(--subsection-border-radius); }
 
 footer {
-    padding-bottom: 60px;
+    display: flex;
+    background: var(--footer-background);
+    color: var(--footer-font-primary);
+    font-size: var(--font-size-small);
+    flex-wrap: wrap;
+    gap: 40px;
+    box-shadow: 0 50vh 0 50vh var(--footer-background);  /* make the footer extend to the bottom of the screen */
 }
+footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 { color: var(--footer-font-secondary); }
+footer ul { list-style-type: none; }
+footer ul li { margin-left: 0; margin-bottom: 8px; }
+footer > div { flex: 1; }  /* clear: both used in the mobile view */
 
-footer p {
-    margin-block-end: 0.5em;
-}
-
-table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-    border: 0;
-}
-
-thead th:nth-child(1) {
-    width: 15%;
-}
-
-thead tr {
-    border-bottom: 1px solid #555;
-}
-
-thead th {
-    text-align: center;
-}
-
-td {
-    text-align: right;
-    padding-right: 5px;
-}
-
-tbody tr:nth-child(odd) {
-    background-color: #eee;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #bbb;
-}
-
-tr th, tr td {
-    border: 0;
-    border-right: 1px solid #555;
-}
-
-/* layout for mobile versus non-mobile */
-
-@media (min-width: 450px) {
-    body {
-        display: grid;
-        grid-template-columns: 175px minmax(var(--min-body-width), 1fr);
-    }
-
-    aside {
-        grid-column-start: 1;
-    }
-
-    main {
-        grid-column-start: 2;
-    }
-
-    .control {
-        display: none;
+@media (max-width: 1024px) {
+    footer > div { flex-basis: 25%; }
+    footer > div:first-child {
+        flex-shrink: 1;
+        flex-basis: 100%;
     }
 }
-
-@media (max-width: 450px) {
-    body {
-        min-width: var(--min-body-width);
-    }
-
-    aside {
-        width: var(--sidebar-width-mobile);
-        left: calc(-1 * var(--sidebar-width-mobile));
-    }
-
-    .control {
-        display: block;
-    }
-
+@media (min-width: 1024px) {
+    footer > div:first-child { flex: 1.75; }
 }
 
-/* Menus (nav bar, sidebar) */
-
-/* common definitions between sidebar and nav bar first */
-
-.menu {
-    position: sticky;
-    font-family: "Lucida Console", "Courier New", monospace;
-    top: 0;
-    z-index: 100;  /* make the menu stay over the top of bokeh plots */
-}
-
-.menu li {
-    list-style: none;
-}
-
-.menu a {
+abbr {
+    border-bottom: 1px dotted;
     text-decoration: none;
-    color: var(--menu-font-color);
 }
 
-nav {
-    /* We always have a nav bar but not always a sidebar */
-    background: var(--black);
-    color: var(--menu-font-color);
+/******************************************************* LAYOUT *******************************************************/
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: 36px auto 30px auto;
+    gap: 30px;
+}
+.flex > div:has(.img) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flex > div { margin: 0; flex: 1 }
+.flex .img { max-width: 100%; }
+.subsection .flex { width: 100%; }
+
+@media (min-width: 1024px) {
+    .flex.twocols > div {
+        flex: 1 35%;
+        max-width: 50%;
+    }
 }
 
-nav ul {
-    padding: 10px 0 10px 10px;
+@media (max-width: 1024px) {
+    .flex > div { flex: 1 1 100%; }
 }
 
-nav li {
+/************************************************ NAVIGATION ELEMENTS *************************************************/
+#menu {
+    width: 95%;
+    height: var(--menu-height);
+    line-height: var(--menu-height);
+    border-radius: calc(var(--menu-height) / 2);
+    background: var(--menu-background);
+    margin: var(--menu-spacing) auto;
+}
+#menu h2 { display: inline; vertical-align: middle; }
+#menu a, #menu h2 { color: var(--menu-font); }
+#menu a:hover { color: var(--link-hover); }
+
+#menu .home { float: left;  }
+#menu .home img {
+    height: var(--menu-logo-height);
+    margin: calc((var(--menu-height) - var(--menu-logo-height)) / 2) 24px;
+    float: left;
+}
+#menu .home a:hover { color: var(--menu-font); }
+
+#menu .links { float: right; }
+#menu ul { list-style-type: none; }
+#menu ul li { margin-left: 0; }
+
+@media (min-width: 1024px) {
+    /*
+     * It's not 100% clear how all these different pieces are interacting, but
+     * this is what I had to do to get the menu to look right.  The height of the
+     * menu bar is set to the same as the line-height, which lets the vertical-align: middle
+     * field work for the text (however, for some reason it seems not to be needed for the
+     * ACRL text on the left).
+     *
+     * The logo image is manually positioned using margins; however, the github and the
+     * light/dark icons couldn't use margins because that pushed the rest of the menu items
+     * down, so I manually adjust their position slightly.  It's hacky but seems to look OK.
+     */
+    #menu ul li {
+        display: inline-block;
+        margin-right: 54px;
+        vertical-align: middle;
+    }
+    #menu ul li:has(.icon) { margin-right: 24px; }
+    #menu ul li .icon {
+        position: relative;
+        top: 4px;
+        height: var(--menu-icon-height);
+    }
+}
+@media (max-width: 1024px) {
+    #menu .hamburger {
+        display: inline-block;
+        margin-right: 24px;
+        vertical-align: middle;
+    }
+    #menu ul { line-height: normal; }
+
+    .floating {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+        border-radius: 12px;
+        padding: 0;
+        box-shadow: 0 0 5px;
+    }
+    .floating.open { padding: 12px; }
+    .floating li:has(.icon), .floating span:has(.icon) { display: inline; margin-right: 8px; }
+
+    #mainmenu {
+        position: absolute;
+        background: var(--menu-background);
+        width: 150px;
+        right: 24px;
+        top: 90px;
+        z-index: 1;
+    }
+    #mainmenu.open { border: 2px solid var(--background-2); }
+    #mainmenu .icon { transform: scale(0.75); }
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+.buttons.center { justify-content: center; }
+
+.buttons .secondary { background: var(--link-secondary); }
+.buttons .icon {
+    background: none;
+    width: var(--link-icon-size);
+    height: var(--link-icon-size);
+    padding: 0;
+    margin-left: auto;
+}
+
+.buttons a, button {
+    background: var(--link-primary);
+    color: var(--button-font);
+    border-radius: 100px;
+    padding: 12px 24px;
+}
+.buttons a:last-child, .buttons .github { margin-right: 0; }
+.buttons a:hover, button:hover { background: var(--link-hover); color: var(--button-font); }
+
+button {
+    border: 0;
+    font-family: "B612";
+    width: 100%;
+    font-size: var(--font-size-normal);
+}
+
+/************************************************** ICONS AND MEDIA ***************************************************/
+[data-theme="default"] #themeswitcher { content: url(/icons/d2l.svg); }
+[data-theme="default"] nav .github { content: url(/icons/gh-menu-dark.svg); }
+[data-theme="default"] .slack { content: url(/icons/slack-menu-dark.svg); }
+[data-theme="default"] .hamburger { content: url(/icons/hamburger.svg); }
+[data-theme="alternate"] #themeswitcher { content: url(/icons/l2d.svg); }
+[data-theme="alternate"] nav .github { content: url(/icons/gh-menu-light.svg); }
+[data-theme="alternate"] .slack { content: url(/icons/slack-menu-light.svg); }
+[data-theme="alternate"] .hamburger { content: url(/icons/hamburger-light.svg); }
+
+/* we have different github icons for nav versus in-page */
+.buttons .github { content: url(/icons/gh-project.svg); }
+.buttons a.github:hover { content: url(/icons/gh-project-hover.svg); }
+
+.hamburger { display: none; }  /* only use hamburger menus on mobile */
+
+.icon:before {
+    vertical-align: middle;
     display: inline-block;
+    margin-right: 8px;
+    transform: scale(0.75);
 }
 
-nav li a {
-    padding: 10px;
+footer .logo {
+    float: left;
+    height: 150px;
+    margin-right: 18px;
 }
 
-nav li a:hover {
-    color: var(--font-grey);
-    background: var(--menu-font-color);
+@media (max-width: 1024px) {
+    footer img.logo { height: 72px; padding-bottom: 20px; }
+    .
 }
 
-/* Admonitions */
-
-.admonition {
-    border: 1px solid black;
+.external:after {
+    content: url(/icons/external.svg);
+    margin-left: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    transform: scale(0.75);
 }
 
-.admonition p, .admonition-title {
-    margin: 0;
-    padding: 5px;
-}
-
-.admonition-title {
-    font-weight: bold;
-}
-
-.admonition.note .admonition-title::before {
-    content: '++ ';
-}
-
-.admonition.note .admonition-title {
-    background: lightblue;
-}
-
-.admonition.note {
-    background: aliceblue;
-}
-
-.admonition.warning .admonition-title::before {
-    content: '!! ';
-}
-
-.admonition.warning .admonition-title {
-    background: goldenrod;
-}
-
-.admonition.warning {
-    background: gold;
+.youtube {
+    margin-bottom: 24px;
+    border-radius: 24px;
+    max-width: 90%;
 }

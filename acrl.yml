@@ -1,0 +1,63 @@
+---
+site_name: ACRL
+site_url: "https://next.appliedcomputing.io"
+repo_url: "https://github.com/acrlabs"
+docs_dir: acrl
+site_dir: site/acrl
+theme:
+  name: null
+  custom_dir: theme
+  logo_path: /img/acrl_logo.png
+  menu:
+    icons: true
+    links:
+      - services
+      - research
+      - media
+      - about
+  footer:
+    resources:
+      - blog: "https://blog.appliedcomputing.io"
+      - presentations: "https://www.youtube.com/playlist?list=PLOgtqKaB5McBaIN-XMtvhWAkz0HnCmjDo"
+      - github: "https://github.com/acrlabs"
+    services:
+      - SimKube: "https://simkube.dev"
+      - SaaS
+      - pricing
+    company:
+      - "About Us": about
+      - community: "https://kubernetes.slack.com/archives/C07LTUB823Z"
+      - contact
+  static_templates:
+    - posts/index.html
+extra_css:
+  - style.css
+plugins:
+  - mermaid2               # generate mermaid diagrams in posts
+  - rss:                   # blog post RSS feed
+      match_path: "posts/.*"
+hooks:
+  - hooks/post_list.py     # generate blog post list
+  - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
+  - hooks/empty_cells.py   # remove (erroneous) empty table cells
+markdown_extensions:
+  - abbr
+  - footnotes              # footnotes, duh
+  - md_in_html             # parse markdown inside HTML tags
+  - pymdownx.highlight     # code highlighting
+  - pymdownx.superfences:  # parse mermaid code fences
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid
+  - pymdownx.snippets:     # include contents of one file in another (used for interactive bokeh plots)
+      check_paths: true
+      base_path:
+        - acrl
+        - include
+      auto_append:
+        - glossary.md
+  - smarty                 # smart quotes/em dashes/etc
+validation:
+  links:
+    absolute_links: relative_to_docs

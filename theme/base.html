@@ -1,17 +1,43 @@
+{%- macro menu_link(item) -%}
+  {%- set name -%}
+    {%- if item is mapping -%}
+    {{ item.keys() | first }}
+    {%- else -%}
+    {{ item }}
+    {%- endif -%}
+  {%- endset -%}
+  {%- set _path -%}
+    {%- if item is mapping -%}
+    {{ item.values() | first }}
+    {%- else -%}
+    {{ item | lower }}
+    {%- endif -%}
+  {%- endset -%}
+  {%- set path -%}
+    {%- if _path.startswith("http") -%}
+      {{ _path }}
+    {%- else -%}
+      {{ config.site_url }}{{ _path | lower }}/
+    {%- endif -%}
+  {%- endset -%}
+
+  <li><a href="{{ path }}">
+    {%- if name is lower -%}
+      {{ name | capitalize }}
+    {%- else -%}
+      {{ name }}
+    {%- endif -%}</a>
+  </a></li>
+{%- endmacro -%}
+
 <!DOCTYPE html>
-<html>
+<html data-theme="default" lang="en">
   <head>
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ config.site_name }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/css/style.css" rel="stylesheet" />
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="/js/util.js"></script>
-
-    <script type="text/javascript" defer>
-        $(document).ready(handle_hamburger);
-        $(document).ready(handle_sidebar_close);
-    </script>
 
     <!-- this is a lot of stupid work for a simple favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
@@ -24,53 +50,61 @@
     <meta name="msapplication-config" content="/img/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
 
-    {% block extrahead %}
-    {% endblock %}
-
-    {%- for path in page.meta.extra_css %}
-      <link href="{{ path | url }}" rel="stylesheet">
-    {%- endfor %}
+    {%- block extra_headers -%}{%- endblock -%}
   </head>
 
   <body>
-      <aside>
-        <div class="sidebar menu">
-          {%- block sidebar -%}
-          {%- endblock -%}
+    <header>
+      <nav id="menu">
+        <div class="home">
+          <a href="{{ config.site_url }}">
+            <img src="{{ config.theme.logo_path }}"/>
+            <h2>{{ config.site_name }}</h2>
+          </a>
         </div>
-      </aside>
-
-      <main>
-        {%- block pre -%}
-        {%- endblock -%}
-        <header>
-          <a href="/"><img src="/img/title.png" alt="Applied Computing Research Labs Logo" /></a>
-          <div class="tagline">Open source research and development in distributed systems</div>
-        </header>
-
-        <nav class="menu">
-          <ul>
-            <li><a href="https://blog.appliedcomputing.io/">Blog</a></li>
-            <li><a href="/services/">Services</a></li>
-            <li><a href="/docs/">Documentation</a></li>
-            {%- block github_url -%}
-            <li><a href="https://github.com/acrlabs/">GitHub</a></li>
-            {%- endblock -%}
-            <li><a href="/contact/">Contact</a></li>
+        <div class="links">
+          <a href="#" onclick="toggleDropdown('mainmenu'); return false;"><span class="hamburger"></span></a>
+          <ul id="mainmenu" class="floating">
+            {%- for item in config.theme.menu.links -%}
+              {{ menu_link(item) }}
+            {%- endfor -%}
+            {%- if config.theme.menu.icons -%}
+              <li><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;">
+                  <span class="icon-text">Toggle Light/Dark Mode</span>
+              </a></li>
+              <li><a class="github icon" href="{{ config.repo_url }}"><span class="icon-text">Github</span></a></li>
+            {%- endif -%}
           </ul>
-        </nav>
-
-        <div class="content">
-        {%- block content -%}
-        {{ page.content }}
-        {%- endblock -%}
-        <hr/>
         </div>
+        {%- if config.theme.menu.mascot and page.title == "Home" -%}
+          <a class="mascot" href="/mascot/">
+            <img src="/img/mascot-alt.png"
+                 alt="an orange-and-blue octopus with an intense but curious expression, holding a magnifying glass to his eye"/>
+          </a>
+        {%- endif -%}
+      </nav>
+    </header>
 
-        <footer>
-          <h3>Black Lives Matter</h3>
-          <div class="copyright">Copyright (c) {{ build_date_utc.strftime('%Y') }}  Applied Computing Research Labs, LLC</div>
-        </footer>
-      </main>
+    {%- block content -%}
+    {{ page.content }}
+    {%- endblock -%}
+
+    <footer>
+      <div class="item">
+        <img src="/img/acrl_logo.png" class="logo">
+        <h4>Applied Computing Research Labs</h4>
+        Black Lives Matter
+      </div>
+      {%- for heading, items in config.theme.footer.items() -%}
+      <div class="item">
+        <h4>{%- if heading is lower -%}{{ heading | capitalize }}{%- else -%}{{ heading }}{%- endif -%}</h4>
+        <ul>
+          {%- for item in items -%}
+            {{ menu_link(item) }}
+          {%- endfor -%}
+        </ul>
+      </div>
+      {%- endfor -%}
+    </footer>
   </body>
 </html>

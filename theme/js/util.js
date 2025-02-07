@@ -1,16 +1,53 @@
-function handle_hamburger() {
-    $("#hamburger").click(function() {
-        console.log("foo");
-        $("aside").animate({"left": "0"}, "fast");
-    });
+
+function switchTheme() {
+    var theme = 'default';
+    if (document.documentElement.getAttribute('data-theme') == 'default') {
+        theme = 'alternate';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('acrl-theme', theme);
 }
 
-function handle_sidebar_close() {
-    $("#sidebar-close").click(function() {
-        var bodyStyles = window.getComputedStyle(document.body);
-        var width = bodyStyles.getPropertyValue("--sidebar-width-mobile");
-        $("aside").animate({"left": "-200"}, "fast");
-    });
+const currentTheme = localStorage.getItem('acrl-theme') ? localStorage.getItem('acrl-theme') : null;
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+}
+
+const openContentClass = 'open';
+
+function toggleSidebarItem(item_id) {
+    var sidebar = document.getElementById('sidebar');
+    var subMenu = document.getElementById(item_id).nextElementSibling;
+    if (subMenu.classList.contains(openContentClass)) {
+        subMenu.style.maxHeight = null;
+        subMenu.classList.remove(openContentClass);
+    } else {
+        var otherOpenMenus = sidebar.getElementsByClassName(openContentClass);
+        for (var i = 0; i < otherOpenMenus.length; i++) {
+            // Need to set display: none first, because getElementsByClassName is a live
+            // method, so as soon as we remove the class name, the list is invalid
+            //
+            // This _could_ cause problems if we ever get into a state where there is
+            // more than one open menu, but by design that's not the case here.
+            otherOpenMenus[i].style.maxHeight = null;
+            otherOpenMenus[i].classList.remove(openContentClass);
+        }
+
+        subMenu.classList.add(openContentClass);
+        subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
+    }
+}
+
+function toggleDropdown(toggle_id) {
+    var dropdown = document.querySelector(toggle_id);
+    if (dropdown.classList.contains(openContentClass)) {
+        dropdown.style.maxHeight = null;
+        setTimeout(function() { dropdown.classList.remove(openContentClass); }, 197);
+    } else {
+        dropdown.classList.add(openContentClass);
+        dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
+    }
 }
 
 function handle_submit_form() {

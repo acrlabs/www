@@ -1,42 +1,73 @@
 {% extends "base.html" %}
-{% import 'nav-sub.html' as navsub with context %}
 
-{% block extrahead %}
-<link href="/css/docs.css" rel="stylesheet" />
-<link href="/css/highlight.css" rel="stylesheet" />
+{% block extra_headers %}
+    <link href="/css/highlight.css" rel="stylesheet" />
+    <script>var base_url = {{ base_url|tojson }};</script>
+    <script type="text/javascript" src="/search/main.js" defer></script>
 {% endblock %}
 
-{% block github_url %}
-<li><a href="{{ page.edit_url | regex_replace('edit/master/.*', '') }}">GitHub</a></li>
-{% endblock %}
+{%- block content -%}
+<div class="docs">
+  {# if no value for 'sidebar' is specified in the docs page meta, default to showing the sidebar #}
+  {%- if 'sidebar' not in page.meta or page.meta.sidebar -%}
+  <a href="#" onclick="toggleDropdown('sidebar'); return false;"><span class="sidebar-hamburger"></span></a>
+  <nav id="sidebar" class="floating">
+    <h3><a href="/documentation/">Home</a></h3>
 
-{% block pre %}
-<div id="hamburger" class="control"><a href="#">☰</a></div>
-{% endblock %}
+    <form action="/search/index.html">
+      <input name="q" id="mkdocs-search-query" type="text"  placeholder="Search" aria-label="Search" autocomplete="off" title="Type search term here">
+    </form>
 
-{% block sidebar %}
-<div id="sidebar-close" class="control"><a href="#">X</a></div>
-{%- for n in nav -%}
-  {%- if n.title == page.meta.project -%}
-    {%- if n.children | length > 0 -%}
-    <ul>
-    {%- for nav_item in n.children -%}
-      {%- if nav_item.is_section -%}
-        <li><h1>{{ nav_item.title }}</h1></li>
-        <li>{{ navsub.insert(nav_item, 1) }}</li>
-      {%- else -%}
-        <li><h1><a href="{{ nav_item.url | url }}">{{ nav_item.title }}</a></h1></li>
-      {%- endif -%}
+    {%- for n in nav -%}
+      <ul>
+        {%- for nav_item in n.children -%}
+          {%- if nav_item.children | length > 0 -%}
+          <li>
+            <a href="#" onclick="toggleSidebarItem(this.id)" id="{{ nav_item.title | replace(" ", "-") | lower }}; return false">
+              {{ nav_item.title }}
+              <span class="downarrow"></span>
+            </a>
+            <ul {% if page.parent.title == nav_item.title %}
+               class="open" style="max-height: {{ nav_item.children | length * 40 }}px"
+               {% endif %}
+            >
+              {%- for child in nav_item.children -%}
+              <li>
+                {%- if page.title == child.title -%}
+                <span class="selected">{{ child.title }}</span>
+                {%- else -%}
+                <a href="{{ child.url | url }}">{{ child.title }}</a></li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </li>
+          {%- else -%}
+          <li>{{ nav_item.title }}</li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
     {%- endfor -%}
+    <span><a id="themeswitcher" class="icon" href="#" onclick="switchTheme(); return false;">
+        <span class="icon-text">Toggle Light/Dark Mode</span>
+    </a></span>
+    <span><a class="github icon" href="{{ config.repo_url | url }}"><span class="icon-text">Github</span></a></span>
+    <span><a class="slack icon" href="https://kubernetes.slack.com/archives/C07LTUB823Z">
+        <span class="icon-text">Slack</span>
+    </a></span>
     </ul>
-    {%- endif -%}
+  </nav>
   {%- endif -%}
-{%- endfor -%}
 
-<div class="edit">
-  <a href="{{ page.edit_url | url }}">
-    Find a mistake? Edit this page on GitHub!
-  </a>
+  <main>
+    {{ page.content }}
+
+    {%- if page.previous_page -%}
+    <a href="{{ page.previous_page.url | url }}" class="prev-page">Previous: {{ page.previous_page.title }}</a>
+    {%- endif -%}
+    {%- if page.next_page -%}
+    <a href="{{ page.next_page.url | url }}" class="next-page">Next: {{ page.next_page.title }}</a>
+    {%- endif -%}
+  </main>
 </div>
 
-{% endblock %}
+{%- endblock -%}

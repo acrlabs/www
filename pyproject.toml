@@ -9,7 +9,7 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.11"
 mkdocs = "^1.5.3"
-mkdocs-multirepo-plugin = "^0.6.3"
+mkdocs-multirepo-plugin = "^0.8.3"
 pygments = "^2.16.1"
 mkdocs-rss-plugin = "^1.8.0"
 mkdocs-mermaid2-plugin = "^1.1.1"

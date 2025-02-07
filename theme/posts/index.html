@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block extra_headers %}
+{% include "post_header.html" %}
+{% endblock %}
+
+{% block content %}
+<main class="posts">
+  <h1>Blog Posts</h1>
+  <a class="rss" href="/feed_rss_created.xml"></a>
+  <ul>
+      {%- for section in nav -%}
+      {%- if section.title == "PostList" -%}
+          {%- for page in section.children -%}
+          <li>{{ page.meta.datetime.strftime("%Y-%m-%d") }} <a href="{{ page.url | url }}">{{ page.title }}</a></li>
+          {%- endfor -%}
+      {%- endif -%}
+      {%- endfor -%}
+  </ul>
+</main>
+{% endblock %}

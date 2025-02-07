@@ -1,0 +1,280 @@
+:root {
+    --background-1: #2c2c2c;
+    --background-2: #181818;
+    --background-reversed: #fff;
+    --header-background: var(--background-1);
+    --footer-background: var(--background-reversed);
+    --menu-background: var(--background-reversed);
+
+    --link-primary: var(--accent-slate);
+    --link-secondary: #6a6a6a;
+    --link-hover: var(--accent-orange);
+
+    --font-primary: #b8b8b8;
+    --font-secondary: #fff;
+    --footer-font-primary #6a6a6a;
+    --footer-font-secondary: #000;
+    --button-font: #fff;
+    --menu-font: #000;
+
+    --table-background-primary: #e9e9e9;
+    --table-background-secondary: #b8b8b8;
+    --table-font-primary: #2c2c2c;
+    --table-font-secondary: #000;
+    --table-font-heading: #000;
+
+    --about-entry-height: 150px;
+}
+
+[data-theme="alternate"] {
+    --background-1: #e9e9e9;
+    --background-2: #fff;
+    --background-reversed: #000;
+    --header-background: var(--background-1);
+    --footer-background: var(--background-reversed);
+    --menu-background: var(--background-reversed);
+
+    --font-primary: #000;
+    --font-secondary: #000;
+    --footer-font-primary: #e9e9e9;
+    --footer-font-secondary: #e9e9e9;
+    --button-font: #fff;
+    --menu-font: #e9e9e9;
+
+    --table-background-primary: #fff;
+    --table-background-secondary: #a5a5a5;
+    --table-font-primary: #2c2c2c;
+    --table-font-secondary: #000;
+    --table-font-heading: #fff;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --about-entry-height: 150px;
+    }
+}
+
+main { margin-bottom: var(--section-spacing); }
+
+/*************************************************** HERO SECTION *****************************************************/
+.hero ul {
+    list-style: none;
+    margin: 42px 0;
+    padding: 0;
+}
+.hero ul li {
+    color: var(--font-secondary);
+}
+@media (min-width: 1024px;) {
+    .hero .left {
+        flex: 0.65 !important;
+    }
+}
+
+.hero img {
+    position: relative;
+    box-shadow: 0 0 8px 8px var(--accent-slate);
+}
+#hero1 {
+    width: 90%;
+    top: 10%;
+    left: -15%;
+    z-index: -1;
+}
+#hero2 {
+    width: 100%;
+    top: -10%;
+}
+@media (max-width: 1024px) {
+    .hero img { display: none; }
+}
+
+/******************************************************* CLIENTS ******************************************************/
+.clients { justify-content: center; gap: 24px; }
+.client { max-width: 20%; position: relative; }
+
+.testimonial {
+    position: absolute;
+    top: 0;
+    left: 12px;
+    z-index: 1;
+    background: var(--background-1);
+    width: 500px;
+    border-radius: 12px;
+    font-size: var(--font-size-tiny);
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: max-height 0.2s ease-out;
+    color: var(--font-color-primary);
+}
+.testimonial:hover { color: var(--font-color-primary); }
+.testimonial.open {
+    border: 2px solid var(--background-reversed);
+    padding: 12px;
+}
+
+@media (max-width: 1024px) {
+    .testimonial { width: 50vw; }
+}
+
+/*************************************************** ABOUT SECTION ****************************************************/
+.about section > * { width: 90%; margin-left: auto; margin-right: auto; }
+
+.about .subsection h2 { margin-bottom: 0; }
+.about .subsection h3 {
+    /* the nth-child rules seem to get evaluated last, even though this is
+     * later in the cascade, hence the !important.  Since this is only used
+     * in one place I think the !important is OK */
+    color: var(--font-secondary) !important;
+}
+.about .subsection {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 36px auto;
+    font-size: var(--font-size-small);
+}
+.about .avatar {
+    float: left;
+    background-color: var(--background-reversed);
+    border-radius: var(--subsection-border-radius) 0 var(--subsection-border-radius) 0;
+
+    /* hack to get the image to appear in the center */
+    display: flex;
+    align-items: center;
+}
+.about .avatar img {
+    width: var(--about-entry-height);
+    height: var(--about-entry-height);
+}
+.about .title, .about .bio { margin: 24px; }
+.about .bio { margin-top: 0; }
+
+@media (max-width: 1024px) {
+    .about .title { margin-bottom: 0; }
+}
+
+.about .icon { margin-left: 0; }
+
+/******************************************************* TABLES *******************************************************/
+table {
+    margin: 0 auto var(--section-spacing) auto;
+    table-layout: fixed;
+    font-size: var(--font-size-small);
+}
+@media (min-width: 1024px) {
+    table { width: 85%; }
+}
+
+table th { color: var(--table-font-heading); font-weight: normal; }
+table:nth-of-type(4n+1) th { background: var(--accent-slate); }
+table:nth-of-type(4n+2) th { background: var(--accent-green); }
+table:nth-of-type(4n+3) th { background: var(--accent-orange); }
+table:nth-of-type(4n+4) th { background: var(--accent-purple); }
+
+table th, table td { padding: 12px 24px; }
+@media (max-width: 1024px) {
+    table th, table td { padding: 12px; }
+}
+
+table td {
+    color: var(--table-font-primary);
+    background: var(--table-background-primary);
+}
+table td:first-child {
+    color: var(--table-font-secondary);
+    background: var(--table-background-secondary);
+}
+
+/******************************************************** POSTS *******************************************************/
+.posts h1 { display: inline-block; text-align: center; width: 100%; }
+.posts .rss, .postmeta .rss {
+    border-radius: 100px;
+    float: right;
+    position: absolute;
+    height: var(--link-icon-size);
+    width: var(--link-icon-size);
+}
+.posts .rss { right: 2.5%; }
+.postmeta .rss { right: 5%; margin-top: -3px; }
+
+.postmeta { padding: 12px 0; }
+.postmeta .avatar {
+    float: left;
+    max-height: 50px; /* matches the RSS logo height */
+    background-color: var(--background-reversed);
+    border-radius: var(--subsection-border-radius);
+    margin: -3px 12px 0 0;
+}
+.postmeta .timestamp { font-style: italic; }
+.post hr { clear: both; margin: 0; }
+.post article { width: 75%; margin: 0 auto; }
+
+/******************************************************** FORM ********************************************************/
+#contactform { max-width: 600px; margin: auto; }
+#contactform input, #contactform textarea, #contactform select {
+    width: 100%;
+    margin-bottom: 20px;
+}
+#contactform input, #contactform select {
+    height: 42px;
+    border-radius: 75px;
+    font-size: var(--font-size-normal);
+    text-indent: 12px;
+}
+#contactform select {
+    appearance: none;
+    background-image: url(/icons/down-arrow.svg);
+    background-repeat: no-repeat;
+    background-position-y: 50%;
+    background-position-x: 97%;
+}
+#contactform textarea {
+    height: 180px;
+    border-radius: 24px;
+    font-size: var(--font-size-normal);
+    text-indent: 12px;
+    padding-top: 12px;
+}
+
+/* hiding labels except for screen readers */
+#contactform label {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+#vegetable { display: none; }
+
+#result {
+    display: none;
+    text-align: center;
+    margin: 20px 0;
+    border: 1px black solid;
+    color: black;
+    border-radius: 12px;
+}
+
+.error, .success {
+    padding: 5px;
+    display: block;
+}
+
+.error { background: darkorange; }
+.success { background: lightgreen; }
+
+/************************************************** ICONS AND MEDIA ***************************************************/
+.scale:before { content: url(/icons/scale.svg); }
+.expertise:before { content: url(/icons/expertise.svg); }
+.solutions:before { content: url(/icons/solutions.svg); }
+.research:before { content: url(/icons/research.svg); }
+.mastodon { content: url(/icons/mastodon.svg); }
+.buttons a.mastodon:hover{ content: url(/icons/mastodon-hover.svg); }
+.bluesky { background: #6a6a6a; content: url(/icons/bluesky.svg); }
+.buttons a.bluesky:hover{ content: url(/icons/bluesky-hover.svg); }
+.rss { content: url(/icons/rss.svg); }
