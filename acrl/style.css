@@ -229,6 +229,7 @@ table td:first-child {
     margin: 20px 0;
     border: 1px black solid;
     color: black;
+    border-radius: 12px;
 }
 
 .error, .success {

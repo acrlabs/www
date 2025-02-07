@@ -11,15 +11,15 @@ if (array_key_exists('email', $_POST)) {
 	} else {
 		$name = $_POST['name'];
 		$sender = $_POST['email'];
+    $topic = $_POST['topic'];
 		$message = $_POST['message'];
-
 
 		$email = new \SendGrid\Mail\Mail();
 		$email->setFrom("contact@appliedcomputing.io", "Contact Form");
 		$email->setSubject("ACRL Contact Form Submission");
 		$email->setReplyTo($sender);
 		$email->addTo("drmorr@appliedcomputing.io");
-		$email->addContent("text/plain", "New contact request received!\nName: $name\nEmail: $sender\nMessage: $message");
+		$email->addContent("text/plain", "New contact request received!\n\nName: $name\nEmail: $sender\nTopic: $topic\nMessage: $message");
 		$sendgrid = new \SendGrid($_SERVER['SENDGRID_API_KEY']);
 		try {
 			$response = $sendgrid->send($email);

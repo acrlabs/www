@@ -7,7 +7,6 @@ template: form.html
 Have a question?  Need help with your Kubernetes install?  Want to schedule something?  Let us know!
 
 <form id="contactform" method="post">
-  <div id="result"></div>
   <label for="name">Name (required):</label>
   <input type="text" id="name" name="name" placeholder="Name*" required>
   <label for="email">Email (required):</label>
@@ -26,6 +25,7 @@ Have a question?  Need help with your Kubernetes install?  Want to schedule some
   <textarea id="message" cols="40" rows="10" name="message" placeholder="How can we help you?*" required></textarea>
   <textarea aria-hidden="true" id="vegetable" name="vegetable" placeholder="What is your favorite vegetable?"></textarea>
   <button type="submit" name="submitform">Submit</button>
+  <div id="result"></div>
 </form>
 
 <script type="text/javascript" defer>$(document).ready(handle_submit_form); </script>
