@@ -1,6 +1,6 @@
 ---
 site_name: SimKube
-site_url: "https://next.simkube.dev/"
+site_url: "https://simkube.dev/"
 repo_url: "https://github.com/acrlabs/simkube"
 docs_dir: simkube
 site_dir: site/simkube
