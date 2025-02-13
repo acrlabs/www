@@ -103,7 +103,7 @@
         <li>Comprehensive technical documentation covering a variety of use-cases.</li>
       </ul>
       <div class="buttons">
-        <a href="https://simkube.dev/docs" class="external">Read the Docs</a>
+        <a href="https://simkube.dev/documentation" class="external">Read the Docs</a>
         <a href="https://github.com/acrlabs/simkube/issues" class="external secondary">Get Help</a>
       </div>
     </div>
