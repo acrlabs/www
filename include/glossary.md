@@ -3,3 +3,4 @@
 *[KCA]: Kubernetes Cluster Autoscaler
 *[KWOK]: Kubernetes WithOut Kubelet
 *[VPA]: Vertical Pod Autoscaler
+*[GVK]: Group, Version, Kind
