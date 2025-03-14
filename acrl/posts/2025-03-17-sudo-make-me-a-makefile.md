@@ -162,9 +162,11 @@ back to my snarky Mastodon post above, I really just want an AI to fix the hard,
 about it.
 
 So anyways, what are the results?  I evaluated each of six different LLMs on how well they met these 15 requirements, as
-well as five additional requirements that I didn't tell the LLM about ahead of time[^13].  For each of the twenty
-requirements, I gave a final score so I could compare[^14], and then I summed up all the scores for each LLM.  And
-here's what we got:
+well as five additional requirements that I didn't tell the LLM about ahead of time[^13].  Three of the LLM models were
+free (ChatGPT o3-mini, DeepSeek, and LLaMA), and the other three were paid.  I spent $20 to get access to both ChatGPT
+o1 and ChatGPT 4.5 preview, and I spent another $20 to get access to Claude 3.7 Sonnet with advanced reasoning.  For
+each of the twenty requirements, I gave a final score so I could compare[^14], and then I summed up all the scores for
+each LLM.  And here's what we got:
 
 - `llama-3.1-405b`: 7.5/20
 - `chatgpt-o3-mini-reasoning`: 9.3/20
