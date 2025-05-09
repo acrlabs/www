@@ -46,7 +46,16 @@ In this version of SimKube, we've released SimKube xray, which allows you to dig
 on in your simulation in an intuitive text-based user-interface.  Try it out, or watch the video below (there is no sound)
 for a quick intro!
 
-<iframe width="450" height="252" src="https://www.youtube.com/embed/tAyoWAhm1Q0?si=9S64GLreURNZdOTk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="youtube-container">
+  <iframe
+    src="https://www.youtube.com/embed/tAyoWAhm1Q0?si=9S64GLreURNZdOTk"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
+
 </div>
 
 <div class="changelog" markdown="1">

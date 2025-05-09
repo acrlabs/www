@@ -23,7 +23,16 @@ Read ACRL's blog for event highlights, industry insights, and updates on SimKube
 
 Discover our conference talks, featuring technical content and favorite talks from KubeCon and other industry events.
 
-<iframe class="youtube" width="448" height="252" src="https://www.youtube.com/embed/DvNh4Isqjng?si=IoUxe7ecfR3J5w9t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<div class="youtube-container">
+  <iframe
+    src="https://www.youtube.com/embed/DvNh4Isqjng?si=IoUxe7ecfR3J5w9t"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+</div>
 
 <div class="buttons">
   <a class="external" href="https://www.youtube.com/playlist?list=PLOgtqKaB5McBaIN-XMtvhWAkz0HnCmjDo">View Playlist</a>
