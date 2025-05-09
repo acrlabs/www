@@ -91,10 +91,20 @@ main { margin-bottom: var(--section-spacing); }
 
 /******************************************************* CLIENTS ******************************************************/
 .clients { justify-content: center; gap: 24px; }
-.client { position: relative; }
-
-@media (min-width: 1024px) {
-    .client { max-width: 20%; }
+.client {
+    /* position: relative needed so the popup appears in the right place */
+    font-size: var(--font-size-small); position: relative;
+}
+.client .grid {
+    display: grid;
+    grid-template-columns: 100px 200px;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 12px;
+}
+.client img {
+    width: 100px;
+    height: 100px;
 }
 
 @media (max-width: 1024px) {
@@ -103,8 +113,8 @@ main { margin-bottom: var(--section-spacing); }
 
 .testimonial {
     position: absolute;
-    top: 0;
-    left: 12px;
+    top: 12px;
+    left: 108px;
     z-index: 1;
     background: var(--background-1);
     width: 500px;

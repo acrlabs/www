@@ -45,6 +45,7 @@ function toggleDropdown(toggle_id) {
         dropdown.style.maxHeight = null;
         setTimeout(function() { dropdown.classList.remove(openContentClass); }, 197);
     } else {
+        console.log('ding');
         dropdown.classList.add(openContentClass);
         dropdown.style.maxHeight = dropdown.scrollHeight + 'px';
     }

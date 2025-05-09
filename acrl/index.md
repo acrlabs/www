@@ -79,18 +79,31 @@ template: base.html
   <div class="buttons center"><a  href="/services">View Services</a></div>
 </section>
 
-<section markdown="1">
+<section>
   <h2>Partners and Clients</h2>
   <div class="clients flex">
   <span class="client" id="mitali">
-    <a href="#" onclick="toggleDropdown('#mitali .testimonial'); return false;">Mitali Parasarathy, Director of Engineering, Yelp</a>
-    <a href="#" onclick="toggleDropdown('#mitali .testimonial'); return false;" class="testimonial">Mitali says, "David has been working on projects for Yelp for over a year bringing his expertise to
-implement autoscaling and telemetry for Java services and building out scalable development environments.  He did a
-great job communicating with stakeholders, identifying requirements and executing on developing and deploying
-high-quality solutions."</a>
+    <div class="grid">
+      <img src="/img/testimonials/mitali.png">
+      <a href="#" onclick="toggleDropdown('#mitali .testimonial'); return false;">Mitali Parasarathy, Director of Engineering, Yelp</a>
+    </div>
+    <a href="#" onclick="toggleDropdown('#mitali .testimonial'); return false;" class="testimonial">
+      Mitali says, "David has been working on projects for Yelp for over a year bringing his expertise to
+      implement autoscaling and telemetry for Java services and building out scalable development environments.  He did a
+      great job communicating with stakeholders, identifying requirements and executing on developing and deploying
+      high-quality solutions."
+    </a>
+    <div class="buttons center"><a class="external" href="https://engineeringblog.yelp.com/2024/08/multi-metric-paasta.html">Read more!</a></div>
   </span>
+
   <span class="client">
-    <a href="https://www.hmc.edu/clinic/sponsors-projects/">Harvey Mudd College Department of Computer Science Clinic Program</a>
+    <div class="grid">
+      <img src="/img/testimonials/hmc.png">
+      <a href="https://www.hmc.edu/clinic/sponsors-projects/">Harvey Mudd College Department of Computer Science Clinic Program</a>
+    </div>
+    <div class="buttons center">
+      <a class="external" href="https://blog.appliedcomputing.io/p/exploring-the-kubernetes-graph">Read more!</a>
+    </div>
   </span>
   </div>
 </section>

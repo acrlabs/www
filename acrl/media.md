@@ -25,7 +25,7 @@ Discover our conference talks, featuring technical content and favorite talks fr
 
 <div class="youtube-container">
   <iframe
-    src="https://www.youtube.com/embed/DvNh4Isqjng?si=IoUxe7ecfR3J5w9t"
+    src="https://www.youtube.com/embed/fys2NSHOln0?list=PLOgtqKaB5McBaIN-XMtvhWAkz0HnCmjDo"
     title="YouTube video player"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
