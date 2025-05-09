@@ -10,7 +10,7 @@
 <div class="docs">
   {# if no value for 'sidebar' is specified in the docs page meta, default to showing the sidebar #}
   {%- if 'sidebar' not in page.meta or page.meta.sidebar -%}
-  <a href="#" onclick="toggleDropdown('sidebar'); return false;"><span class="sidebar-hamburger"></span></a>
+  <a href="#" onclick="toggleDropdown('#sidebar'); return false;"><span class="sidebar-hamburger"></span></a>
   <nav id="sidebar" class="floating">
     <h3><a href="/documentation/">Home</a></h3>
 
