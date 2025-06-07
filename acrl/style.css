@@ -228,6 +228,9 @@ table td:first-child {
 .postmeta .timestamp { font-style: italic; }
 .post hr { clear: both; margin: 0; }
 .post article { width: 75%; margin: 0 auto; }
+.post figure img { width: 100%; }
+.post figure p { margin: 0; }
+.post figcaption { font-size: var(--font-size-small); }
 
 /******************************************************** FORM ********************************************************/
 #contactform { max-width: 600px; margin: auto; }
