@@ -44,6 +44,7 @@ markdown_extensions:
   - abbr
   - footnotes              # footnotes, duh
   - md_in_html             # parse markdown inside HTML tags
+  - mdx_math               # latex parsing
   - pymdownx.highlight     # code highlighting
   - pymdownx.superfences:  # parse mermaid code fences
       custom_fences:
