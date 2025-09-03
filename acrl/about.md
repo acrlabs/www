@@ -44,7 +44,7 @@ in academic research.  In his spare time he builds Legos, plays board games, and
 
 <div class="subsection" markdown="1">
 <div class="avatar">
-  <img src="/img/acrl_logo.png" alt="the ACRL logo">
+  <img src="/img/people/ian.png" alt="Headshot of Ian O'Gorman">
 </div>
 
 <div class="title" markdown="1">

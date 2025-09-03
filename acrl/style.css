@@ -161,10 +161,12 @@ main { margin-bottom: var(--section-spacing); }
     /* hack to get the image to appear in the center */
     display: flex;
     align-items: center;
+    max-height: var(--about-entry-height);
 }
 .about .avatar img {
     width: var(--about-entry-height);
     height: var(--about-entry-height);
+    border-radius: var(--subsection-border-radius) 0 var(--subsection-border-radius) 0;
 }
 .about .title, .about .bio { margin: 24px; }
 .about .bio { margin-top: 0; }
