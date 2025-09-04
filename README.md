@@ -48,7 +48,9 @@ Both sites are:
    just serve acrl
    ```
 
-4. The site will now be accessible at http://localhost:8000
+4. The site will now be accessible at:
+    -  ACRL - http://localhost:8000
+    - SimKube - http://localhost:8001
 
 5. `Ctrl + C` in the same terminal to terminate 
 
