@@ -1,42 +1,72 @@
 <?php
 
-require("/usr/share/php/sendgrid/sendgrid-php.php");
+require_once '/usr/share/php/aws/aws-autoloader.php';
 
-$msg = '';
+use Aws\Ses\SesClient;
+use Aws\Exception\AwsException;
+
+$msg = 'Thank you for your message!  We\'ll respond soon!';
 $success = true;
+
 if (array_key_exists('email', $_POST)) {
-	if ($_POST['vegetable'] != "") {
+    if ($_POST['vegetable'] != "") {
         $msg = "Sorry, you look like a bot.  Please don't try again";
         $success = false;
-	} else {
-		$name = $_POST['name'];
-		$sender = $_POST['email'];
-    $topic = $_POST['topic'];
-		$message = $_POST['message'];
+    } else {
+        $name = $_POST['name'];
+        $sender = $_POST['email'];
+        $topic = $_POST['topic'];
+        $message = $_POST['message'];
 
-		$email = new \SendGrid\Mail\Mail();
-		$email->setFrom("contact@appliedcomputing.io", "Contact Form");
-		$email->setSubject("ACRL Contact Form Submission");
-		$email->setReplyTo($sender);
-		$email->addTo("drmorr@appliedcomputing.io");
-		$email->addContent("text/plain", "New contact request received!\n\nName: $name\nEmail: $sender\nTopic: $topic\nMessage: $message");
-		$sendgrid = new \SendGrid($_SERVER['SENDGRID_API_KEY']);
-		try {
-			$response = $sendgrid->send($email);
-			if ($response->statusCode() >= 400) {
-                $msg = 'Sorry, something went wrong.  Please try again later.';
+        $sesClient = new SesClient([
+            'version' => 'latest',
+            'region'  => 'us-east-1',
+            'credentials' => [
+                'key'    => $_SERVER['AWS_ACCESS_KEY_ID'],
+                'secret' => $_SERVER['AWS_SECRET_ACCESS_KEY'],
+            ]
+        ]);
+
+        $subject = "ACRL Contact Form Submission";
+        $bodyText = "New contact request received!\n\nName: $name\nEmail: $sender\nTopic: $topic\nMessage: $message";
+
+        $emailParams = [
+            'Destination' => [
+                'ToAddresses' => ['drmorr@appliedcomputing.io'],
+            ],
+            'Message' => [
+                'Body' => [
+                    'Text' => [
+                        'Charset' => 'UTF-8',
+                        'Data' => $bodyText,
+                    ],
+                ],
+                'Subject' => [
+                    'Charset' => 'UTF-8',
+                    'Data' => $subject,
+                ],
+            ],
+            'Source' => 'contact@appliedcomputing.io',
+            'ReplyToAddresses' => [$sender],
+        ];
+
+        try {
+            $result = $sesClient->sendEmail($emailParams);
+            if (!isset($result['MessageId'])) {
+                $msg = "Could not send email - no message ID returned";
                 $success = false;
-			}
-		} catch (Exception $e) {
-            $msg = 'Sorry, something went wrong.  Please try again later.';
+            }
+        } catch (AwsException $e) {
+            $msg = "AWS SES error: " . $e->getAwsErrorMessage();
             $success = false;
-		}
-
-        $msg = 'Thank you for your message!  We\'ll respond soon!';
-	}
+        } catch (Exception $e) {
+            $msg = "Some other exception: " . $e->getMessage();
+            $success = false;
+        }
+    }
 }
 
-$response = [ 'message' => $msg, 'success' => $success ];
+$response = ['message' => $msg, 'success' => $success];
 header('Content-type: application/json');
 echo json_encode($response);
 
