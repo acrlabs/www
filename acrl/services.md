@@ -3,8 +3,8 @@
 <div class="subsection">
   <h3>Scale-as-a-Service</h3>
 
-  <p>Over eight weeks, ACRL embeds an engineer in your team to help you address cost, efficiency, and reliability concerns.
-  You can choose between three focus areas.</p>
+  <p>Over eight weeks, ACRL embeds 1-2 engineers in your team to help you address cost, efficiency, and reliability
+concerns.  You can choose between three focus areas.</p>
 
   <div class="buttons">
     <a href="/contact">Schedule a Consultation</a>
