@@ -1,0 +1,13 @@
+
+autocmd User LocalVimRCPost call s:LoadTemplateIfNew()
+
+function! s:LoadTemplateIfNew()
+    " Check if buffer is empty (new file) and is a .md file in posts/
+    if line('$') == 1 && getline(1) == '' && expand('%:p') =~# '/posts/.*\.md$'
+        let l:template = g:localvimrc_script_dir . '/templates/blog-post.md'
+        execute '0r ' . l:template
+
+        " Reset modified flag since this is initial content
+        setlocal nomodified
+    endif
+endfunction
