@@ -82,6 +82,20 @@ template: base.html
 <section>
   <h2>Partners and Clients</h2>
   <div class="clients flex">
+  <span class="client" id="astro">
+    <div class="grid">
+      <img src="/img/testimonials/astronomer.png">
+      <a href="#" onclick="toggleDropdown('#astro .testimonial'); return false;">Astronomer, Inc.</a>
+    </div>
+    <a href="#" onclick="toggleDropdown('#astro .testimonial'); return false;" class="testimonial">
+      "ACRL have been fantastic to work with, integrating as a key partner in our cost management of over 500 k8s
+      clusters over AWS, Azure, and GCP.  We saw a concrete 500% ROI in the first six months of the engagement, and are
+      looking forward to a similar level in the future." — Mike Pountney, Director of Software Engineering, Astronomer.
+    </a>
+    <div class="buttons center">
+      <a class="external" href="https://blog.appliedcomputing.io/p/astronomer-saving-megabux-with-sql">Read more!</a>
+    </div>
+  </span>
   <span class="client" id="mitali">
     <div class="grid">
       <img src="/img/testimonials/mitali.png">
