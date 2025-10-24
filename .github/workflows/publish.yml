@@ -1,6 +1,6 @@
 ---
 name: publish next website
-on: # yamllint disable-line rule:truthy
+on:  # yamllint disable-line rule:truthy
   push:
     branches:
       - "main"
