@@ -61,7 +61,7 @@ for a quick intro!
 <div class="changelog" markdown="1">
 <!-- INSERT CHANGELOG -->
 <div class="buttons">
-  <a href="https://github.com/acrlabs/simkube/blob/master/CHANGELOG.md" class="external secondary">See full changelog</a>
+  <a href="https://github.com/acrlabs/simkube/blob/main/CHANGELOG.md" class="external secondary">See full changelog</a>
 </div>
 </div>
 </div>

@@ -171,7 +171,7 @@ completely asinine or offensive ❤️
     first set up this blog, I considered using Patreon instead but decided to go with Substack for discoverability.  But
     for these and other reasons, I've never intended to stick around Substack for the long term.
 [^3]: Fun fact, the way I currently publish this blog is that I write everything in Markdown, publish it on my website,
-    and then copy-paste the formatting into the Substack editor.  You can actually see [all the Markdown files](https://github.com/acrlabs/www/tree/master/root/posts)
+    and then copy-paste the formatting into the Substack editor.  You can actually see [all the Markdown files](https://github.com/acrlabs/www/tree/main/root/posts)
     on GitHub, if you're curious.
 [^4]: You can imagine that if I depended on my writing for my salary, the decision about "whether to stay on Substack or
     not" becomes _much_ more fraught: any significant shift in platform is almost assuredly going to result in a loss of

@@ -49,7 +49,7 @@ in order to get something that is approximately correct. But remember what I sai
 trace[^1]? So after some reflection and conversations, I began to realize that's not actually that helpful. What we
 _actually_ need is the unaggregated stream of relevant events.
 
-So that's what I [built](https://github.com/acrlabs/simkube/tree/master/sk-tracer).
+So that's what I [built](https://github.com/acrlabs/simkube/tree/main/sk-tracer).
 
 ## Hold up a sec. You're using Rust again?
 

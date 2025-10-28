@@ -6,7 +6,7 @@
 
 Both sites are:
 - built into static assets using [mkdocs](https://www.mkdocs.org/) for static site generation
-- automatically re-deployed via a GitHub action on successful merges to the `master` branch
+- automatically re-deployed via a GitHub action on successful merges to the `main` branch
 
 
 ## Getting Started
@@ -66,6 +66,6 @@ Both sites are:
 
 5. Test locally (`just serve {site}`)
 
-6. Open a Pull Request to the `master` branch
+6. Open a Pull Request to the `main` branch
 
 7. Merge changes upon PR approval

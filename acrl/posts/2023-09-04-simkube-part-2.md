@@ -397,7 +397,7 @@ _Awwwww yea._
 ## Wrapping Up
 
 I know this post was more technical and included a lot of staring at kubectl output, but I am pretty excited about this
-progress! If you want to play with it yourself, you can duplicate all the same steps using the code on our [GitHub repo](https://github.com/acrlabs/simkube/tree/master).
+progress! If you want to play with it yourself, you can duplicate all the same steps using the code on our [GitHub repo](https://github.com/acrlabs/simkube/tree/main).
 Also of note: I'm going to be at [KubeCon NA](https://events.linuxfoundation.org/kubecon-cloudnativecon-north-america/)
 in Chicago in November this year, and I'm giving a talk where I'll be going over some of this same content, and
 (hopefully) presenting a live demo! So look me up if you're going to be there too.  Next time, we'll take a look at how
