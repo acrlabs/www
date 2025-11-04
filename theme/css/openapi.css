@@ -1,0 +1,11 @@
+details, details p {
+    margin-left: var(--subsection-padding);
+}
+
+details p {
+    margin-top: 0;
+}
+
+.schema {
+    padding-bottom: var(--subsection-padding);
+}

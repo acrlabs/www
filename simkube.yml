@@ -34,39 +34,40 @@ theme:
 extra_css:
   - style.css
 plugins:
-  - multirepo:             # pull in docs from SimKube repo
+  - multirepo:              # pull in docs from SimKube repo
       keep_docs_dir: true
-  - markdown-exec          # execute commands from markdown (to generate usage code blocks)
-  - search                 # search the docs
+  - markdown-exec           # execute commands from markdown (to generate usage code blocks)
+  - search                  # search the docs
 hooks:
-  - hooks/preprocess.py    # convert GH-style markdown to mkdocs-style markdown (headings and such)
-  - hooks/prebuild_css.py  # concatenate extra_css into css/style.css
+  - hooks/preprocess.py     # convert GH-style markdown to mkdocs-style markdown (headings and such)
+  - hooks/prebuild_css.py   # concatenate extra_css into css/style.css
   - hooks/changelog.py
 markdown_extensions:
-  - abbr                   # common abbreviations
-  - admonition             # notes/warnings in documentation
-  - md_in_html             # parse markdown inside HTML tags
+  - abbr                    # common abbreviations
+  - admonition              # notes/warnings in documentation
+  - md_in_html              # parse markdown inside HTML tags
   - pymdownx.blocks.html
-  - pymdownx.highlight     # code highlighting
-  - pymdownx.snippets:     # include contents of one file in another (used for interactive bokeh plots)
+  - pymdownx.blocks.details # add "details" expanders for OpenAPI docs
+  - pymdownx.highlight      # code highlighting
+  - pymdownx.snippets:      # include contents of one file in another (used for interactive bokeh plots)
       check_paths: true
       base_path:
         - include
         - temp_dir
       auto_append:
         - glossary.md
-  - pymdownx.superfences:  # parse mermaid code fences and executable code blocks
+  - pymdownx.superfences:   # parse mermaid code fences and executable code blocks
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:mermaid2.fence_mermaid
-  - smarty                 # smart quotes/em dashes/etc
-  - toc:                   # generate table of contents
-      baselevel: 2         # page contents headings start at h2
-      toc_depth: '3-3'     # because page contents headings start at h2, I don't want to include the
-                           # FAQ heading in the FAQ itself, so I set this from depth 3 to depth 3.
+  - smarty                  # smart quotes/em dashes/etc
+  - toc:                    # generate table of contents
+      baselevel: 2          # page contents headings start at h2
+      toc_depth: '3-3'      # because page contents headings start at h2, I don't want to include the
+                            # FAQ heading in the FAQ itself, so I set this from depth 3 to depth 3.
 nav:
-  - SimKube: '!import https://github.com/acrlabs/simkube?branch=main&extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
+  - SimKube: '!import https://github.com/acrlabs/simkube?branch=drmorr/document-crds&extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
 validation:
   nav:
     omitted_files: ignore

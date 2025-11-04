@@ -1,21 +1,25 @@
-[tool.poetry]
+[project]
 name = "www"
 version = "0.1.0"
 description = ""
-authors = ["David Morrison <drmorr@appliedcomputing.io>"]
+authors = [{name = "David Morrison", email = "drmorr@appliedcomputing.io" }]
 readme = "README.md"
-package-mode = false
+requires-python = ">=3.11,<4"
 
-[tool.poetry.dependencies]
-python = "^3.11"
-mkdocs = "^1.5.3"
-mkdocs-multirepo-plugin = "^0.8.3"
-pygments = "^2.16.1"
-mkdocs-rss-plugin = "^1.8.0"
-mkdocs-mermaid2-plugin = "^1.1.1"
-pymdown-extensions = "^10.7"
-markdown-exec = {extras = ["ansi"], version = "^1.9.3"}
-python-markdown-math = "^0.9"
+dependencies = [
+  "markdown-exec[ansi]",
+  "mkdocs",
+  "mkdocs-multirepo-plugin",
+  "mkdocs-rss-plugin",
+  "mkdocs-mermaid2-plugin",
+  "neoteroi-mkdocs @ git+https://github.com/drmorr0/neoteroi-mkdocs-plugins",
+  "pygments",
+  "pymdown-extensions",
+  "python-markdown-math",
+]
+
+[tool.poetry]
+package-mode = false
 
 [build-system]
 requires = ["poetry-core"]
