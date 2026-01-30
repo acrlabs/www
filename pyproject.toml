@@ -7,6 +7,7 @@ readme = "README.md"
 requires-python = ">=3.11,<4"
 
 dependencies = [
+  "click==8.2.1", # make hot reloading work, https://github.com/squidfunk/mkdocs-material/issues/8478
   "markdown-exec[ansi]",
   "mkdocs",
   "mkdocs-multirepo-plugin",
