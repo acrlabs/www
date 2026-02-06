@@ -68,6 +68,7 @@ markdown_extensions:
                             # FAQ heading in the FAQ itself, so I set this from depth 3 to depth 3.
 nav:
   - SimKube: '!import https://github.com/acrlabs/simkube?branch=drmorr/document-crds&extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
+  - SimKube CI Action: '!import https://github.com/acrlabs/simkube?branch=drmorr/document-crds&extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'
 validation:
   nav:
     omitted_files: ignore
