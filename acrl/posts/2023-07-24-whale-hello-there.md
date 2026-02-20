@@ -1,6 +1,6 @@
 ---
 title: Whale Hello There!
-authors: 
+authors:
   - drmorr
 datetime: 2023-07-24 11:00:00
 template: post.html

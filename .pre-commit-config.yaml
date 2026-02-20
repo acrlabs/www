@@ -1,0 +1,24 @@
+---
+exclude: "acrl/interactive|theme/icons|simkube/img"
+repos:
+  - repo: "https://github.com/pre-commit/pre-commit-hooks"
+    rev: v4.4.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+  - repo: "https://github.com/adrienverge/yamllint.git"
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: ['--strict', '-d', '{extends: default, rules: {line-length: {max: 120}}}']
+  - repo: "https://github.com/astral-sh/ruff-pre-commit"
+    rev: v0.4.2
+    hooks:
+      - id: ruff
+        args: ["--fix"]
+      - id: ruff-format
+# - repo: "https://github.com/jackdewinter/pymarkdown"
+#   rev: v0.9.35
+#   hooks:
+#     - id: pymarkdown
+#       args: ["fix"]

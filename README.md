@@ -1,6 +1,6 @@
 # Public ACRL Sites
 
-`www` is the repo for the following public ACRL sites 
+`www` is the repo for the following public ACRL sites
 - [ACRL](http://appliedcomputing.io) - home of Applied Computing Research Labs
 - [SimKube](http://simkube.dev/) - home of SimKube
 
@@ -52,7 +52,7 @@ Both sites are:
     -  ACRL - http://localhost:8000
     - SimKube - http://localhost:8001
 
-5. `Ctrl + C` in the same terminal to terminate 
+5. `Ctrl + C` in the same terminal to terminate
 
 ### Contributing
 
