@@ -1,0 +1,24 @@
+---
+name: code verification
+on:   # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - "master"
+  pull_request: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo and build scripts
+        uses: actions/checkout@v4
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.1
