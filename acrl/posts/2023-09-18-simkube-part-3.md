@@ -176,13 +176,13 @@ Thanks for reading,
     Small changes in input = potentially large changes in output.
 
 [^2]: Simple example: say you wanted to simulate a change to the [maxUnavailable/maxSurge](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-update-deployment)
-    settings on a Deployment object. Well, then, just having access to the raw pod creations and deletions isn't going to help.
+settings on a Deployment object. Well, then, just having access to the raw pod creations and deletions isn't going to help.
 
 [^3]: Let's say each object uses 500kB data (a fairly significant overestimate). The Kubernetes SLOs page says that
     Kubernetes should be able to handle up to 20 podspec creations/updates/deletions in a given second, but I find it
     hard to believe that this rate of change is happening *constantly* in a real cluster. Let's say that 5x/minute we
     see 20 podspec creations/updates/deletions in a second, so then 5x/minute we need to store 20 * 500kB of data. That
-    means that a day's worth of data takes 5 * 20 * 24 * 500 = 1.2GB of storage. Let's, say, triple that to account for
+    means that a day's worth of data takes 5 \* 20 \* 24 \* 500 = 1.2GB of storage. Let's, say, triple that to account for
     any indexes or other metadata we want to store: a trace of a large cluster should take ~5GB of storage. Large, yes;
     impossibly huge, definitely not.
 
@@ -193,8 +193,9 @@ Thanks for reading,
 [^5]: I thought this was a clever idea, but the fact that I haven't seen anybody else do this makes me wonder if it's
     _too_ clever.
 
-[^6]: This is similar to how Kubernetes Jobs work: in order to let the user check the status of a job, they [aren't
-    deleted immediately](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/), though they will be garbage-collected eventually so they don't take up space in etcd forever.
+[^6]: This is similar to how Kubernetes Jobs work: in order to let the user check the status of a job, they
+    [aren't deleted immediately](https://kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/), though
+    they will be garbage-collected eventually so they don't take up space in etcd forever.
 
 [^7]: Plus, running the driver in a separate pod opens up the possibility of having the driver running in a completely
     different cluster than the simulation controller, which could be useful for some sort of automatic testing workflow

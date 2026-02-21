@@ -27,6 +27,7 @@ Follow these three simple steps to get started:
 1. Record traces of events that happen in your production cluster
 2. Use SimKube to create a simulation environment that exactly mimics your production cluster
 3. Replay the event trace in your simulated cluster; make changes to see how the cluster responds!
+
 </div>
 
 <div>

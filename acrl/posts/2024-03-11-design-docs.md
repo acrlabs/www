@@ -126,7 +126,7 @@ Ok, here they are; I have three questions defined in this particular document.
 >   re-inventing a huge amount of stuff that Prometheus already does.
 > - The real question here is, how do we get fine-enough-grained data so that we can do some reasonable analysis on it?
 >   We need at a minimum 1s resolution, I think.  We can’t expect users to run their existing prometheus at 1s
->  `scrape_interval, so this essentially means we have to launch our own Prometheus pod per simulation.
+>   `scrape_interval`, so this essentially means we have to launch our own Prometheus pod per simulation.
 >     - Option 1: rely on the prometheus operator
 >         - pros: this is what we’re already using in our stack, I think it’s not super hard to create a new prometheus
 >              object in sk-ctrl that targets the things we want.

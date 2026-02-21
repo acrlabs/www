@@ -90,60 +90,60 @@ more_.
 This, too, is non-controversial in theory, and extremely hard to do in practice.  Here are three guiding principles I
 use to help me build useful (but not _too_ useful) tools:
 
-1.  **Understand the problem the tool needs to solve.**  I've been working on a [collection of tools](https://github.com/acrlabs/datakube)
-    to make data analysis on Kubernetes clusters easier.  I'm doing a bunch of work with [pandas](https://pandas.pydata.org)
-    and related data analysis/visualization libraries that have a lot of inherent friction to them.  The immediate
-    temptation is dive in and immediately write a giant pandas wrapper framework that abstracts away all the arcane
-    syntax and solves all the problems you can think of with the library.  _Do not do this_.  If you don't _intimately_
-    understand what the friction looks like (in a safe environment), the tool that you write will not make it better,
-    and it probably will make it worse.
+1. **Understand the problem the tool needs to solve.**  I've been working on a [collection of tools](https://github.com/acrlabs/datakube)
+   to make data analysis on Kubernetes clusters easier.  I'm doing a bunch of work with [pandas](https://pandas.pydata.org)
+   and related data analysis/visualization libraries that have a lot of inherent friction to them.  The immediate
+   temptation is dive in and immediately write a giant pandas wrapper framework that abstracts away all the arcane
+   syntax and solves all the problems you can think of with the library.  _Do not do this_.  If you don't _intimately_
+   understand what the friction looks like (in a safe environment), the tool that you write will not make it better,
+   and it probably will make it worse.
 
-    In my case, what this means is that I've spent a _lot_ of hours in a Jupyter notebook, staring at "native" Pandas
-    code, reading the Pandas documentation, and trying to get the results that I want without any extra tooling at all.
-    It's been very painful and very frustrating at times, but this is a critical part of the process.  You can't remove
-    friction if you don't understand it.
+   In my case, what this means is that I've spent a _lot_ of hours in a Jupyter notebook, staring at "native" Pandas
+   code, reading the Pandas documentation, and trying to get the results that I want without any extra tooling at all.
+   It's been very painful and very frustrating at times, but this is a critical part of the process.  You can't remove
+   friction if you don't understand it.
 
-2.  **Start small and iterate.**  I try hard to do this in general anyways, but I think it's extra important for
-    building tools.  The immediate temptation (again) is to try to build the most general interface you can think of
-    that might solve a problem that you don't have now, but know you will have in the future.  Again, _do not do this_.
-    When I started looking into ansible for automating some of my infrastructure, the first task I wrote was
-    essentially
+2. **Start small and iterate.**  I try hard to do this in general anyways, but I think it's extra important for
+   building tools.  The immediate temptation (again) is to try to build the most general interface you can think of
+   that might solve a problem that you don't have now, but know you will have in the future.  Again, _do not do this_.
+   When I started looking into ansible for automating some of my infrastructure, the first task I wrote was
+   essentially
 
-    ```yaml
-    - name: Create an EC2 instance
-      amazon.aws.ec2_instance:
-        name: "my-instance"
-    ```
+   ```yaml
+   - name: Create an EC2 instance
+     amazon.aws.ec2_instance:
+       name: "my-instance"
+   ```
 
-    I wrote that and then immediately said, "That's stupid.  Why do I have a one-line function to create an EC2
-    instance?  I can't even do anything with that instance, it won't have the right SSH keys or networking config or
-    anything."  But I knew I was going to need to create EC2 instances of _some_ kind, and I wanted to solve the basic
-    problems with doing so before figuring out all the hard stuff.  In this case, I realized that I didn't have the
-    correct AWS roles configured to even be able to _run_ an instance, so I had to spend a bunch of time setting that
-    up.  If I had been trying to solve a more general problem (like, say, creating an entire bespoke Kubernetes cluster
-    across multiple regions) there would be so many problems to debug that I likely wouldn't know where to start.
+   I wrote that and then immediately said, "That's stupid.  Why do I have a one-line function to create an EC2
+   instance?  I can't even do anything with that instance, it won't have the right SSH keys or networking config or
+   anything."  But I knew I was going to need to create EC2 instances of _some_ kind, and I wanted to solve the basic
+   problems with doing so before figuring out all the hard stuff.  In this case, I realized that I didn't have the
+   correct AWS roles configured to even be able to _run_ an instance, so I had to spend a bunch of time setting that
+   up.  If I had been trying to solve a more general problem (like, say, creating an entire bespoke Kubernetes cluster
+   across multiple regions) there would be so many problems to debug that I likely wouldn't know where to start.
 
-3.  **Recognize when the tool has exceeded its scope.**  It's a well-known problem in the industry: if your tool is
-    _good_, people will see you using it and want to know how to use it too.  Maybe they'll discover (or contribute!) a
-    way to use the tool that you didn't expect or intend[^8], but now the tool is better!  Yay!  Now more people are using
-    it.  Whoops!  Someone just added your tool to a production system, and then your tool broke because you didn't
-    bother making it robust, and now everyone is mad at your tool[^9].
+3. **Recognize when the tool has exceeded its scope.**  It's a well-known problem in the industry: if your tool is
+   _good_, people will see you using it and want to know how to use it too.  Maybe they'll discover (or contribute!) a
+   way to use the tool that you didn't expect or intend[^8], but now the tool is better!  Yay!  Now more people are using
+   it.  Whoops!  Someone just added your tool to a production system, and then your tool broke because you didn't
+   bother making it robust, and now everyone is mad at your tool[^9].
 
-    Sound familiar?  It happens _all the time_.  At some point, one of your tools is going to get depended upon in a way
-    that is a) mission-critical, b) unexpected, and c) brittle.  In that case, you should celebrate!  You made a thing
-    that other people like and are using!  This is incredibly validating.  Then, once you've done that, you have a
-    choice to make: you can either step up and turn your tool into a proper product (not necessarily one that you sell,
-    but definitely one that adheres to best practices for production code, e.g., maybe write some tests for the damn
-    thing), or you can throw it away.
+   Sound familiar?  It happens _all the time_.  At some point, one of your tools is going to get depended upon in a way
+   that is a) mission-critical, b) unexpected, and c) brittle.  In that case, you should celebrate!  You made a thing
+   that other people like and are using!  This is incredibly validating.  Then, once you've done that, you have a
+   choice to make: you can either step up and turn your tool into a proper product (not necessarily one that you sell,
+   but definitely one that adheres to best practices for production code, e.g., maybe write some tests for the damn
+   thing), or you can throw it away.
 
-    Either option is a valid choice, depending on your circumstances.  Some tools outlive their usefulness, and that's
-    totally fine!  Take pride in building a thing that was useful for a time.  Other tools are so important that they
-    become de facto required in order to actually do the job.  It's really up to you to decide which route you want to
-    take here, but make sure you're deliberate and up-front about it.  If you're going to throw the tool away, make sure
-    you tell your users, "I am no longer supporting this tool, if you continue to use it in these ways, please be aware
-    that it may break at the worst possible time."  Telling them this won't make them any less upset when they ignore
-    you and then it breaks anyways, but if you put it in writing at least you can tap the sign and say "I told you so,"
-    which might give you a modicum of satisfaction for being right.
+   Either option is a valid choice, depending on your circumstances.  Some tools outlive their usefulness, and that's
+   totally fine!  Take pride in building a thing that was useful for a time.  Other tools are so important that they
+   become de facto required in order to actually do the job.  It's really up to you to decide which route you want to
+   take here, but make sure you're deliberate and up-front about it.  If you're going to throw the tool away, make sure
+   you tell your users, "I am no longer supporting this tool, if you continue to use it in these ways, please be aware
+   that it may break at the worst possible time."  Telling them this won't make them any less upset when they ignore
+   you and then it breaks anyways, but if you put it in writing at least you can tap the sign and say "I told you so,"
+   which might give you a modicum of satisfaction for being right.
 
 So anyways, those are my thoughts on writing tools, thrown out into the void in a hopefully timely manner.  Tune back in
 next week for some more coverage of KubeCon and/or NSDI and/or whatever the heck else I happen to feel like writing

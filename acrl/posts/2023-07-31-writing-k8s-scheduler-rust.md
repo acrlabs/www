@@ -31,6 +31,7 @@ By the way, I'm going to assume some degree of familiarity with both Kubernetes 
 my audience somewhat, though I'll try to explain some concepts as they come up.
 
 ## The Prelude
+
 As a prelude[^1] to this post, let's take a look at our goals in a bit more detail:
 
 1. **Understanding what goes on "behind the scenes" in Kubernetes scheduling**. Most Kubernetes developers "know" how
@@ -200,7 +201,7 @@ of this object, it says:
 Hmmmmm, interesting, I didn't realize that pods _had_ a binding subresource? Ok, let's try to query one of those and see
 what it looks like. I'm running a pod called nginx in my cluster, let's see what it says:
 
-```
+```text
 > kubectl get pod nginx –subresource=binding
 error: invalid subresource value: "binding". Must be one of [status scale]
 ```
@@ -208,7 +209,7 @@ error: invalid subresource value: "binding". Must be one of [status scale]
 Welp. That didn't work. Looks like `kubectl` has the subresources it can query hard-coded in. What if we just try to get
 the raw object?
 
-```
+```text
 > kubectl get --raw /api/v1/namespaces/default/pods/nginx/binding
 Error from server (MethodNotAllowed): the server does not allow this method on the requested resource
 ```
@@ -262,7 +263,7 @@ and just directly runs the pod on the node[^3].
 
 So---let's run this and watch it break horribl---
 
-```
+```text
 > kubectl apply -f pod.yml
 > kubectl get pods
 NAMESPACE  NAME   READY  STATUS   RESTARTS  AGE
@@ -286,8 +287,8 @@ elsewhere, and a human is gonna have to come in and clean things up[^5].
 
 In the code we walked through above, we don't check _any_ scheduling constraints; in the full scheduler code on GitHub,
 the scheduler checks two constraints: resource requests (just CPU and memory), and node selectors. So if those are the
-only scheduling constraints that your pod uses, well, congrats, it'll run! Otherwise... you're probably going to be out of
-luck. So maybe don't use this for your production systems.
+only scheduling constraints that your pod uses, well, congrats, it'll run! Otherwise... you're probably going to be out
+of luck. So maybe don't use this for your production systems.
 
 But, if you _do_ use it in production, please tell me what happens.
 

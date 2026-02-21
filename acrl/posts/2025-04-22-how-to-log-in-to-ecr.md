@@ -97,7 +97,7 @@ I tried to actually pull images down from ECR.  At first I assumed that I'd eith
 the credential provider _itself_ was buggy.  Unfortunately ruling both of these items out was more complicated than it
 should have been.  I could see in the kubelet logs two entries:
 
-```
+```text
 Getting image XXXX.dkr.ecr.us-east-1.amazonaws.com/cluster-autoscaler credentials
 from external exec plugin ecr-credential-provider
 ```
@@ -110,7 +110,7 @@ running in.  Everything looked good there, so what was going on???
 I figured it out when I took the credentials that the provider returned and used them to log into my ECR registry; the
 login was successful, but I got a 403 error when I tried to pull an image.  This error, specifically:
 
-```
+```text
 Error response from daemon: pull access denied for XXXX.dkr.ecr.us-east-1.amazonaws.com/cluster-autoscaler,
 repository does not exist or may require 'docker login': denied: User:
 arn:aws:iam::XXXX:user/serviceaccount/ecr-login is not authorized to perform: ecr:BatchGetImage on resource:
@@ -134,7 +134,6 @@ Tune in next time for that sappy feel-good story, maybe!  Thanks for reading,
 
 *[ECR]: Amazon Elastic Container Registry
 *[IAM]: Amazon Identity and Access Management, aka the bane of my existence
-
 
 [^1]: Although I do have a sappy human interest post I might write this week, stay tuned...
 

@@ -7,7 +7,7 @@ template: post.html
 ---
 
 <figure markdown>
-  ![A screenshot of a reddit post saying "This is hot garbage.  It's not too late to delete this."](/img/posts/hotgarbage.png)
+  ![A screenshot of a reddit post saying "This is hot garbage.  It's not too late to delete this."](/img/posts/hotgarbage.png) <!-- markdownlint-disable-line MD013 -->
   <figcaption>This is the nicest thing anyone has ever said about my blog!</figcaption>
 </figure>
 
@@ -34,8 +34,8 @@ and that will make people's lives better.  And we've created this weird associat
 something" with "this thing is _ready to go_".  And I can kinda understand how we got here: back when new software was
 released on a physical disk that you had to go into a store and purchase[^3], there was a lot of pressure to make sure
 that the bits contained on that physical disk were perfect, because if they weren't it was extremely difficult to fix
-them after the fact[^4].  And even now, when we put a new version on something, we're kindof implicitly saying "This set of
-bits is ready for consumption, all those new features I was working on are complete and ready for someone to use."
+them after the fact[^4].  And even now, when we put a new version on something, we're kindof implicitly saying "This set
+of bits is ready for consumption, all those new features I was working on are complete and ready for someone to use."
 
 And that's kinda scary!  You're putting yourself out there in a way that feels a bit uncomfortable.  What if it's
 broken and busted, or there's some bug or corner case that you didn't think about, or, or, or...?

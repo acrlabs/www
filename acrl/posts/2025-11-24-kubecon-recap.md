@@ -115,9 +115,9 @@ Also speaking of videos, I thought it would be interesting to briefly cover some
 posted in the lead-up to KubeCon.  It was definitely eye-opening for me, and a window into a whole world of advertising
 that I've heretofore never experienced.  For a quick summary, we posted five videos, one per week, starting at the
 beginning of October.  Each video I posted here, on LinkedIn, on YouTube, and on my social media sites (Hachyderm and
-Bluesky)[^10].  I spent $100 on LinkedIn to "boost" them for a week, and I also spent $100 on YouTube for the first one, just
-to compare what sort of reach and viewership we got on the two platforms.  The results were somewhat surprising!  Here's
-a few stats:
+Bluesky)[^10].  I spent $100 on LinkedIn to "boost" them for a week, and I also spent $100 on YouTube for the first one,
+just to compare what sort of reach and viewership we got on the two platforms.  The results were somewhat surprising!
+Here's a few stats:
 
 * [Video 1: "What's SimKube, Precious???"](https://youtube.com/shorts/jUE2YdUpAYQ) - Lord of the Rings is
   near and dear to my heart, so this was a very fun video to make.  On LinkedIn, we got 16k "impressions", 5000 views,

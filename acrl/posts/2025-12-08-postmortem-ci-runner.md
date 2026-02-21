@@ -41,7 +41,7 @@ periodically, a simulation would report as "failed" after completing its entire 
 component responsible for running the events in the trace file) would report the following error, along with a stack
 trace and a panic:
 
-```
+```text
 timed out deleting simulation root sk-test-sim-driver-sn295-root
 ```
 
@@ -62,7 +62,7 @@ We investigated the log files from all the relevant controllers, including the S
 controller manager, and the Kubernetes API server.  The results were, to use the technical terminology, extremely
 f\*$&ing weird.  The SimKube driver pod had dozens of log lines which looked like the following:
 
-```
+```text
 INFO mutate_pod: mutating pod (hash=10855072724872030168, seq=66) pod.namespaced_name="virtual-default/hello-simkube-29414550-tcr49"
 INFO mutate_pod: first time seeing pod, adding tracking annotations pod.namespaced_name="virtual-default/hello-simkube-29414550-tcr49"
 ```
@@ -77,7 +77,7 @@ same pod for 10 minutes, well after the simulation was over and everything (supp
 
 The next clue came from the Kubernetes controller manager logs:
 
-```
+```text
  "syncing orphan pod failed" err=<
         Pod "hello-simkube-29414550-tcr49" is invalid: spec: Forbidden: pod updates may not change fields other than `spec.containers[*].image`,`spec.initContainers[*].image`,`spec.activeDeadlineSeconds`,`spec.tolerations` (only additions to existing tolerations),`spec.terminationGracePeriodSeconds` (allow it to be set to 1 if it was previously negative)
         @@ -140,7 +140,9 @@
@@ -115,14 +115,14 @@ really nice feature that it can auto-inject certificates into your webhook confi
 seemed like it was working as designed at first, until we inspected the timestamps more closely.  Then these two lines
 stood out:
 
-```
+```text
 I1204 18:29:07.814009 attempting to acquire leader lease kube-system/cert-manager-cainjector-leader-election...
 I1204 18:30:11.466829 successfully acquired lease kube-system/cert-manager-cainjector-leader-election
 ```
 
-By default, cert-manager, like many other components in Kubernetes, operates in a semi-[HA](https://en.wikipedia.org/wiki/High_availability) fashion.
-There is one "leader" pod and a number of hot standby pods.  That way, if the leader pod crashes or gets evicted, one
-of the standby pods can immediately take over.  Kubernetes provides a [distributed locking](https://kubernetes.io/docs/concepts/architecture/leases/#leader-election)
+By default, cert-manager, like many other components in Kubernetes, operates in a semi-[HA](https://en.wikipedia.org/wiki/High_availability)
+fashion.  There is one "leader" pod and a number of hot standby pods.  That way, if the leader pod crashes or gets
+evicted, one of the standby pods can immediately take over.  Kubernetes provides a [distributed locking](https://kubernetes.io/docs/concepts/architecture/leases/#leader-election)
 mechanism to ensure that only one pod can be the leader at a time.  Until the lease is acquired, the cert-manager pod
 can't do any work.  What's interesting to note here is that it took almost a minute to acquire the lease; and moreover,
 the simulation start time on the runner was 18:29:41, which means that the first CronJob pod, created at 18:30:00, was
@@ -142,7 +142,7 @@ Repeating the test locally, we observed that the critical failure _only occurs_ 
 up _while the CronJob pod is running_.  Since we had a reliable way to reproduce the error, we decided to take a quick
 peek at the kubelet logs and saw this log line repeated over and over again:
 
-```
+```text
 Failed to update status for pod" err="failed to patch status
 ...
 <long status update message>
@@ -158,7 +158,7 @@ What's strange about this is, if you look at the actual update kubelet is sendin
 
 I suspect those of you who've written admission webhooks are nodding along by now.  The flow of data looks like this:
 
-```
+```text
 kubelet status update -> API server -> SimKube mutating webhook -> API server -> kubelet
 ```
 

@@ -71,7 +71,7 @@ As of SimKube 2.0, you can use `skctl xray` to inspect and validate the contents
 stored in the [msgpack](https://msgpack.org) format, so if `skctl xray` isn't working for you, you can also use the
 [msgpack-tools](https://github.com/ludocode/msgpack-tools) utility to view the contents of a trace file:
 
-```
+```text
 > msgpack2json -di path/to/trace
 [
         "trackedObjects": {

@@ -7,6 +7,7 @@ pioneered innovative approaches to solving complex computational challenges.
 Here are some of our most exciting research projects:
 
 <div class="subsection" markdown="1">
+
 ### sk-gen
 
 `sk-gen` is the result of a collaboration with students from [Harvey Mudd College](https://hmc.edu) through their
@@ -71,7 +72,9 @@ functions for analyzing the collected data.
 
 <div class="buttons">
   <a href="https://blog.appliedcomputing.io/p/introducing-prom2parquet-its-time" class="primary external">Read about prom2parquet!</a>
-  <a href="https://blog.appliedcomputing.io/p/analyzing-simkube-10-how-well-does?utm_source=publication-search" class="primary external">Read about DataKube!</a>
+  <a
+    href="https://blog.appliedcomputing.io/p/analyzing-simkube-10-how-well-does?utm_source=publication-search"
+    class="primary external">Read about DataKube!</a>
   <a href="https://github.com/acrlabs/prom2parquet" class="github icon"><span class="icon-text">Github</span></a>
 </div>
 

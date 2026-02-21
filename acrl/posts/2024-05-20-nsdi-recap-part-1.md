@@ -106,7 +106,6 @@ Thanks for reading,
 
 ~drmorr
 
-
 [^1]: Honestly, this number surprises me.  It felt much bigger than that, I assumed the attendance numbers were still in
     the 20k range.  Also looking at the chart in the CNCF blog post, it makes me even sadder that they've decided to
     cancel the virtual attendance option going forward.  Nearly 30% of the attendees in Chicago were virtual, and it

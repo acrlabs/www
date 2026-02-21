@@ -1,13 +1,14 @@
 # Public ACRL Sites
 
 `www` is the repo for the following public ACRL sites
+
 - [ACRL](http://appliedcomputing.io) - home of Applied Computing Research Labs
 - [SimKube](http://simkube.dev/) - home of SimKube
 
 Both sites are:
+
 - built into static assets using [mkdocs](https://www.mkdocs.org/) for static site generation
 - automatically re-deployed via a GitHub action on successful merges to the `main` branch
-
 
 ## Getting Started
 
@@ -18,13 +19,13 @@ Both sites are:
 - Git (for version control)
 - Just (command runner)
 
-
 ## Development
 
 ### Installation
 
 1. `cd` to your preferred directory
 2. Clone the repository:
+
    ```sh
    git clone https://github.com/acrlabs/www.git
    cd www
@@ -34,23 +35,27 @@ Both sites are:
 
 1. `cd` to the base directory of your local copy `www` repo
 2. Initialize the poetry virtual environment and install dependencies with:
+
    ```sh
    poetry install
    ```
 
 3. Run the `serve` command:
+
     ```sh
    just serve {site}
    ```
 
    Replace `{site}` with either `acrl` (for ACRL site) or `simkube` (for SimKube site), example:
+
     ```sh
    just serve acrl
    ```
 
 4. The site will now be accessible at:
-    -  ACRL - http://localhost:8000
-    - SimKube - http://localhost:8001
+
+   - ACRL - `http://localhost:8000`
+   - SimKube - `http://localhost:8001`
 
 5. `Ctrl + C` in the same terminal to terminate
 

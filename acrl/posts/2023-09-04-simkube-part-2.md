@@ -57,8 +57,8 @@ straightforward:
 
 ```go
 type podLifecycleHandler struct {
-	nodeName string
-	pods     map[string]*corev1.Pod
+    nodeName string
+    pods     map[string]*corev1.Pod
 }
 ```
 
@@ -72,10 +72,10 @@ updates.  So all we have to do is tell the controller what our fake node "looks"
 
 ```go
 nodeCtrl, err := node.NewNodeController(
-	node.NaiveNodeProvider{},
-	n,                        // <------ this is the node!
-	self.k8sClient.CoreV1().Nodes(),
-	node.WithNodeEnableLeaseV1(leaseClient, 0),
+    node.NaiveNodeProvider{},
+    n,                        // <------ this is the node!
+    self.k8sClient.CoreV1().Nodes(),
+    node.WithNodeEnableLeaseV1(leaseClient, 0),
 )
 ```
 
@@ -88,7 +88,7 @@ virtual kubelet pod! I think this is nifty.
 So let's take a look at how all the pieces fit together. Here is the SimKube virtual kubelet pod in my cluster (I'm
 cutting out all the irrelevant parts for brevity):
 
-```
+```text
 > kubectl get pods
 NAMESPACE   NAME           READY   STATUS      RESTARTS   AGE
 simkube     sk-vnode-q     1/1     Running     0          13h
@@ -121,7 +121,7 @@ Volumes:
 Nothing too surprising here, we have a pod scheduled on the `test-worker` node, running the `/sk-vnode` command, and
 taking some configuration from a node skeleton file. Let's see that file real quick:
 
-```
+```text
 > kubectl exec sk-vnode-q -- cat /config/node.yml
 ---
 apiVersion: v1
@@ -138,7 +138,7 @@ status:
 So we're creating a node that has a single CPU and 1Gi of memory. Now let's see what nodes we actually have in the
 cluster:
 
-```
+```text
 > kubectl get nodes
 NAME                STATUS   ROLES           AGE   VERSION
 sk-vnode-q          Ready    agent,virtual   13h   v1.27.1
@@ -149,7 +149,7 @@ test-worker         Ready    <none>          2d    v1.27.1
 Well this is interesting! I've got three nodes in my cluster, a control plane node, a worker node, and a node that has
 the same name as the pod up above! It's marked as having a "virtual" role. What does it look like?
 
-```
+```text
 > kubectl describe node sk-vode-q
 Name:               sk-vnode-q
 Roles:              agent,virtual
@@ -217,7 +217,7 @@ And, what's this? If we look at the running/non-terminated pods, we see two have
 "running". The first is a kube-proxy Daemonset, and the second is something called `test-deploy-a.` Let's take a look at
 that:
 
-```
+```text
 > kubectl describe pod test-deploy-a
 Name:             test-deploy-a
 Namespace:        simkube
@@ -311,7 +311,7 @@ was moved into beta. This feature allows you to set a "cost" on pods within a Re
 be deleted first by the ReplicaSet controller. So all our virtual cloud provider has to do on scale-down is set this
 deletion cost annotation, and everything else just works.  Let's take a look at how this works!
 
-```
+```text
 > kubectl get pods
 NAMESPACE     NAME                 READY   STATUS      RESTARTS   AGE
 simkube       sk-vnode-q           1/1     Running     0          13h
@@ -323,7 +323,7 @@ kube-system   cluster-autoscaler   1/1     Running   0          45h
 Ok, now you can see that cluster-autoscaler is running in my cluster, along with our previous virtual node and the test
 deployment[^4]. Let's go ahead and scale that test deployment up:
 
-```
+```text
 > kubectl scale deployment test-deploy --replicas 5
 deployment.apps/test-deploy scaled
 > kubectl get pods
@@ -340,7 +340,7 @@ As expect, the new pods in the deployment are unschedulable — each of them req
 virtual nodes, and our virtual nodes are only exposing 1 allocatable CPU each. We can confirm this by looking at the
 scheduling events:
 
-```
+```text
 > kubectl describe pod test-deploy-e
 ...
 Events:
@@ -351,7 +351,7 @@ Events:
 
 Now let's deploy our virtual cloud provider, and see what happens:
 
-```
+```text
 > kubectl apply -f sk-cloudprov.yml
 deployment.apps/sk-cloudprov created
 > kubectl get pods
@@ -367,7 +367,7 @@ simkube       test-deploy-e        0/1     Pending     0          8m45s
 
 And then, a few seconds later...
 
-```
+```text
 > kubectl get pods
 NAMESPACE     NAME                 READY   STATUS      RESTARTS   AGE
 simkube       sk-cloudprov         1/1     Running     0          6s

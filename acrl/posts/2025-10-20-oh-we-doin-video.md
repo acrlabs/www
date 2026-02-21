@@ -66,12 +66,9 @@ Once the videos are ready, I post them on a variety of social media platforms; h
 [TikTok](https://www.tiktok.com/@appliedcomputing0)[^8].  They go out on a weekly schedule; I've been posting them on
 Wednesdays at 10am.  Once they're posted, I spend $100 to boost the video on LinkedIn.
 
-> Everybody: But David, don't you hate advertising with a fiery burning passion?
-
-> Me: Sure do.
-
-> Everybody: Soooooo you're paying for LinkedIn advertising because...?
-
+> Everybody: But David, don't you hate advertising with a fiery burning passion? </br>
+> Me: Sure do. </br>
+> Everybody: Soooooo you're paying for LinkedIn advertising because...? </br>
 > Me: Because I'm a hypocrite, obviously.
 
 Moral/ethical qualms about advertising aside, it has been _fascinating_ to peek into the world of targeted advertising.

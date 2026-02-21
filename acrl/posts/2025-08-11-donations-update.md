@@ -25,7 +25,6 @@ why:
   mean a whole lot by itself.  I don't have the resources (yet) to donate to _every_ HBCU, so I reached out to Mekka and
   asked for his ranking of the "top 10"---he graciously responded, and I'm re-sharing the list here in case anyone else
   would like to join me:
-
     * [Hampton](https://home.hamptonu.edu)
     * [Howard](https://howard.edu)
     * [Spelman](https://www.spelman.edu)

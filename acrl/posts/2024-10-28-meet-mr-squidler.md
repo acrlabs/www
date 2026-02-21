@@ -7,7 +7,7 @@ template: post.html
 ---
 
 <figure markdown>
-  ![An orange octopus with a serious, but inquisitive and slightly playful expression on his face, holding a magnifying glass up to his eye.](/img/posts/mascot.png)
+  ![An orange octopus with a serious, but inquisitive and slightly playful expression on his face, holding a magnifying glass up to his eye.](/img/posts/mascot.png) <!-- markdownlint-disable-line MD013 -->
   <figcaption>Meet Mr. Squidler, the Kubernetes octopus detective.</figcaption>
 </figure>
 

@@ -152,7 +152,6 @@ Thanks for reading,
 
 ~drmorr
 
-
 [^1]: Some of my readers may recognize this blog post as a redux of a post I made internally at a previous employer.
     Yes, I used the same title.  I was told after the fact that my post was the impetus for upper management making some
     changes to the planning process---I don't have any way of independently verifying that statement, but I'm choosing

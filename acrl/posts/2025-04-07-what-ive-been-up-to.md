@@ -7,7 +7,7 @@ template: post.html
 ---
 
 <figure markdown>
-  ![an upside-down red robot with a grumpy expression on his face, doomscrolling on his phone, in a cartoon style. there is an explosion in the background.](/img/posts/doombot.jpg)
+  ![an upside-down red robot with a grumpy expression on his face, doomscrolling on his phone, in a cartoon style. there is an explosion in the background.](/img/posts/doombot.jpg) <!-- markdownlint-disable-line MD013 -->
   <figcaption>What I definitely haven’t been doing: sitting in front of my phone getting increasingly upset at the awful
 state of the world. Nope, nosirree, none of that here! My head is buried so far in the sand you’ll need a backhoe to get
 it out.</figcaption>

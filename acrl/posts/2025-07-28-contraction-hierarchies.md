@@ -159,9 +159,9 @@ there's any way around this: this stuff is hard, yo, and sometimes you just have
 familiarity.
 
 So anyways, that was my experience as a first-time HMC clinic liaison!  If you want to learn more, you can [read the
-report](/reports/ACRL_Final_Clinic_Report.pdf) or [look at the `sk-gen` source code](https://github.com/acrlabs/sk-gen).  I
-really loved getting to work with the team and also support my alma mater, and I'm already in conversations for another
-project next year!  But that will have to be another blog post, this one's already too long.
+report](/reports/ACRL_Final_Clinic_Report.pdf) or [look at the `sk-gen` source code](https://github.com/acrlabs/sk-gen).
+I really loved getting to work with the team and also support my alma mater, and I'm already in conversations for
+another project next year!  But that will have to be another blog post, this one's already too long.
 
 As always, thanks for reading.
 

@@ -7,8 +7,12 @@ template: post.html
 ---
 
 <figure markdown>
-  ![A cartoon of a character in a spelling bee, trying to spell the word "EVENT", but failing miserably; the character spells it E-V-NT.  A judge sits off to the side saying "WRONG"](/img/posts/spellingbee.png)
-  <figcaption>What does the picture have to do with the contents of this article?  Absolutely nothing, it’s just the setup for an extremely tortured analogy (joke?  maybe it’s a joke) that gets half-way through the post and then dropped on the floor like yesterday’s laundry.</figcaption>
+  ![A cartoon of a character in a spelling bee, trying to spell the word "EVENT", but failing miserably; the character spells it E-V-NT.  A judge sits off to the side saying "WRONG"](/img/posts/spellingbee.png) <!-- markdownlint-disable-line MD013 -->
+  <figcaption>
+    What does the picture have to do with the contents of this article?  Absolutely nothing, it’s just the setup for an
+    extremely tortured analogy (joke?  maybe it’s a joke) that gets half-way through the post and then dropped on the
+    floor like yesterday’s laundry.
+  </figcaption>
 </figure>
 
 OK I've been promising to write more technical content for a while now, instead of me just [moping about turning
@@ -175,7 +179,6 @@ jump in and help me out.  Those OKRs ain't gonna meet themselves.
 As always, thanks for reading!
 
 ~drmorr
-
 
 [^1]: See what I did there?  Definitely not fishing for birthday wishes, no way.
 

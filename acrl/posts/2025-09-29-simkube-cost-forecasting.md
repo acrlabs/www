@@ -38,13 +38,13 @@ comparison, we're using m, c, and r class nodes of 6th and 7th generation).  In 
 a few of the deployments in the trace to be "ARM-compatible", and added in the equivalent Graviton nodes into the mix;
 and in the last simulation, I _only_ run on Graviton nodes.
 
-Why did I set things up this way?  Well, in any large Kubernetes deployment, you probably have _some_ workloads that don't care
-about the underlying architecture: Python code, for example, is generally architecture agnostic[^2].  It's a high-enough
-level language that the architecture details are abstracted away and it should "just work".  Golang is a step up on the
-difficulty ladder: you will need to recompile your code, but Go offers very good cross-compilation support, so it's
-probably not "too hard".  Java code is probably similar to Golang in this regard.  Highest on the complexity ladder are
-things like C/C++/Rust: especially if they have a lot of low-level system requirements, it's probably going to be a lot
-of work to port from x86 to ARM.
+Why did I set things up this way?  Well, in any large Kubernetes deployment, you probably have _some_ workloads that
+don't care about the underlying architecture: Python code, for example, is generally architecture agnostic[^2].  It's a
+high-enough level language that the architecture details are abstracted away and it should "just work".  Golang is a
+step up on the difficulty ladder: you will need to recompile your code, but Go offers very good cross-compilation
+support, so it's probably not "too hard".  Java code is probably similar to Golang in this regard.  Highest on the
+complexity ladder are things like C/C++/Rust: especially if they have a lot of low-level system requirements, it's
+probably going to be a lot of work to port from x86 to ARM.
 
 So, this simulation is answering the question, "How much will we save if we just port the easy stuff to ARM?" compared
 to "How much could we hypothetically save if we ported _everything_ to ARM?"  Since this is all made-up for illustrative

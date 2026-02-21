@@ -3,13 +3,13 @@ template: docs.html
 title: documentation
 ---
 
-# SimKube Documentation
+## SimKube Documentation
 
 SimKube is a record-and-replay simulation environment for Kubernetes based on [KWOK](https://kwok.sigs.k8s.io), the
 Kubernetes WithOut Kubelet project.  Read on to learn more!
 
 <div class="subsection" markdown="1">
-## Get started with SimKube!
+### Get started with SimKube!
 
 Run the following commands for a SimKube quickstart:
 
@@ -27,7 +27,7 @@ Run the following commands for a SimKube quickstart:
 </div>
 
 <div class="subsection" markdown="1">
-## How does SimKube work?
+### How does SimKube work?
 
 <div class="textwrap">
   <div id="architecture" class="img"></div>

@@ -13,7 +13,7 @@ season by tying everything back to capitalism.
 
 ## Bring the Joy Back to Deployments!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/t3dTw6t9xXk?si=Rzhi8mE5A__cNccJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/t3dTw6t9xXk?si=Rzhi8mE5A__cNccJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> <!-- markdownlint-disable-line MD013 -->
 
 The first video I wanted to share is a talk by my good friend Elizabeth Ponce, a former Airbnb colleague, and one of her
 friends, Murriel McCabe from Google[^3].  The content of the talk itself is an entry-level introduction to deploying
@@ -35,7 +35,7 @@ takes me to the next talk that I wanted to highlight:
 
 ## Reimagining OSS Licensing and Commercialization with Fair Source
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/rmhYHzJpkuo?si=hLRKP_2ebGUoQocK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rmhYHzJpkuo?si=hLRKP_2ebGUoQocK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> <!-- markdownlint-disable-line MD013 -->
 
 Ok look, wow, I went from "computers are fun" to "software licenses" and I'm imagining you're getting some whiplash
 right now, but hang in there for a sec.  This talk, by Adam Jacob from System Initiative[^7], wasn't _teeeechnically_ at

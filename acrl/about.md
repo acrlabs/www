@@ -53,7 +53,10 @@ in academic research.  In his spare time he builds Legos, plays board games, and
 </div>
 
 <div class="bio" markdown="1">
-Ian brings a unique combination of business expertise and software engineering skills to ACRL. Before transitioning to engineering he spent a decade managing finance operations at large manufacturing companies. Ian wrote his first code (MATLAB) in a neuroscience research group at the University of Oregon while completing his degrees in Economics and Business Administration. In his spare time, Ian enjoys woodworking, organizing tech meetups, and volunteering.
+Ian brings a unique combination of business expertise and software engineering skills to ACRL. Before transitioning to
+engineering he spent a decade managing finance operations at large manufacturing companies. Ian wrote his first code
+(MATLAB) in a neuroscience research group at the University of Oregon while completing his degrees in Economics and
+Business Administration. In his spare time, Ian enjoys woodworking, organizing tech meetups, and volunteering.
 <div class="buttons">
   <a class="github icon" href="https://github.com/ogorman89"><span class="icon-text">Github</span></a>
 </div>

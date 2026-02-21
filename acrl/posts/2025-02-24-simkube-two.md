@@ -20,7 +20,7 @@ If you've spent any time on the Internet, you'll know that version numbering sch
 sometimes" (aka, the Google Chrome versioning scheme), there's the "use your Git SHA as a version number" crowd, and
 then there's whatever the heck Google Cloud Platform is doing[^2]:
 
-```bash
+```text
 > gcloud version
 Google Cloud SDK 511.0.0
 alpha 2025.02.18
@@ -87,7 +87,7 @@ I could also see that the trace file did not track any actual ServiceAccount res
 `sk-tracer` somewhere.  Looking at the user's `sk-tracer` logs, I saw a pattern like this at the very beginning of its
 initialization:
 
-```
+```text
 2024-11-12T16:59:08.711589Z INFO sk-store/src/trace_store.rs:171: microservices-demo/adservice - ObjectApplied @ 1731430748
 2024-11-12T16:59:08.711867Z INFO sk-store/src/trace_store.rs:171: microservices-demo/cartservice - ObjectApplied @ 1731430748
 2024-11-12T16:59:08.712140Z INFO sk-store/src/trace_store.rs:171: microservices-demo/checkoutservice - ObjectApplied @ 1731430748
@@ -104,7 +104,7 @@ As an aside, this is why I thought I was unable to reproduce the problem way bac
 created from scratch every time, I did not see all of the `ObjectDeleted` log lines.  I _did_ see some log lines that
 looked sorta like this:
 
-```
+```text
 2024-11-12T16:59:08.715912Z INFO sk-store/src/trace_store.rs:171: - ObjectDeleted @ 1731430748
 ```
 
@@ -129,7 +129,7 @@ clear: my log lines needed to print the _type_ of the object that was getting de
 [quick fix](https://github.com/acrlabs/simkube/commit/951eb7ecfd1c20eca9b5ea3ce63ec5bca306f91d) to update that, and now
 I got log lines that look like this:
 
-```
+```text
 2024-11-12T16:59:08.711589Z INFO sk-store/src/trace_store.rs:171: ObjectApplied @ 1739899948: apps/v1.Deployment microservices-demo/adservice
 ```
 
