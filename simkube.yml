@@ -69,6 +69,7 @@ markdown_extensions:
       toc_depth: '3-3'
 nav:
   - SimKube: '!import https://github.com/acrlabs/simkube?branch=main&extra_imports=["CODE_OF_CONDUCT.md", "CHANGELOG.md"]&config=docs/mkdocs.yml'  # yamllint disable-line rule:line-length
+  - SimKube CI: '!import https://github.com/acrlabs/simkube-ci-action?branch=ian/docs&config=docs/mkdocs.yml'
 validation:
   nav:
     omitted_files: ignore

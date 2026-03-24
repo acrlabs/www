@@ -17,8 +17,10 @@
     <form action="/search/index.html">
       <input name="q" id="mkdocs-search-query" type="text"  placeholder="Search" aria-label="Search" autocomplete="off" title="Type search term here">
     </form>
+    
 
     {%- for n in nav -%}
+      <h3><a href="/documentation/">{{ n.title}}</a></h3>
       <ul>
         {%- for nav_item in n.children -%}
           {%- if nav_item.children | length > 0 -%}
