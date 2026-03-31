@@ -21,3 +21,11 @@ repos:
     rev: v0.47.0
     hooks:
       - id: markdownlint-fix
+  - repo: "https://github.com/zizmorcore/zizmor-pre-commit"
+    rev: v1.23.1
+    hooks:
+      - id: zizmor
+        args:
+          - --fix=all
+          - --config
+          - .config/zizmor.yml
