@@ -72,26 +72,21 @@ Our AMI pipeline is triggered by a weekly cron trigger, or by a manual build via
 time, we end up with a custom AMI image backed by the snapshot created during the build. That AMI is then listed on the
 Marketplace.
 
-P.S. The `SimKube Free AMI` is listed
-[here](https://aws.amazon.com/marketplace/pp/prodview-m7imofdta3tla?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and
-the `SimKube GitHub Runner AMI`
-[here](https://aws.amazon.com/marketplace/pp/prodview-jea6uc3po665a?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)!
-
 ## AMI patching
 
 Shipping a public AMI means we own patching it. At a minimum, Ubuntu is going to ship security patches (we really want
 those) and there will be patches for other software in our stack. Instead of patching in place, we treat each AMI build
-as an immutable artifact tied to the `isengard` git hash used to produce it. Every build is traceable and reproducible.
+as an immutable artifact tied to the configuration management repository (isengard) git hash used to produce it. Every
+build is traceable and reproducible.
 
 Every time our pipeline runs, it starts fresh with a clean Ubuntu image and pulls down the latest patches so each AMI is
 fully up to date at build time. The result is a simple, deterministic build process that is easy to maintain. AMIs are
 short-lived, they won't drift over time, and there is no ambiguity about which code produced which image.
 
 The tradeoff is that older AMIs are never patched. If you launch an older version, you get exactly what existed at build
-time. For our use case, this ends up being a feature since we value the reproducibility this gives us. This comes in
-handy for debugging thorny issues in our AMIs, especially those that manage to bypass our validation tests. We can fire
-up an AWS EC2 instance and watch one of our services get clobbered in real time by some bad code that I definitely
-didn't write.
+time. For our use case, this ends up being a feature since we value reproducibility. This comes in handy for debugging
+thorny issues in our AMIs, especially those that manage to bypass our validation tests. We can fire up an AWS EC2
+instance and watch one of our services get clobbered in real time by some bad code that I definitely didn't write.
 
 For the most part our AMI pipeline quietly churns out new images. To keep our account from piling up with tons of old
 AMIs[^4], we use a
@@ -100,14 +95,16 @@ to deprecate old AMIs and clean up their snapshots automatically.
 
 ## You said TWO AMIs
 
-I did say that! We have two versions of our AMI. The first is the SimKube AMI with everything needed to run SimKube
-including a running kind cluster and management tools. This is our free-to-use simulation environment. All the user
-needs to do is launch it in AWS EC2 and get right to running simulations---though you will need a trace from the cluster
-you are simulating.
+I did say that! We have two versions of our AMI. The first is the
+[free SimKube AMI](https://aws.amazon.com/marketplace/pp/prodview-m7imofdta3tla?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
+with everything needed to run SimKube including a running kind cluster and management tools. This is our free-to-use
+simulation environment. All the user needs to do is launch it in AWS EC2 and get right to running simulations---though
+you will need a trace from the cluster you are simulating.
 
-The second AMI is our SimKube GitHub Action Runner. it includes everything in the SimKube AMI but also has some extra
-configuration applied. We use an iterative build process, so this version is literally built on top of the base SimKube
-AMI[^5].
+The second AMI is our
+[SimKube GitHub Action Runner](https://aws.amazon.com/marketplace/pp/prodview-jea6uc3po665a?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
+it includes everything in the SimKube AMI but also has some extra configuration applied. We use an iterative build
+process, so this version is literally built on top of the base SimKube AMI[^5].
 
 <figure markdown>
   ![A screenshot of a an AMI lineage diagram showing the inheritance of AMIs from Ubuntu 24.04 LTS,
