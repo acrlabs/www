@@ -111,7 +111,8 @@ configuration applied. We use an iterative build process, so this version is lit
 AMI[^5].
 
 <figure markdown>
-  ![A screenshot of a an an AMI lineage diagram showing the inheritance of AMIs from Ubuntu 24.04 LTS, down to simkube-x86-64, and finally to simkube-github-runner-x86-64](/img/posts/ami-lineage.png)
+  ![A screenshot of a an AMI lineage diagram showing the inheritance of AMIs from Ubuntu 24.04 LTS, 
+  down to simkube-x86-64, and finally to simkube-github-runner-x86-64](/img/posts/ami-lineage.png)
   <figcaption>Built on the shoulders of giants.</figcaption>
 </figure>
 
