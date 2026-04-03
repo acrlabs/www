@@ -28,11 +28,10 @@ Building high-fidelity simulation environments requires installing and configuri
 [prometheus](https://prometheus.io/docs/introduction/overview/), and SimKube, to name a few. So spinning up a
 ready-to-go SimKube environment takes some doing.
 
-Internally, we have a configuration management repository called
-[isengard](https://blog.appliedcomputing.io/p/what-to-expect-when-youre-expecting)[^2]. It is ~48k lines of pure
-[Ansible](https://docs.ansible.com/) bliss. We use it to automate the deployment of repeatable simulation environments.
-It occurred to us that users of SimKube probably don't want step one of using it to be "here's ~48k lines of Ansible,
-good luck!". It turns out there is a better way: a custom SimKube AMI.
+Internally, we have a configuration management repository called [isengard](./2026-01-26-what-to-expect.md)[^2]. It is
+~48k lines of pure [Ansible](https://docs.ansible.com/) bliss. We use it to automate the deployment of repeatable
+simulation environments. It occurred to us that users of SimKube probably don't want step one of using it to be "here's
+~48k lines of Ansible, good luck!". It turns out there is a better way: a custom SimKube AMI.
 
 ## Why not a Docker image like a normal person?
 
