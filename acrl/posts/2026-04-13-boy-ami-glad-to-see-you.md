@@ -8,9 +8,12 @@ template: post.html
 
 We're pleased to announce that two AMIs
 ([Amazon Machine Images](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)) have joined the
-[SimKube](https://simkube.dev/) family! Yes, twins: `simkube-x86-64` and `simkube-github-runner-x86-64` are now
-available in the AWS Marketplace. Each came in at a healthy 17 GiB snapshot weight[^1]. They arrived about two months
-apart due to the famously transparent AWS Marketplace approval process.
+[SimKube](https://simkube.dev/) family! Yes, twins:
+[simkube-x86-64](https://aws.amazon.com/marketplace/pp/prodview-m7imofdta3tla?sr=0-1&ref_=beagle&applicationId=AWSMPContessa)
+and
+[simkube-github-runner-x86-64](https://aws.amazon.com/marketplace/pp/prodview-jea6uc3po665a?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)
+are now available in the AWS Marketplace. Each came in at a healthy 17 GiB snapshot weight[^1]. They arrived about two
+months apart due to the famously transparent AWS Marketplace approval process.
 
 I'll explain what each of these AMIs are and how we build them in due course, but first off, let's address an important
 question:
@@ -55,7 +58,7 @@ is selecting a base image which our custom AMI will be built on top of. We chose
 compatibility with our tooling, and long term security patching.
 
 Using Packer we can initiate an automated build via a GitHub Action. For configuration, Packer includes a range of
-provisioners---[including one for Ansible](https://developer.hashicorp.com/packer/integrations/hashicorp/ansible/latest/components/provisioner/ansible)--so
+provisioners---[including one for Ansible](https://developer.hashicorp.com/packer/integrations/hashicorp/ansible/latest/components/provisioner/ansible)---so
 we are able to leverage our existing configuration library in `isengard`. The GitHub Action itself is fairly simple: it
 clones the repo and runs packer. This helps keep our Packer configuration sparse and maintainable. We only need to
 configure a handful of things: the Ansible playbook to run, the region of our builder, our base AMI, regions to copy the
@@ -69,6 +72,11 @@ finished AMI to, and any cleanup activities or supplemental provisioners.
 Our AMI pipeline is triggered by a weekly cron trigger, or by a manual build via a dispatch trigger[^3]. After some bake
 time, we end up with a custom AMI image backed by the snapshot created during the build. That AMI is then listed on the
 Marketplace.
+
+P.S. The `SimKube Free AMI` is listed
+[here](https://aws.amazon.com/marketplace/pp/prodview-m7imofdta3tla?sr=0-1&ref_=beagle&applicationId=AWSMPContessa) and
+the `SimKube GitHub Runner AMI`
+[here](https://aws.amazon.com/marketplace/pp/prodview-jea6uc3po665a?sr=0-2&ref_=beagle&applicationId=AWSMPContessa)!
 
 ## AMI patching
 
@@ -128,8 +136,8 @@ cluster and sends you back metrics you can use to evaluate your change before it
 
 Today, ACRL is already running small simulations in CI in the
 [SimKube repo](https://github.com/acrlabs/simkube/blob/main/.github/workflows/simkube_e2e.yml). We have developed custom
-GitHub Actions to make launching runners backed by SimKube AMIs as easy as adding a few lines in your GitHub Actions
-workflow.
+GitHub Actions, available in our [simkube-ci-action](https://github.com/acrlabs/simkube-ci-action) repo, to make
+launching runners backed by SimKube AMIs as easy as adding a few lines in your GitHub Actions workflow.
 
 So maybe you find SimKube interesting but setting it up has been too much of a hassle. Or perhaps you are already
 running SimKube locally but want to run a dozen simultaneous simulations in AWS. The AMIs are there for you, and the
