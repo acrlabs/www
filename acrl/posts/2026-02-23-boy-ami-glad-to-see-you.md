@@ -9,7 +9,7 @@ template: post.html
 We're pleased to announce that two AMIs
 ([Amazon Machine Images](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)) have joined the
 [SimKube](https://simkube.dev/) family! Yes, twins: `simkube-x86-64` and `simkube-github-runner-x86-64` are now
-available in the AWS Marketplace. Each came in at a healthy 17 GiB snapshot weight[^1]. They arrived about ten days
+available in the AWS Marketplace. Each came in at a healthy 17 GiB snapshot weight[^1]. They arrived about two months
 apart due to the famously transparent AWS Marketplace approval process.
 
 I'll explain what each of these AMIs are and how we build them in due course, but first off, let's address an important
@@ -21,7 +21,7 @@ We know it's crazy, who even has the action minutes to raise AMIs these days; we
 maybe an opportunity. SimKube just keeps getting better and better but configuring it can be, frankly, difficult.
 Building high-fidelity simulation environments requires installing and configuring a long list of tools:
 [kind](https://kind.sigs.k8s.io/), [KWOK](https://kwok.sigs.k8s.io/),
-[kubectl](https://kubernetes.io/docs/reference/kubectl/), [docker](https://docs.docker.com/),
+[kubectl](https://kubernetes.io/docs/reference/kubectl/), [Docker](https://docs.docker.com/),
 [prometheus](https://prometheus.io/docs/introduction/overview/), and SimKube, to name a few. So spinning up a
 ready-to-go SimKube environment takes some doing.
 
@@ -31,9 +31,9 @@ Internally, we have a configuration management repository called
 It occurred to us that users of SimKube probably don't want step one of using it to be "here's ~48k lines of Ansible,
 good luck!". It turns out there is a better way: a custom SimKube AMI.
 
-## Why not a docker image like a normal person?
+## Why not a Docker image like a normal person?
 
-That's a fair question. We did evaluate using a docker image because one of our primary goals is a fast, one-click
+That's a fair question. We did evaluate using a Docker image because one of our primary goals is a fast, one-click
 startup.
 
 The challenge is that SimKube relies on `kind`, which spins up Kubernetes nodes as Docker containers. Initializing and
@@ -41,7 +41,7 @@ configuring the kind cluster requires access to a live Docker daemon. During `do
 available inside the build environment, which means we can’t just “run all the setup steps in our Dockerfile” and ship
 the result.
 
-We also looked at snapshotting a running docker environment, but that's complicated for a different set of reasons. So
+We also looked at snapshotting a running Docker environment, but that's complicated for a different set of reasons. So
 after a long side quest that included Vagrant and QEMU, we realized what we actually need isn't a container image but a
 prebuilt machine image that preserves the state of our configured simulation cluster. Since we primarily work in AWS, an
 AMI fits naturally.
@@ -55,7 +55,7 @@ is selecting a base image which our custom AMI will be built on top of. We chose
 compatibility with our tooling, and long term security patching.
 
 Using Packer we can initiate an automated build via a GitHub Action. For configuration, Packer includes a range of
-provisioners--[including one for Ansible](https://developer.hashicorp.com/packer/integrations/hashicorp/ansible/latest/components/provisioner/ansible)--so
+provisioners---[including one for Ansible](https://developer.hashicorp.com/packer/integrations/hashicorp/ansible/latest/components/provisioner/ansible)--so
 we are able to leverage our existing configuration library in `isengard`. The GitHub Action itself is fairly simple: it
 clones the repo and runs packer. This helps keep our Packer configuration sparse and maintainable. We only need to
 configure a handful of things: the Ansible playbook to run, the region of our builder, our base AMI, regions to copy the
@@ -95,7 +95,7 @@ to deprecate old AMIs and clean up their snapshots automatically.
 
 I did say that! We have two versions of our AMI. The first is the SimKube AMI with everything needed to run SimKube
 including a running kind cluster and management tools. This is our free-to-use simulation environment. All the user
-needs to do is launch it in AWS EC2 and get right to running simulations--though you will need a trace from the cluster
+needs to do is launch it in AWS EC2 and get right to running simulations---though you will need a trace from the cluster
 you are simulating.
 
 The second AMI is our SimKube GitHub Action Runner. it includes everything in the SimKube AMI but also has some extra
@@ -117,13 +117,14 @@ User Data script.
 ## A world of opportunities
 
 Our SimKube AMI is a step forward in making SimKube approachable and easy to use. Instead of spending a few hours
-setting up a simulation environment you can grab the SimKube AMI off the AWS Marketplace and have a simulation
-environment up and running in a couple of minutes. You will need to grab a trace from your production cluster, but the
-environment for running those simulations is available at the click of a button or at the end of a AWS CLI command.
+setting up a simulation environment, you can grab the SimKube AMI off the AWS Marketplace and have SimKube up and
+running in a couple of minutes. You will need to
+[grab a trace](https://simkube.dev/simkube/docs/intro/running/#step-1-collect-a-trace) from your production cluster, but
+the environment for running those simulations is available at the click of a button or at the end of a AWS CLI command.
 
 We want to continue to extend Kubernetes simulation into CI pipelines using our GitHub runner AMI. The vision is an
-engineer, maybe you, checks in some change to your cluster. SimKube CI simulates it based on your production cluster and
-sends you back metrics you can use to evaluate your change before it hits production.
+engineer, maybe you, checks in some change to your cluster. Then, SimKube CI simulates it based on your production
+cluster and sends you back metrics you can use to evaluate your change before it hits production.
 
 Today, ACRL is already running small simulations in CI in the
 [SimKube repo](https://github.com/acrlabs/simkube/blob/main/.github/workflows/simkube_e2e.yml). We have developed custom
