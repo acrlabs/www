@@ -10,11 +10,11 @@ on recent trends, and summaries of industry-leading events.
 
 Read ACRL's blog for event highlights, industry insights, and updates on SimKube's development and performance.
 
-<a href="https://blog.appliedcomputing.io/p/announcing-simkube-v10"><img src="/img/substack-simkube.jpg"></a>
+<a href="https://blog.appliedcomputing.io/p/stop-reading-changelogs-safer-kubernetes"><img src="/img/substack-simkube.png"></a>
 
 <div class="buttons">
   <a class="external" href="https://blog.appliedcomputing.io">See all Posts</a>
-  <a class="rss icon" href="http://127.0.0.1:8000/feed_rss_created.xml"><span class="icon-text">RSS</span></a>
+  <a class="rss icon" href="/feed_rss_created.xml"><span class="icon-text">RSS</span></a>
 </div>
 </div>
 

@@ -122,7 +122,7 @@ template: base.html
       </a>
     </div>
     <div class="buttons center">
-      <a class="external" href="https://blog.appliedcomputing.io/p/exploring-the-kubernetes-graph">Read more!</a>
+      <a class="external" href="https://blog.appliedcomputing.io/p/contraction-hierarchies-hmc-clinic">Read more!</a>
     </div>
   </span>
   </div>

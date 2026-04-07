@@ -189,15 +189,14 @@ h2 + h3 { margin-top: -24px; }
 }
 .admonition p { margin: 12px 0; }
 .admonition p:last-child { margin-bottom: 0; }
-p.admonition-title { margin-top: 0; font-size: 24px; }
+p.admonition-title { margin-top: 0; font-size: 20px; }
 
 .admonition.note .admonition-title:before,
 .admonition.tip .admonition-title:before,
 .admonition.warning .admonition-title:before
 {
     vertical-align: middle;
-    margin-right: 12px;
-    transform: scale(0.75);
+    margin-right: 6px;
     display: inline-block;
 }
 
@@ -225,9 +224,9 @@ p.admonition-title { margin-top: 0; font-size: 24px; }
 [data-theme="default"] #sidebar .downarrow:before { content: url('/icons/down-arrow.svg'); }
 [data-theme="alternate"] #sidebar .downarrow:before { content: url('/icons/down-arrow-light.svg'); }
 
-.admonition.note .admonition-title:before { content: url('/icons/note.svg'); }
-.admonition.tip .admonition-title:before { content: url('/icons/tip.svg'); }
-.admonition.warning .admonition-title:before { content: url('/icons/warning.svg'); }
+.admonition.note .admonition-title:before { content: url('/icons/note.png'); }
+.admonition.tip .admonition-title:before { content: url('/icons/tip.png'); }
+.admonition.warning .admonition-title:before { content: url('/icons/warning.png'); }
 
 [data-theme="default"] #architecture { content: url('/img/architecture.svg'); }
 [data-theme="alternate"] #architecture { content: url('/img/architecture-white.svg'); }

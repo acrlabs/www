@@ -13,7 +13,7 @@ science today.  We are particularly focused on scheduling and optimization for d
 extensive experience with running such systems as Kubernetes in production.
 
 We believe that people come first, and have a strong commitment to diversity, equity, and inclusion.  We are an
-open-source-first company; our work is, and will always be, available and open to all.
+open-source-first company.
 </section>
 
 <section markdown="1">
