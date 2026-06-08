@@ -6,11 +6,6 @@ datetime: 2026-03-09 11:00:00
 template: post.html
 ---
 
-<figure markdown>
-  ![alt text here](/img/posts/XXXX.png)
-  <figcaption>XXXX</figcaption>
-</figure>
-
 Well I was _going_ to use this post to provide a follow-up to the [hot garbage](2026-01-26-what-to-expect.md) from a few
 weeks ago, wherein I complain about my efforts to stand up an internal ACRL Kubernetes cluster and run something useful
 on it, but that post is going to have to wait because I've spent an inordinate amount of time over the last week

@@ -126,8 +126,8 @@ construct your random walks, and thus your trace data.
 ## I have no idea what you just said
 
 Oof, that last section was a lot, huh?  No worries; if you want to see more details, you can read the full clinic report
-[here](/reports/ACRL_Final_Clinic_Report.pdf).  In this last section, I'm going to do a brief retrospective on what went
-well with the project, and what I'd do differently next time.
+[here](/reports/ACRL_Final_Clinic_Report-25.pdf).  In this last section, I'm going to do a brief retrospective on what
+went well with the project, and what I'd do differently next time.
 
 One of the chief concerns that my informal board of directors raised when I was considering participating in clinic was
 that it would be a distraction and take time away from my core business, which (especially last year) was not nearly as
@@ -159,7 +159,7 @@ there's any way around this: this stuff is hard, yo, and sometimes you just have
 familiarity.
 
 So anyways, that was my experience as a first-time HMC clinic liaison!  If you want to learn more, you can [read the
-report](/reports/ACRL_Final_Clinic_Report.pdf) or [look at the `sk-gen` source code](https://github.com/acrlabs/sk-gen).
+report](/reports/ACRL_Final_Clinic_Report-25.pdf) or [look at the `sk-gen` source code](https://github.com/acrlabs/sk-gen).
 I really loved getting to work with the team and also support my alma mater, and I'm already in conversations for
 another project next year!  But that will have to be another blog post, this one's already too long.
 

@@ -16,9 +16,9 @@ Have a question?  Need help with your Kubernetes install?  Want to schedule some
   <label for="topic">Topic (required):</label>
   <select name="topic" id="topic" required>
     <option disabled selected value="">Choose a topic...</option>
+    <option>Autoscaling Grand Prix Sponsorship</option>
     <option>Simulation or SimKube</option>
     <option>Kubernetes modeling or data generation</option>
-    <option>General Kubernetes support</option>
     <option>Just want to say hi!</option>
   </select>
   <label for="message">Message (required):</label>
