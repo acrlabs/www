@@ -7,12 +7,12 @@ template: post.html
 ---
 
 If you're detail-oriented, skeptical, or just enjoy watching Pod transitions in your spare time, you may have noticed a
-peculiar behavior in [SimKube](https://simkube.dev/): Pods transition to Running almost immediately. That isn't because
+peculiar behavior in [SimKube](https://simkube.dev/): Pods transition to Running very quickly. That isn't because
 SimKube is broken but because those Pods are being simulated.
 
 SimKube uses [KWOK (Kubernetes WithOut Kubelet)](https://kwok.sigs.k8s.io/) to simulate large clusters efficiently.
 Instead of running thousands of workloads, KWOK lets us substitute simulated Nodes and Pods that behave enough like
-real ones to make large-scale replay practical on a laptop or in CI.
+real ones to make large-scale replay practical.
 
 Since there is no kubelet running on KWOK Nodes, KWOK is responsible for simulating much of the Pod lifecycle. The
 problem is that, until recently, Pods moved a little too quickly. At first glance, this seems easy to dismiss. If a Pod
@@ -20,7 +20,7 @@ takes 50 milliseconds or five seconds to reach Running, it eventually gets there
 look.
 
 Real Pods spend time in Pending, images need to be pulled, and containers need to initialize. Those delays are real and
-vary quite a bit from cluster to cluster. Imagine pulling a small image cached on a warm Node versus a heavy image
+vary quite a bit from cluster to cluster. Imagine pulling a light image cached on a warm Node versus a heavy image
 pulled from a remote registry. Now compound those differences over thousands of workloads. If every simulated Pod skips
 these delays, replay behavior starts to drift away from the source cluster. That difference might not matter for every
 workload, but it absolutely matters when you're trying to faithfully replay cluster behavior.
@@ -40,10 +40,10 @@ in a single script, a lazy man's test harness, so I could repeat this when I mes
 
 What the polling data showed was that all 50 Pods reached Running in about four seconds, with the first pods
 transitioning sometime between the two and three-second marks. With this baseline safely tucked away in a CSV that I
-won't accidentally overwrite[^2], we can move into the fun stuff -- simulation!
+won't accidentally overwrite[^2], we can move into the fun stuff—simulation!
 
 First, we need to capture the existing behavior in SimKube, so we gather the same polling data for the simulated run,
-[`skctl run`](https://simkube.dev/simkube/docs/intro/running/) without any configured delays. We get about what we
+using [`skctl run`](https://simkube.dev/simkube/docs/intro/running/) without any configured delays. We get about what we
 expect: Pods transition too quickly. In fact, all 50 Pods in our deployment had reached Running by the two-second mark
 and the first pods that hit Running between zero and one second[^3]. That's too fast. We've compressed a four-second
 rollout into roughly two seconds.
