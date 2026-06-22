@@ -1,166 +1,136 @@
 ---
-title: "Worth the Wait: Realistic Pod Delays in SimKube"
+title: "Worth the Wait: Making SimKube Pod Startup More Realistic"
 authors:
   - ian
 datetime: 2026-06-22 11:00:00
 template: post.html
 ---
 
-SimKube simulations just got even more realistic! In the next release of [SimKube](https://simkube.dev/) we are making a
-slight change in the behavior of simulated Pods. If you are detail oriented, skeptical or just downright crazy you may
-have noticed in previous releases that simulated Pods move to Running nearly instantly. Instant Pods, are a devious lie.
-The Pods in your production cluster are never Running instantly, rather they proceed, and I say this with real hope for
-your sanity, from Pending to Running in an orderly fashion. Since the Pods in your production clusters don't start
-instantly neither should simulated Pods. If simulated pods skip straight to Running, your replay isn't modeling the
-cluster you actually run, let's fix that today!
+If you're detail-oriented, skeptical, or just enjoy watching Pod transitions in your spare time, you may have noticed a
+peculiar behavior in [SimKube](https://simkube.dev/): Pods transition to Running almost immediately. That isn't because
+SimKube is broken but because those Pods are being simulated.
 
-## Satisfaction: Delayed
+SimKube uses [KWOK (Kubernetes WithOut Kubelet)](https://kwok.sigs.k8s.io/) to simulate large clusters efficiently.
+Instead of running thousands of workloads, KWOK lets us substitute simulated Nodes and Pods that behave enough like
+real ones to make large-scale replay practical on a laptop or in CI.
 
-To go from instant to realistic timing in SimKube replays we are going to focus on two previously unincorporated but
-important delays in the pod lifecycle: image pull time and container startup time. There are other small delays related
-to scheduling and API response time but since we are running a real control plane these delays are already baked in.
-So how do we go about baking in delays for container startup and image pull?
+Since there is no kubelet running on KWOK Nodes, KWOK is responsible for simulating much of the Pod lifecycle. The
+problem is that, until recently, Pods moved a little too quickly. At first glance, this seems easy to dismiss. If a Pod
+takes 50 milliseconds or five seconds to reach Running, it eventually gets there either way, right? Let's take a closer
+look.
 
-The [KWOK](https://kwok.sigs.k8s.io/) team did us a great service here by making it nearly painless to introduce common
-delays into our simulated Pod lifecycle using [KWOK Stages](https://kwok.sigs.k8s.io/docs/user/stages-configuration/).
-Stages allow us to define specific lifecycle steps for Kubernetes resources and the conditions on which they advance,
-for our needs we specifically want to setup stages for Pods. It is worth noting here that the KWOK repo has two sets of
-examples showing a [Pod Fast Stage](https://github.com/kubernetes-sigs/kwok/tree/main/kustomize/stage/pod/fast) which is
-a minimal stages configuration and
-[Pod General Stage (WIP)](https://github.com/kubernetes-sigs/kwok/tree/main/kustomize/stage/pod/general) is a higher
-fidelity set of stages meant to more closely mimic the realistic Pod lifecycle.
+Real Pods spend time in Pending, images need to be pulled, and containers need to initialize. Those delays are real and
+vary quite a bit from cluster to cluster. Imagine pulling a small image cached on a warm Node versus a heavy image
+pulled from a remote registry. Now compound those differences over thousands of workloads. If every simulated Pod skips
+these delays, replay behavior starts to drift away from the source cluster. That difference might not matter for every
+workload, but it absolutely matters when you're trying to faithfully replay cluster behavior.
 
-Stages are fairly straightforward Kubernetes objects, each stage targets a resource via a `resourceRef` and uses a
-`selector` to determine when the stage should fire. The details of the Stage are defined in the spec, crucially there is
-a section called delay that includes four fields that give stages customizable delay conditions. The simplest way to
-introduce delays in KWOK stages is by setting a `spec.delay.durationMilliseconds`, you can easily incorporate jitter by
-adding `spec.delay.jitterDurationMilliseconds`. Jitter is what gives a delay randomness just like delays you expect to
-see in your production cluster, sometimes an image pull takes a bit more time or a bit less time.
+In [SimKube v2.7.0](https://github.com/acrlabs/simkube/releases/tag/v2.7.0) we fixed this by introducing configurable
+image pull and container startup delays. Let's talk about why and how.
 
-```yaml
-kind: Stage
-apiVersion: kwok.x-k8s.io/v1alpha1
-metadata:
-  name: <string>
-spec:
-  delay:
-    durationMilliseconds: <int>
-    durationFrom:
-      expressionFrom: <expressions-string>
-    jitterDurationMilliseconds: <int>
-    jitterDurationFrom:
-      expressionFrom: <expressions-string>
-```
+## Why Delay?
 
-So this is great, we now can add delays to our stages but where it gets really interesting is layering our stages to
-create a realistic lifecycle and timing. Right now we introduced a single delay in a Stage, but we have pointed out two
-areas we want to introduce delays, container start and image pull. We could repeat our configuration above and chain two
-stages back to back to introduce two delays with random jitter. To do that we just need to make sure our selector in
-stage 1 matches a recognizable starting state to pick up a Pod, it then must leave that Pod in a state that will only
-be matched by stage 2. Note if both stages match you can create a race condition so its best to setup your stages
-thoughtfully so that you can create easy match conditions for your selector. For example you might set your
-`Status.Conditions` then match on it in the next step.
+You might still be asking yourself who cares about these small delays? Well, I do, and I think you should too. So much
+so that I ran a small experiment this weekend. I created a
+[kind](https://kind.sigs.k8s.io/docs/user/quick-start/#installation) cluster and installed the
+[SimKube tracer](https://simkube.dev/simkube/docs/components/sk-tracer/)[^1], which captures the event data needed for
+replay. I then applied a single deployment with 50 replicas and exported a trace. At the same time I applied the
+deployment, I started a small polling script that recorded how many Pods had reached Running every second. I set this up
+in a single script, a lazy man's test harness, so I could repeat this when I messed it up and I did several times.
 
-To illustrate this lets look at how we are chaining two stages in the SimKube KWOK Stages, pod-create and pod-running.
-For brevity and the sake of your eyeballs, I will include selector snippets below and provide links to the full spec in
-the SimKube repo.
+What the polling data showed was that all 50 Pods reached Running in about four seconds, with the first pods
+transitioning sometime between the two and three-second marks. With this baseline safely tucked away in a CSV that I
+won't accidentally overwrite[^2], we can move into the fun stuff -- simulation!
 
-`pod-create` is our first KWOK Stage and this is where we insert our image pull delay. Our match expression is
-intentionally wide. We want to match any Pods that do not have a `metadata.deletionTimestamp` or a `status.podIP`.
+First, we need to capture the existing behavior in SimKube, so we gather the same polling data for the simulated run,
+[`skctl run`](https://simkube.dev/simkube/docs/intro/running/) without any configured delays. We get about what we
+expect: Pods transition too quickly. In fact, all 50 Pods in our deployment had reached Running by the two-second mark
+and the first pods that hit Running between zero and one second[^3]. That's too fast. We've compressed a four-second
+rollout into roughly two seconds.
 
-```yaml
-# Stage pod-create
-selector:
-  matchExpressions:
-    - key: .metadata.deletionTimestamp
-      operator: DoesNotExist
-    - key: .status.podIP
-      operator: DoesNotExist
-```
+We can then repeat our experiment with our configured delays. If you look at figure 1, you can see that by introducing
+delays we largely corrected the Pod startup profile for our experimental workload. It's not a perfect match, but the
+replay now behaves much more like the original workload.
 
-Inside our pod-create Stage `spec.next.statusTemplate` is where we define our Pod transformations, mainly we are
-updating the resource status to mimic the stages of the pod lifecycle in a production cluster. In pod-create that means
-setting our Pod's `status.phase` to Pending, setting a `status.podIP` and setting 'Initialized' `status` to True.
-By setting these conditions we can easily identify and match Pods that are post pod-create in later stages. Note that
-Pods will now no longer match our selector in pod-create because we have assigned them an IP! You can see the full
-pod-create stage [here](https://github.com/acrlabs/simkube/blob/main/config/kwok/pod-create.yml) specifically
-`spec.next.statusTemplate` (trigger warning, Go templating).
+<figure markdown>
+  ![Line chart comparing source cluster startup timing, SimKube replay without delays, and SimKube replay with
+  configurable delays. The delayed replay more closely matches the source workload, reaching 50 Running Pods in roughly
+  four seconds instead of two.](/img/posts/running-pods-comparison.png)
+  <figcaption>Running Pods over time for a 50-replica Deployment recorded in a kind cluster and replayed through
+  SimKube. With delays configured, the startup profile more closely matches the source workload.</figcaption>
+</figure>
 
-In our next stage `pod-running`, we are still matching all Pods without a `metadata.deletionTimestamp` (we don't want to
-grab deleted pods by mistake), but we are also matching on `status.phase` of Pending and `status.conditions` that
-include 'Initialized', both of which we set in the prior stage. We exclude `status.containerStatuses` that have a
-`state.running.startedAt` because we set startedAt in pod-running stage  itself so this condition prevents a Pod from
-re-matching this stage. You can see the whole pod-running stage
-[here](https://github.com/acrlabs/simkube/blob/main/config/kwok/pod-ready.yml).
+In our simple test, configurable delays moved Pod startup time in replay from roughly two seconds to roughly four
+seconds, much closer to the behavior of the source cluster. So how did we go about making simulated Pod startup look
+more like the real thing?
 
-```yaml
-# Stage pod-running
-selector:
-  matchExpressions:
-    - key: .metadata.deletionTimestamp
-      operator: DoesNotExist
-    - key: .status.phase
-      operator: In
-      values:
-        - Pending
-    - key: .status.conditions.[] | select( .type == "Initialized" ) | .status
-      operator: In
-      values:
-        - "True"
-    - key: .status.containerStatuses.[].state.running.startedAt
-      operator: DoesNotExist
-```
+## The Design Goals
 
-In SimKube, we used these exact layering approaches to create a set of stages which were based on the General Stages
-examples provided by KWOK. Combined they walk a Pod from Pending -> Waiting (ContainerCreating) -> Running. We use these
-stages to front load a delay on Pending to simulate image pull time, and Waiting, to simulate container startup time.
-With the delays in place our Pod transitions now look and feel like a normal Pod lifecycle with natural variation.
-Wow, that feels good!
+In a simulated cluster, we want timing to be as close to the source cluster as possible. Having Pods that jump to
+Running too quickly introduces drift we don't want. Our goal was to add realistic Pod startup timing to SimKube replays.
+ Not realistic in the abstract, but realistic for the cluster being modeled. It doesn't take much imagination to come up
+ with examples for why these delays vary. Nearly everyone has dealt with a weirdly large image, a flaky registry, high
+ latency regions, or a container with a lengthy startup time. By making delays configurable we can let the user decide
+ what the delays should look like. Everyone can be unhappy in their own way.
+
+## Teaching Pods to Wait
+
+Implementation-wise, we got lucky. SimKube already uses
+[KWOK Stages](https://kwok.sigs.k8s.io/docs/user/stages-configuration/) to move Pods through lifecycle transitions. The
+problem was that those transitions were happening almost immediately and were not yet configurable. To make startup
+timing more realistic, we first introduced delays and jitter between the stages to simulate image pulls and container
+startup. Our stages are based on the
+[Pod General Stages](https://github.com/kubernetes-sigs/kwok/tree/main/kustomize/stage/pod/general) in the KWOK
+documentation.
+
+We introduced delays at two points in the simulated lifecycle. The first delay models image pull times. The second
+models container startup before the Pod reaches Running. Figure 2 is a simplified view of the transition timeline.
+SimKube now adds a new `pod-create` stage before the Ready transition, allowing us to model image-pull delay. The
+startup delay was configured in our existing `pod-ready` stage.
+
+<figure markdown>
+  ![Conceptual startup timeline showing that previous SimKube behavior progressed through startup states almost
+  immediately, while configurable image-pull and startup delays add realistic timing before Pods reach
+  Running.](/img/posts/pod-timeline.png)
+  <figcaption>Simplified timeline showing where SimKube inserts configurable delays to model image pull and container
+  startup time during replay.</figcaption>
+</figure>
 
 ## Advanced Delays for the Curious and Crazy
 
-In the KWOK Stages we implemented in SimKube we chose to make our delays and jitter fully configurable by SimKube users,
-meaning that when you run a simulation you can inject the jitter and delays specific to your production environment
-right in your `skctl run` command with optional arguments
-`--pod-startup-delay 1000 --pod-startup-jitter 5000 --image-pull-delay 1000 --image-pull-jitter 5000`.
-These optionsare globally defined at the start of the simulation in milliseconds.
+In SimKube v2.7.0, delays and jitter are fully configurable, meaning that when you run a simulation you can inject the
+jitter and delays specific to your production environment (in milliseconds) directly in your `skctl run` command:
 
-To accomplish this we have to use some slightly more advanced features in the KWOK stages specifically
-`spec.delay.durationFrom` and `spec.delay.jitterDurationFrom` these fields allow us to pull values from annotations
-dynamically via JQ expressions. We pass delay values through as pod annotations via our existing admission
-`MutatingWebhook`. This is what those expressions look like:
-
-```yaml
-# Example from pod-create
-spec:
-  delay:
-    durationFrom:
-      expressionFrom: .metadata.annotations["simkube.io/kwok-stage-create-delay"]
-    jitterDurationFrom:
-      expressionFrom: .metadata.annotations["simkube.io/kwok-stage-create-delay-jitter"]
+```bash
+skctl run my-simulation \
+  --trace-path s3://my-bucket/my-trace \
+  --image-pull-delay 1000 \
+  --image-pull-jitter 1000 \
+  --pod-startup-delay 1000 \
+  --pod-startup-jitter 1000
 ```
 
-Note: a similar set of delays are configured on `pod-ready`, using the `simkube.io/kwok-stage-ready-delay` and
-`simkube.io/kwok-stage-ready-delay-jitter`.
+These options are applied globally at the start of the simulation. For backwards compatibility, all delays and jitters
+default to zero so you can safely omit them if you need to reproduce or compare results with simulations from prior
+releases. We may revisit these defaults in a future release, but we'll be sure to communicate any changes.
 
-## TL;DR for the Impatient
-
-To recap, we started with pods that moved nearly instantaneously to Running. We then introduced static delays and how to
-add them via `spec.delay.durationMilliseconds` and jitter via `spec.delay.jitterDurationMilliseconds`. Then we covered
-how to layer KWOK stages to create realistic steps to mimic the Pod lifecycle. Finally, we discussed fully configurable
-delays like we have implemented in SimKube using Pod annotations and KWOKs advanced `expressionFrom` supported in
-`spec.delay.DurationFrom` and `spec.delay.jitterDurationFrom`. Without a ton of heavy lifting, and only a small amount
-of Go templating (which the KWOK team mercifully has examples of) we now have fully configurable delays using only
-Kubernetes native resources!
+Behind the scenes, SimKube passes delay and jitter values to KWOK through Pod annotations, allowing a single set of
+stage definitions to be reused for all our simulated Pods. SimKube sets Pod annotations in its admission webhook the
+first time a Pod is seen.
 
 ## Without further Delay
 
-So why even go to these lengths just to add some small delays in a simulation that already has a high level of fidelity
-and, moreover, why make them configurable? Well, in short, we think these delays matter for SimKube users. Image pull
-time and container startup are real and vary from cluster to cluster. Your cluster isn't our cluster, so providing a way
-to configure delays helps us take another small step towards realism for users and in this case the cost is quite low.
-So without further delay give our configurable delays a try in the next SimKube release and let us know what you think!
+So why go to the trouble of adding a few seconds of delay to a simulation that already has a high level of fidelity?
+Because startup timing is real. Image pulls, registry latency, and container initialization all vary from cluster to
+cluster. By making delays configurable, SimKube can more closely model the cluster being replayed instead of assuming
+every cluster has similar delays.
+
+So without further delay give our configurable delays a try in SimKube v2.7.0 and let us know what you think!
 
 Cheers,
 
 Ian
+
+[^1]: Shameless plug.
+[^2]: Twice.
+[^3]: I'm only polling in one second intervals, which I regret, but here we are.
