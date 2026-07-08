@@ -111,7 +111,7 @@ be somewhere in my connection to it. I haven't found a smoking gun. I'm starting
 It could be an SSH issue. We have some proxying going on. Our GitHub Action runner has to tunnel through a bastion to
 get to our EC2 instance. I start looking into how Packer handles connections, and it has its own
 [SSH communicator](https://developer.hashicorp.com/packer/docs/communicators/ssh). I experiment with Packer's SSH
-settings and realize that I can remove another layer: by turning off the packer proxy and using a standalone SSH agent.
+settings and realize that I can remove another layer: by turning off the Packer proxy and using a standalone SSH agent.
 On a whim, I add [webfactory/ssh-agent](https://github.com/webfactory/ssh-agent), configure the agent once early in the
 run, and set `packer_proxy = false`. Boom, it works the first time and we haven't seen an EOF since.
 
@@ -138,7 +138,7 @@ would recommend the following EOF pain-reduction plan:
 1. Rule out the easy stuff: run a local Ansible test.
 2. Test the build against an EC2 instance using a test inventory.
 3. If that all worked fine, but you are still getting EOFs, I would recommend testing a standalone SSH agent and turning
-   off the packer proxy: `packer_proxy = false`
+   off the Packer proxy: `packer_proxy = false`
 4. If you are still getting EOFs, I apologize. I have failed to solve your problem. Please send your complaints directly
    to @drmorr.
 
