@@ -7,14 +7,14 @@ template: post.html
 ---
 
 On the pain scale, a root canal might be an eight. CI-related pain is an eleven. After months of successfully, if
-slowly,[^1] churning out AMIs for ACRL, my Packer pipeline started failing. But I write to you with hope. I am happy to
+slowly[^1], churning out AMIs for ACRL, my Packer pipeline started failing. But I write to you with hope. I am happy to
 report that after working through the Seven Stages of CI Grief I have finally fixed our AMI pipeline and did not leave
 the profession to raise goats.
 
-Six months and several millicores ago I built an AMI pipeline for ACRL. We needed a way to automate builds for the
-SimKube AMI and SimKube GitHub Action Runner AMI. Each piece of our pipeline was carefully chosen and to this day mostly
-defensible: Ansible, Packer, and GitHub Actions. Simple and boring. One of these helpful tools was about to ruin my
-~~week~~ month.
+Six months and several millicores ago I [built an AMI pipeline](./2026-04-13-boy-ami-glad-to-see-you.md) for ACRL. We
+needed a way to automate builds for the SimKube AMI and SimKube GitHub Action Runner AMI. Each piece of our pipeline was
+carefully chosen and to this day mostly defensible: Ansible, Packer, and GitHub Actions. Simple and boring. One of these
+helpful tools was about to ruin my ~~week~~ month.
 
 ## The Seven Stages
 
@@ -36,10 +36,11 @@ be an easy fix I could get to later. Right?
 
 A few weeks later I'm finally getting back to it. Now I really need to sort this out. The AMIs must flow. I look at the
 last commit in the Ansible repo, the suspect one that @drmorr shipped. There is nothing obviously wrong with it, just
-some CopyFail mitigation. I do the most optimistic thing possible: I rerun the pipeline. It's probably worth noting that
-our AMI pipeline is initiated via a GitHub Action which clones our Ansible repo and configures Packer. Then, it runs our
-Packer build which provisions an EC2 instance and runs the Ansible provisioner against it. Finally, once the provisioner
-steps complete we snapshot the instance and copy it to the regions it needs to appear in[^3].
+some [CopyFail](https://github.com/theori-io/copy-fail-CVE-2026-31431) mitigation. I do the most optimistic thing
+possible: I rerun the pipeline. It's probably worth noting that our AMI pipeline is initiated via a GitHub Action which
+clones our Ansible repo and configures Packer. Then, it runs our Packer build which provisions an EC2 instance and runs
+the Ansible provisioner against it. Finally, once the provisioner steps complete we snapshot the instance and copy it to
+the regions it needs to appear in[^3].
 
 The rerun fails: EOF. I rerun it again this omitting @drmorr's changes by reverting to the previous commit. Same
 failure, EOF. No detail. I test it again with an even older branch and, yep, EOF again.
@@ -91,7 +92,7 @@ I don't believe Claude. But I try changing our SSH configuration anyway. I chang
 extra SSH args via Packer. Now I'm turning off multiplexing: EOF, increasing timeouts: EOF, and fiddling with
 keepalives: EOF. In frustration, I have to walk away.
 
-I'm deep in Packer documentation, but I'm stuck in an SSH tunnel.
+I'm stuck in an SSH tunnel, and my canary just died.
 
 ### Stage 5: Log Diving
 
@@ -101,7 +102,7 @@ round-tripped over SSH and it's slow as hell. The build takes so long my build t
 verbosity to `-vvv`; still timing out. I set the build timeout to two hours, I **finally** make it to my EOF with some
 enhanced logging. The logging doesn't provide any more context. I can't live like this.
 
-While I'm at it I keep a builder EC2 alive after the provisioner fails to inspect it. The EC2 instance is fine. It's
+While I'm at it I keep a builder EC2 alive after the provisioner fails to inspect it. The EC2 instance is fine[^6]. It's
 patiently waiting for the next instruction from Ansible. The logs don't point to what is broken, but they do tell me one
 thing: the build isn't failing because of a specific Ansible task. The issue is not with the target machine. It seems to
 be somewhere in my connection to it. I haven't found a smoking gun. I'm starting to become SSH-skeptical.
@@ -158,3 +159,5 @@ pipeline to the ACRL tailnet. That means we won't have to make the bastion hop t
 [^4]: We have a LOT of Ansible.
 
 [^5]: To the editorial board, I plead for mercy.
+
+[^6]: Later I forget to terminate it. Our AWS bill is now forty billion dollars. Send help.
