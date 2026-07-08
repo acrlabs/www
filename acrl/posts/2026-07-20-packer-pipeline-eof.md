@@ -2,7 +2,7 @@
 title: "The Seven Stages of CI Grief"
 authors:
   - ian
-datetime: XXXX-XX-XX 11:00:00
+datetime: 2026-07-20 11:00:00
 template: post.html
 ---
 
@@ -34,9 +34,9 @@ be an easy fix I could get to later. Right?
 
 ### Stage 1: Retrying
 
-A few weeks later I'm finally getting back to it. Now I really need to sort this out. The AMIs must flow. I look at the
-last commit in the Ansible repo, the suspect one that @drmorr shipped. There is nothing obviously wrong with it, just
-some [CopyFail](https://github.com/theori-io/copy-fail-CVE-2026-31431) mitigation. I do the most optimistic thing
+A few weeks later I'm finally getting back to it. Now I really need to sort this out. **The AMIs must flow**. I look at
+the last commit in the Ansible repo, the suspect one that @drmorr shipped. There is nothing obviously wrong with it,
+just some [CopyFail](https://github.com/theori-io/copy-fail-CVE-2026-31431) mitigation. I do the most optimistic thing
 possible: I rerun the pipeline. It's probably worth noting that our AMI pipeline is initiated via a GitHub Action which
 clones our Ansible repo and configures Packer. Then, it runs our Packer build which provisions an EC2 instance and runs
 the Ansible provisioner against it. Finally, once the provisioner steps complete we snapshot the instance and copy it to
@@ -85,8 +85,8 @@ seems that EOF is often a symptom of connection-related issues. Somewhere in the
 that is executing the configuration and the EC2 instance that is being configured we are losing the plot. Ansible is
 waiting for a signal that it is never going to receive and the result is EOF.
 
-It's going so poorly at this point I ask Claude and it says this is a classic issue with SSH multiplexing. Spoiler: it
-was not SSH multiplexing.
+It's going so poorly at this point I ask Claude and it says this is a classic issue with SSH multiplexing. **Spoiler**:
+it was not SSH multiplexing.
 
 I don't believe Claude. But I try changing our SSH configuration anyway. I change SSH variables in Ansible and pass
 extra SSH args via Packer. Now I'm turning off multiplexing: EOF, increasing timeouts: EOF, and fiddling with
