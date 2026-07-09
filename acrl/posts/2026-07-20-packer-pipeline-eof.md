@@ -50,6 +50,12 @@ isn't working now. Now I'm scared. A known-good version is now no longer good, s
 
 ### Stage 2: Self-Recrimination
 
+<figure markdown>
+  ![Tim Robinson in the hot dog suit sketch from I Think You Should Leave, a visual reference to the line "we're all
+  trying to find the guy who did this."](/img/posts/were-all-trying-to-find-the-guy.png)
+  <figcaption>I am beginning to suspect I might be both the victim and the murderer.</figcaption>
+</figure>
+
 I'm looking at my creation with disdain and realize that I am Dr. Frankenstein and this CI pipeline is MY monster.
 Lovingly crafted from parts of FOSS, abstractions I thought I understood. For what? To be trapped in an EOF prison of my
 own design. There are so many places this issue could be. I wanted to do anything else. I suspect every piece of the
