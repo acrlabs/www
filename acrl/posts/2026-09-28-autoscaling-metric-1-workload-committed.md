@@ -6,7 +6,7 @@ datetime: 2026-09-28 11:00:00
 template: post.html
 ---
 <figure markdown>
-  !["Mr. Squiddler holding a sign that says "can u fit in the kube??"](/img/posts/can-you-fit.png)
+  !["Mr. Squiddler holding a sign that says "can u fit in the kube??"](/img/posts/2026-09-28/can-you-fit.png)
   <figcaption>Remembering a little fun we had at KubeCon 2025 ATL
     <a href="https://youtube.com/shorts/ZDlQzhAl8zI">video here</a>.
   </figcaption>
@@ -95,7 +95,7 @@ short, big, small, squares, and rectangles creating many inefficiencies in the p
 
 <figure markdown>
   !["Two dimensional conceptual node diagram with CPU and memory for axes. Showing differently sized workload requests,
-  DaemonSet requests, system reservations, and uncommitted capacity."](/img/posts/2d-bin-packing.png)
+  DaemonSet requests, system reservations, and uncommitted capacity."](/img/posts/2026-09-28/2d-bin-packing.png)
   <figcaption> Learn how to make this graph and many more at drmorr's
     <a href="https://osacon.io/sessions/2026/10-useful-dashboards-you-cant-make-with-grafana/">OSAcon talk</a>
     this November!</figcaption>
@@ -136,7 +136,7 @@ metric. We exclude DaemonSets from the numerator so as DaemonSet overhead rises 
 <figure markdown>
   !["Bar chart showing provisioned capacity, allocatable capacity, total pod requests, non-DaemonSet workload requests,
   and usage. Committed capacity includes DaemonSet requests; workload commitment excludes them. Both use provisioned
-  capacity as the denominator."](/img/posts/where-does-all-the-capacity-go.png)
+  capacity as the denominator."](/img/posts/2026-09-28/where-does-all-the-capacity-go.png)
   <figcaption>"utilization" is between ~44 and ~72%. Feel free to choose whichever one gets you a raise.</figcaption>
 </figure>
 

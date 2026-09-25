@@ -58,6 +58,7 @@ markdown_extensions:
         - include
       auto_append:
         - glossary.md
+  - pymdownx.tilde         # strikethrough support
   - smarty                 # smart quotes/em dashes/etc
 validation:
   links:
