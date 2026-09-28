@@ -1,14 +1,14 @@
 ---
-title: "Capacity Utilization: of what?"
+title: "Autoscaling Metric #1: Capacity Utilization"
 authors:
   - ian
 datetime: 2026-09-28 11:00:00
 template: post.html
 ---
 
-At ACRL, we get to talk to a lot of clusters... I mean people. Many of those people manage clusters at scale, which
+At ACRL, we get to talk to a lot of clusters... I mean people. Many of those people manage clusters at scale[^1], which
 we don't recommend, but we all have our burdens. In conversations with these individuals, who will remain nameless
-to protect the guilty, we often hear something like, "at made-up-for-this-fake-example Corp., we're only utilizing 63.2%
+to protect the guilty, we often hear something like, "at made-up-for-this-fake-example Corp., we're only utilizing 67%
 of our capacity".
 
 And to that I want to say: "What do you even mean, bro?"
@@ -16,32 +16,32 @@ And to that I want to say: "What do you even mean, bro?"
 I'm a bit of a student of economics, by which I mean I lost a lot of money in crypto scams and now I have to do this to
 survive. But I once had an economics professor who would respond whenever you mentioned a rate like productivity,
 efficiency, or utilization with a simple question: "Of what?" This was a polite way of saying: "Tell me the damn
-numerator and denominator, and do it right now."[^1]
+numerator and denominator, and do it right now."[^2]
 
 Specificity matters, and at scale, it matters a hell of a lot. Today, let's give ourselves permission to be a bit
-pedantic because we can't afford not to.
+pedantic, because we can't afford not to.
 
 ## A cluster (under)utilized
 
-In the lead-in to this series, drmorr teased the five key metrics for evaluating autoscalers. We're starting off
-with committed capacity percentage: a cost-oriented metric that reveals how much of our provisioned capacity we've
-committed to workloads.
+In [the lead-in to this series](./2026-09-22-five-key-metrics.md), drmorr teased the five key metrics for evaluating
+autoscalers. We're starting off with committed capacity percentage: a cost-oriented metric that reveals how much of our
+provisioned capacity we've committed to workloads.
 
-"Cluster Utilization" sounds like a straightforward efficiency metric. Unfortunately, as an industry, we are pretty
-abstract about what utilization is and how we measure it. If you google cluster utilization, you will get a terrible AI
+"Capacity Utilization" sounds like a straightforward efficiency metric. Unfortunately, as an industry, we are pretty
+abstract about what utilization is and how we measure it. If you Google cluster utilization, you will get a terrible AI
 overview, followed by an ad, followed by a fistful of different definitions, including some of the following:
 
 | Metric | Calculation | Question answered |
 | --- | --- | --- |
-| Request Efficiency | usage / requests | How much of the requested capacity is being used? |
-| Allocatable Utilization | usage / allocatable | How much capacity available to Pods is being used? |
-| Scheduler Saturation | requests / allocatable | How much capacity available to Pods has been requested? |
 | Committed Capacity | requests / provisioned | How much total provisioned capacity has been requested? |
+| Scheduler Saturation | requests / allocatable | How much capacity available to Pods has been requested? |
+| Allocatable Utilization | usage / allocatable | How much capacity available to Pods is being used? |
+| Request Efficiency | usage / requests | How much of the requested capacity is being used? |
 
 These are all perfectly valid calculations, but they all measure different things. When someone says "Our utilization is
 57.62%." I still have to ask "Of what?"
 
-For our five metrics for evaluating autoscalers our interest in utilization is as an inverse proxy for waste. For a
+For our five metrics for evaluating autoscalers, our interest in utilization is as an inverse proxy for waste. For a
 comparable workload, a higher utilization metric should indicate we are provisioning less excess capacity. It does not
 prove that those uncommitted resources are removable or that all the requests are necessary. We'll get to that in a
 moment.
@@ -60,11 +60,10 @@ metrics for evaluating autoscalers, it would be Committed Capacity Percentage. W
 \]
 
 Typically, committed capacity is calculated separately for CPU and memory. Here, "requests" means the resource requests
-of non-terminated pods on the nodes we are measuring. Include both application pods and platform pods (including
-DaemonSets). Unscheduled Pods represent unmet demand rather than commitments against the current nodes and should be
-tracked separately.
+of non-terminated pods on the nodes we are measuring. Unscheduled Pods represent unmet demand rather than commitments
+against the current nodes and should be tracked separately.
 
-Why this ratio? We love money, dude.[^2]
+Why this ratio? We love money, dude.[^3]
 
 We're paying somebody good money to provision Nodes. Any capacity above what is required to support our workload is a
 cost worth investigating. The numerator tells us how much capacity workloads have claimed. Our denominator shows the
@@ -81,21 +80,23 @@ included in pod requests (our numerator). Requests from DaemonSets, however, are
 numerator. If we were to use allocatable capacity as the divisor we would lose visibility of the overhead inherent in
 `kubeReserved` and `systemReserved`. Some of this overhead is 100% necessary.
 
-The capacity of a node has two primary dimensions CPU and Memory. How the scheduler fits workloads onto nodes is called
-bin packing and since we have two dimensions we actually have a 2D bin packing problem. Bin packing is a fascinating,
-complex domain, however, it is quite easy to visualize potential excess capacity with a conceptual diagram. To
-illustrate the complexity of this problem see the following diagram: efficiently bin packing a bunch of squares of equal
-size is quite easy, but inefficiencies emerge quickly with real workloads: we've got long, short, big, small, squares
-and rectangles creating many inefficiencies in the packing of this node.[^3]
+In most cases, the capacity of a node has two primary dimensions CPU and Memory[^4]. How the scheduler fits workloads
+onto nodes is called bin packing and since we have two dimensions we actually have a 2D bin packing problem. Bin packing
+is a fascinating, complex domain; however, it is quite easy to visualize potential excess capacity with a conceptual
+diagram. To illustrate the complexity of this problem see the following diagram: efficiently bin packing a bunch of
+squares of equal size is quite easy, but inefficiencies emerge quickly with real workloads: we've got long, short, big,
+small, squares and rectangles creating many inefficiencies in the packing of this node.[^5]
 
 <figure markdown>
   ![""](/img/posts/2d-bin-packing.png)
-  <figcaption>2d bin packing example.</figcaption>
+  <figcaption> Learn how to make this graph and many more at drmorr's
+    <a href="https://osacon.io/sessions/2026/10-useful-dashboards-you-cant-make-with-grafana/">OSAcon talk</a>
+    this November!</figcaption>
 </figure>
 
-Bin packing is just one place inefficiencies appear, other sources of excess capacity may include slow or
+Bin packing is just one place inefficiencies appear. Other sources of excess capacity may include slow or
 inefficient scale-down, node/pod shape misalignment, and stranded resources due to scheduling constraints. When these
-cause additional resources to be provisioned for the same requests, committed capacity falls. Committed Capacity
+cause additional resources to be provisioned for the same requests, committed capacity falls. Committed capacity
 percentage can show us that one or more of these symptoms are present, but it will not identify the cause.
 
 We also can't tell from this metric alone if the excess capacity is waste. Some headroom is necessary for a
@@ -104,12 +105,12 @@ capacity percentage. An organization might
 have a lower provisioned capacity because of a valid reliability concern, which is also why this is just one of our five
 metrics. That all sounds great, right?
 
-Wait a second. Some of our allocatable capacity is claimed by DaemonSet replicas on each of our nodes.What if we
-increased our node count while keeping total provisioned CPU and Memory unchanged (more smaller nodes) our DaemonSet
+Wait a second. Some of our allocatable capacity is claimed by DaemonSet replicas on each of our nodes. What if we
+increased our node count while keeping total provisioned CPU and Memory unchanged? In this scenario, our DaemonSet
 replica count would rise and committed capacity percentage would increase. That seems like the opposite of what we want
-in a metric for evaluating autoscalers. We would prefer a measure that decreases as overhead increases.[^4] Additionally,
-our output metric (the numerator) should be as closely aligned with the actual application workloads the platform is
-oriented around serving to customers[^5].
+in a metric for evaluating autoscalers. We would prefer a measure that decreases as overhead increases[^6].
+Additionally, our output metric (the numerator) should be closely aligned with the actual application workloads;
+after all, the platform is designed to serve customers, not the other way around[^7]!
 
 With that said we are pleased to announce Workload Commitment Percentage a modified committed capacity metric which
 addresses this loophole and is more closely aligned with the actual business objective of your clusters.
@@ -130,7 +131,24 @@ metric. We exclude DaemonSets from the denominator so as DaemonSet overhead rise
   <figcaption>Breakdown of provisioned capacity.</figcaption>
 </figure>
 
+## PromQL Example
+
+Disclaimer: This probably won't work at scale. But hey, knock yourself out.
+
+```promql
+avg(sum(kube_pod_status_phase{phase="Running"}
+  * on (pod) max by (pod) (kube_pod_container_resource_requests{resource="cpu"})
+  * on (pod) max by (pod) (kube_pod_owner{owner_kind!="DaemonSet"})
+  * on (pod) group_right max by (pod, node) (kube_pod_info)
+) by (node) / on (node)
+sum(kube_node_status_capacity{resource="cpu"}) by (node))
+```
+
 ## Point of order: Ian, are you stupid?
+
+If you talk to your platform teams, nobody actually tracks this metric, and why not? Is it because we're stupid? No,
+it's because it's hard to do. Here's a quick comparison of the other metrics that are easier to track, and why we
+recommend doing the hard thing anyways.
 
 ### Why not requests / allocatable?
 
@@ -174,7 +192,7 @@ There are other ways this percentage can mislead us:
 - A cluster-wide average can hide resources stranded on specific nodes. You can't take CPU from one node and supply it
 to a pod on another node.
 - An autoscaler could leave unsatisfied demand and earn a good score by keeping its existing nodes full. So we would see
-a high workload commitment percentage but many pods awaiting capacity.
+a high workload commitment percentage but many pods awaiting capacity[^8].
 - A higher percentage on expensive nodes could cost more than a lower percentage on cheaper nodes. CPU and memory
 percentages are not denominated in dollars.
 
@@ -187,9 +205,9 @@ of savings or a ranking system for otherwise unrelated clusters.
 ## Why track it anyway?
 
 Maybe you are thinking, "Well, Workload Commitment is imperfect, maybe we shouldn't worry about tracking it at all."
-This is a useful signal that is cheap to calculate. You can get all the request data easily from Kubernetes' native
-metric sources. Workload Commitment is a great frontline metric and provides a good indicator of avoidable cluster
-costs.
+However, this is a useful signal that is cheap(-ish) to calculate. You can get all the request data easily from
+Kubernetes' native metric sources. Workload Commitment is a great frontline metric and provides a good indicator of
+avoidable cluster costs[^9].
 
 ## Conclusion
 
@@ -204,13 +222,22 @@ Cheers,
 
 Ian
 
-[^1]: An early draft of this article included a graph with unlabeled axes. This professor is now rolling over in his
+[^1]: Sometimes the clusters also manage people at scale
+
+[^2]: An early draft of this article included a graph with unlabeled axes. This professor is now rolling over in his
 grave. RIP to a legend.
 
-[^2]: Seriously, subscribe.
+[^3]: Seriously, please subscribe. We're running out of mochas over here.
 
-[^3]: Before you flip your lid reddit. This is a CONCEPTUAL diagram for a SIMPLIFIED example.
+[^4]: We're ignoring resources such as GPUs, storage space, network bandwidth, etc. since these are more specialized and
+if you're using them in your autoscaling we assume you already know what you're doing.
 
-[^4]: Not all DaemonSets are platform overhead.
+[^5]: Before you flip your, lid Reddit. This is a CONCEPTUAL diagram for a SIMPLIFIED example.
 
-[^5]: You have those... right?
+[^6]: Not all DaemonSets are platform overhead.
+
+[^7]: You have those... right? Can you share some with us?
+
+[^8]: TIL
+
+[^9]: Assuming your observability team isn't dropping metrics all willy-nilly to keep costs down.
