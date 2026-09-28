@@ -5,6 +5,12 @@ authors:
 datetime: 2026-09-28 11:00:00
 template: post.html
 ---
+<figure markdown>
+  !["Mr. Squiddler holding a sign that says "can u fit in the kube??"](/img/posts/can-you-fit.png)
+  <figcaption>Remembering a little fun we had at KubeCon 2025 ATL
+    <a href="https://youtube.com/shorts/ZDlQzhAl8zI">video here</a>.
+  </figcaption>
+</figure>
 
 At ACRL, we get to talk to a lot of clusters... I mean people. Many of those people manage clusters at scale[^1], which
 we don't recommend, but we all have our burdens. In conversations with these individuals, who will remain nameless
