@@ -19,7 +19,13 @@ count for your `super-awesome-application` keeps oscillating from two to three t
 That's the churn we are talking about today. A good autoscaler, well configured, should minimize the churning of
 replicas and preferably without a ton of fiddling[^2].
 
-<!-- TODO: add roller coaster graphic/drawing -->
+<figure markdown>
+  ![A graph of an oscillating replica count back and forth from two and three replicas. Riding the replica count is a
+  tiny rollercoaster full of stick figures. One of the stick figures says: "I want to get off!"](/img/posts/replica-rollercoaster.png)
+  <figcaption>
+    Send help!
+  </figcaption>
+</figure>
 
 ## Look dude, I just operate the platform
 
@@ -30,7 +36,7 @@ how your entire platform scales. Let's investigate!
 
 ## Root causes
 
-The oscillation in the replica counts (like we've shown in) `super-awesome-application` can be caused by a variety of
+The oscillation in the replica counts (like we've shown for) `super-awesome-application` can be caused by a variety of
 issues; allow me to over-simplify:
 
 1. Replicas are integers -- Kubernetes has no way to express half, or one-third of a replica. It can only express whole
@@ -43,13 +49,13 @@ to see replica counts changing rapidly. Now, consider the opposite: maybe you've
 observation period so it takes a long time before scaling up, down, or both. We have to make sure we set our controller
 aggressiveness justttt right[^4]. We want to be responsive, but we don't want to freak out.
 
-3. Control loop delays -- Your autoscaler is likely using some metrics to calculate the desired replica count and
-collecting metrics so you are always optimizing for what your application needed in the past, which may or may not be
-what your application needs right now.
+3. Control loop delays -- Your autoscaler is, hopefully, using some metrics to calculate the desired replica count and
+collecting metrics introduces delays. So unless we are forecasting we are optimizing for what the application needed
+in the past, which may or may not be what your application needs right now.
 
 4. Noise -- All metrics include some noise. We may even dismiss them as "outliers". Other metrics are erratic or
 "spiky". Depending on how your autoscaler is configured, you might be scaling up then right back down, and that could be
-a very good thing or a complete waste[^5].
+a very good thing or a complete and total waste[^5].
 
 5. User Error -- Also, maybe you are just holding it wrong? Honestly, we can't rule it out. Autoscalers can be finicky
 and often take time to dial in to just the right settings to produce the behavior your application needs, despite many
@@ -65,8 +71,8 @@ add up quickly. Every new pod incurs the startup cost.
 
 In addition to that warmup time, we are introducing a lot of instability in the platform. Pods come and go, and the
 scheduler is built to accommodate these workloads more or less efficiently. By adding churn, we are making
-the scheduler's job harder by introducing unnecessary constraints that change rapidly. Excess replicas can result in
-node scale-out, which adds avoidable costs to your platform.
+the scheduler's job even harder by introducing unnecessary constraints that change rapidly. Excess replicas can result
+in node scale-out, which adds avoidable costs to your platform.
 
 For these reasons, we argue you should absolutely care about application churn. A well-functioning autoscaler will
 minimize application churn without preventing the necessary scaling behavior your platform needs to serve your
@@ -97,12 +103,12 @@ want. As oscillation behavior increases, so does our churn metric. If we map out
 the scale-up and scale-down examples exhibit much less churn than the oscillating example, but our traffic spike example
 is hard to determine. But can we do better? I think we can.
 
-Since our metric is windowed, this gives us an interesting opportunity: our time range is now bounded in 60-minute
+Since our metric is windowed, this gives us an interesting opportunity: our time range is bounded in 60-minute
 windows, so we have a beginning and ending value for our replica counts and can further refine our churn rate example by
 reducing our total churn by the net change over the period. Effectively, this adjusts our churn for the "net change"
-which is controlled by our windowing period. This, in effect, gives us credit for scaling that "sticks". This still
-does not solve the traffic spike example, but it effectively controls for some of "necessary" scaling in our scale up
-and scale down examples.
+which is controlled by our windowing period. This small adjustment gives us credit for scaling that "sticks". Now, This
+still does not solve the traffic spike example, but it effectively controls for some of "necessary" scaling in our scale
+up and scale down examples.
 
 Excess Application Churn = sum(r(t)- r(t-1)) - (rn - r0)
 
@@ -116,7 +122,7 @@ For the same examples above:
 | Scale down | 6 -> 5 -> 4 -> 3 -> 3 | 0 |
 | Traffic Spike | 2 -> 4 -> 6 -> 4 -> 2 | 8 |
 
-Now, this can't tell us that this Excess Churn is truly excess or that our net change was necessary, but I think for
+Unfortunately, this can't tell us that this Excess Churn is truly excess or that our net change was necessary, but for
 those who are interested in studying churn closely, this refinement can provide a clearer signal of the excessive churn
 inside your clusters.
 
@@ -144,7 +150,7 @@ overly-aggressively based on very short-term inputs.
 
 5. Use High Quality Signals -- Use metrics that closely represent the actual demand. A higher quality signal is better
 than smoothing a poor one. If your metrics do not closely align with the demands of your application, get a better
-metric. Don't scale on teraflops[^6] per parsec if queue depth is a better signal for your application scaling.
+metric. Don't scale on teraflops[^6] per parsec if queue depth is a better signal for your application.
 
 ## That's five, it's over
 
@@ -165,10 +171,6 @@ I kid, what we actually hope is that this series has expanded your mind and made
 we use to monitor our platforms and autoscalers. If you absolutely loved[^7] this series, we'd love to talk to you about
 it at KubeCon SLC 2026. The ACRL team will be there wandering the vendor floor with stickers and a mostly positive
 attitude.
-
-## Where do we go from here
-
-<!-- TODO: add where do we go from here -->
 
 Cheers,
 
