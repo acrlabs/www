@@ -6,6 +6,13 @@ datetime: 2026-10-30 11:00:00
 template: post.html
 ---
 
+<figure markdown>
+  ![A purple octopus holding a sign that says "wheeeeeee".](/img/posts/2026-10-30/wheee.png)
+  <figcaption>
+    Isn't this fun!
+  </figcaption>
+</figure>
+
 Welcome to the final installment of our series: five key metrics for evaluating autoscalers.
 Maybe this series was your introduction to the ACRL blog, or perhaps you've been here
 since the first footnote. We've enjoyed writing this[^1] series. We hope to run into many of you at
@@ -21,9 +28,9 @@ replicas and preferably without a ton of fiddling[^2].
 
 <figure markdown>
   ![A graph of an oscillating replica count back and forth from two and three replicas. Riding the replica count is a
-  tiny rollercoaster full of stick figures. One of the stick figures says: "I want to get off!"](/img/posts/replica-rollercoaster.png)
+  tiny rollercoaster full of stick figures. One of the stick figures says: "I want to get off!"](/img/posts/2026-10-30/replica-rollercoaster.png)
   <figcaption>
-    Send help!
+    Send help.
   </figcaption>
 </figure>
 
