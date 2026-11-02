@@ -46,25 +46,35 @@ how your entire platform scales. Let's investigate!
 The oscillation in the replica counts (like we've shown for) `super-awesome-application` can be caused by a variety of
 issues; allow me to over-simplify:
 
-1. Replicas are integers -- Kubernetes has no way to express half, or one-third of a replica. It can only express whole
+### Replicas are integers
+
+Kubernetes has no way to express half, or one-third of a replica. It can only express whole
 integer replica counts, but our metrics contain a range of measures between integers, so we are forced to do some
 rounding. If the rounding is at the boundary of our autoscaler's rounding rules, we could easily flip back and forth
 between two and three replicas, for example.
 
-2. Controller Aggressiveness -- Imagine an autoscaler set to scale on every change in a metric[^3]. You are likely going
+### Controller Aggressiveness
+
+Imagine an autoscaler set to scale on every change in a metric[^3]. You are likely going
 to see replica counts changing rapidly. Now, consider the opposite: maybe you've set the autoscaler with a very long
 observation period so it takes a long time before scaling up, down, or both. We have to make sure we set our controller
 aggressiveness justttt right[^4]. We want to be responsive, but we don't want to freak out.
 
-3. Control loop delays -- Your autoscaler is, hopefully, using some metrics to calculate the desired replica count and
+### Control loop delays
+
+Your autoscaler is, hopefully, using some metrics to calculate the desired replica count and
 collecting metrics introduces delays. So unless we are forecasting we are optimizing for what the application needed
 in the past, which may or may not be what your application needs right now.
 
-4. Noise -- All metrics include some noise. We may even dismiss them as "outliers". Other metrics are erratic or
+### Noise
+
+All metrics include some noise. We may even dismiss them as "outliers". Other metrics are erratic or
 "spiky". Depending on how your autoscaler is configured, you might be scaling up then right back down, and that could be
 a very good thing or a complete and total waste[^5].
 
-5. User Error -- Also, maybe you are just holding it wrong? Honestly, we can't rule it out. Autoscalers can be finicky
+### User Error
+
+Also, maybe you are just holding it wrong? Honestly, we can't rule it out. Autoscalers can be finicky
 and often take time to dial in to just the right settings to produce the behavior your application needs, despite many
 promising the moon in three easy clicks.
 
@@ -93,7 +103,13 @@ aggregate it within the window and compare over time. For example, we could arbi
 When our replica count changes within the window from, say, two replicas to four, we add two to our counter. When it
 decreases from four to three, we add one. Our total application churn for the window would be three.
 
-Application Churn = sum[r(t) - r(t-1)]
+\[
+    \text{Application Churn}
+    =
+    \sum_{t=1}^{n} \left| r_t - r_{t-1} \right|
+\]
+
+Where \(r_t\) is the desired replica count at time \(t\).
 
 Let's see this in action with a few examples:
 
@@ -117,7 +133,16 @@ which is controlled by our windowing period. This small adjustment gives us cred
 still does not solve the traffic spike example, but it effectively controls for some of "necessary" scaling in our scale
 up and scale down examples.
 
-Excess Application Churn = sum(r(t)- r(t-1)) - (rn - r0)
+\[
+    \text{Excess Application Churn}
+    =
+    \sum_{t=1}^{n} \left| r_t - r_{t-1} \right|
+    -
+    \left| r_n - r_0 \right|
+\]
+
+Where \(r_t\) is the desired replica count at time \(t\), \(r_0\) is the initial replica count, and \(r_n\) is the
+final replica count.
 
 For the same examples above:
 
@@ -138,24 +163,34 @@ inside your clusters.
 If you are tracking your excess churn, and you want to do something about it, here are some knobs and buttons worth
 pondering:
 
-1. Use Tolerances -- Where possible, ignore small deviations from the target. HPA, for example, uses a tolerance
+### Use Tolerances
+
+Where possible, ignore small deviations from the target. HPA, for example, uses a tolerance
 mechanism with the cluster-wide default being 10% with scale-up and scale-down tolerances that are independently
 configurable.
 
-2. Use Stabilization Windows -- Wait for consistent evidence before reversing a scale-up decision. This is critical for
+### Use Stabilization Windows
+
+Wait for consistent evidence before reversing a scale-up decision. This is critical for
 disrupting the oscillation feedback loop that is responsible for a large amount of excess churn. By requiring a
 stabilization period before reversing course on a scale-up, we can prevent an unnecessary scale-down that leads
 eventually to another scale-up.
 
-3. Consider Rate Limiting -- Limit how many replicas can be added or removed in a given time period. Rate limits are
+### Consider Rate Limiting
+
+Limit how many replicas can be added or removed in a given time period. Rate limits are
 aggression control for scalers. Rate limits slow the speed of correction and can be particularly useful in limiting the
 scale-down behavior of your workload. Slower correction speeds help prevent over-corrections.
 
-4. Noise Reduction -- Use averages or other filtering techniques to smooth scaling signals. Outliers happen; demand can
+### Noise Reduction
+
+Use averages or other filtering techniques to smooth scaling signals. Outliers happen; demand can
 be highly variable, so nobody panic. We want to respond to trends without freaking out and scaling
 overly-aggressively based on very short-term inputs.
 
-5. Use High Quality Signals -- Use metrics that closely represent the actual demand. A higher quality signal is better
+### Use High Quality Signals
+
+Use metrics that closely represent the actual demand. A higher quality signal is better
 than smoothing a poor one. If your metrics do not closely align with the demands of your application, get a better
 metric. Don't scale on teraflops[^6] per parsec if queue depth is a better signal for your application.
 
@@ -182,6 +217,8 @@ attitude.
 Cheers,
 
 Ian
+
+P.S. Stay tuned for KubeCon coverage and wrap-up post!
 
 [^1]: Slightly unhinged.
 [^2]: lol, right.
