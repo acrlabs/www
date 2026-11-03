@@ -114,12 +114,12 @@ Where \(r_t\) is the desired replica count at time \(t\).
 Let's see this in action with a few examples:
 
 | Scenario | Desired Replicas | Total Churn |
-|--- | --- | --- |
-| Steady State | 2 -> 2 -> 2 -> 2 -> 2 | 0 |
-| Oscillation | 2-> 3 -> 2 -> 3 -> 2 | 4 |
-| Scale up | 2 -> 3 -> 4 -> 4 -> 4 | 2 |
-| Scale down | 6 -> 5 -> 4 -> 3 -> 3 | 3 |
-| Traffic Spike | 2 -> 4 -> 6 -> 4 -> 2 | 8 |
+|--- | --- | :---: |
+| Steady State | <span style="white-space: nowrap;">2 -> 2 -> 2 -> 2 -> 2</span> | 0 |
+| Oscillation | <span style="white-space: nowrap;">2 -> 3 -> 2 -> 3 -> 2</span> | 4 |
+| Scale up | <span style="white-space: nowrap;">2 -> 3 -> 4 -> 4 -> 4</span> | 2 |
+| Scale down | <span style="white-space: nowrap;">6 -> 5 -> 4 -> 3 -> 3</span> | 3 |
+| Traffic Spike | <span style="white-space: nowrap;">2 -> 4 -> 6 -> 4 -> 2</span> | 8 |
 
 As you can see, this metric captures all our replica count changes as churn. Directionally, this does a lot of what we
 want. As oscillation behavior increases, so does our churn metric. If we map out a longer cycle of these short examples,
@@ -147,12 +147,12 @@ final replica count.
 For the same examples above:
 
 | Scenario | Desired Replicas | Excess Churn |
-|--- | --- | --- |
-| Steady State | 2 -> 2 -> 2 -> 2 -> 2 | 0 |
-| Oscillation | 2-> 3 -> 2 -> 3 -> 2 | 4 |
-| Scale up | 2 -> 3 -> 4 -> 4 -> 4 | 0 |
-| Scale down | 6 -> 5 -> 4 -> 3 -> 3 | 0 |
-| Traffic Spike | 2 -> 4 -> 6 -> 4 -> 2 | 8 |
+|--- | :--- | :---: |
+| Steady State | <span style="white-space: nowrap;">2 -> 2 -> 2 -> 2 -> 2</span> | 0 |
+| Oscillation | <span style="white-space: nowrap;">2 -> 3 -> 2 -> 3 -> 2</span> | 4 |
+| Scale up | <span style="white-space: nowrap;">2 -> 3 -> 4 -> 4 -> 4</span> | 0 |
+| Scale down | <span style="white-space: nowrap;">6 -> 5 -> 4 -> 3 -> 3</span> | 0 |
+| Traffic Spike | <span style="white-space: nowrap;">2 -> 4 -> 6 -> 4 -> 2</span> | 8 |
 
 Unfortunately, this can't tell us that this Excess Churn is truly excess or that our net change was necessary, but for
 those who are interested in studying churn closely, this refinement can provide a clearer signal of the excessive churn
