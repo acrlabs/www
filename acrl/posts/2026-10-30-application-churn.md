@@ -2,7 +2,7 @@
 title: "Key Autoscaling Metric #5: Two and a Half Replicas"
 authors:
   - ian
-datetime: 2026-10-30 11:00:00
+datetime: 2026-11-01 11:00:00
 template: post.html
 ---
 
